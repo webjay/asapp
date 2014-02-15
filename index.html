@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ASAPP - Digitally Speaking</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+
+  <style>
+  .ui-table-columntoggle-btn {
+    display: none !important;
+   }
+   .ui-header .ui-title {
+    margin-right: 10%;
+    margin-left: 10%;
+   }
+  </style>
+</head>
+
+<body>
+
+
+
+
+<!-- Start of first page -->
+<div data-role="page" id="request" data-theme="b" >
+
+	<div data-role="header"  data-position="fixed" >
+	    <div data-role="navbar" data-iconpos="top" data-tap-toggle="false">
+	        <ul>
+	            <li><a href="#request" data-role="tab" data-icon="comment" class="ui-btn-active ui-state-persist" >Help!</a></li>
+	            <li><a href="#monitor" data-role="tab" data-icon="eye" >Monitor</a></li>
+	            <li><a href="#direct-messages" data-role="tab" data-icon="user" >Messages</a></li>
+	            <li><a href="#popup-menu-request" data-rel="popup" data-icon="gear" data-transition="pop">Settings</a>
+	        </ul>
+	    </div>
+	</div><!-- /header -->
+    
+	<div role="main" class="ui-content ui-corner-all">
+
+		<br/>
+		<div>I need help with:</div>
+
+		<div>
+		<fieldset data-role="controlgroup" data-type="horizontal" style="display:inline;">
+		    <input name="radio-choice-h-2" id="radio-choice-h-2a" value="on" checked="checked" type="radio">
+		    <label for="radio-choice-h-2a">AV</label>
+		    <input name="radio-choice-h-2" id="radio-choice-h-2b" value="off" type="radio">
+		    <label for="radio-choice-h-2b">Record</label>
+		    <input name="radio-choice-h-2" id="radio-choice-h-2c" value="other" type="radio">
+		    <label for="radio-choice-h-2c">Mgt</label>
+		    <a href="#group-configuration" class="ui-btn ui-icon-gear ui-btn-icon-notext ui-corner-all">No text</a>
+		</fieldset>
+		</div>
+		
+		<div>I am in room:</div>
+
+		<fieldset data-role="controlgroup" data-type="horizontal" style="display:inline;" >
+		    <input name="radio-choice-h-3" id="radio-choice-h-3b" value="W 3002" type="radio" >
+		    <label for="radio-choice-h-3b">W 3002</label>
+		    <input name="radio-choice-h-3" id="radio-choice-h-3c" value="W 3003" type="radio" checked="checked" >
+		    <label for="radio-choice-h-3c">W 3003</label>
+		    <input name="radio-choice-h-3" id="radio-choice-h-3d" value="W 3010" type="radio">
+		    <label for="radio-choice-h-3d">W 3010</label>
+		    <input name="radio-choice-h-3" id="radio-choice-h-3e" value="N 3014" type="radio">
+		    <label for="radio-choice-h-3e">N 1014</label>
+		    <!--<input name="radio-choice-h-3" id="radio-choice-h-3f" value="other" type="radio">
+		    <label for="radio-choice-h-3f">W 3014</label>-->
+		    <select name="select-native-1" id="select-native-1" data-native-menu="false">
+		        <option value=""></option>
+		        <option value="1015">N 1015</option>
+		        <option value="1016">N 1016</option>
+		        <option value="1017">N 1017</option>
+		        <option value="1018">N 1018</option>
+		        <option value="1019">N 1019</option>
+		        <option value="1020">N 1020</option>
+		        <option value="Other">Other</option>
+		        <option value=""></option>
+		    </select>
+		</fieldset>
+
+		<br/>
+
+		<form>
+		    <label for="textarea-1">Description:</label>
+		    <textarea style="color: black; background-color: #EEEEEE;"  name="textarea-2" id="textarea-2" data-mini="true" ></textarea>
+		    <button class="ui-btn ui-btn-a ui-corner-all ui-shadow ui-btn-inline" style="color:#b31919;">I need Help ASAP!</button>
+		    &nbsp;&nbsp;&nbsp;
+		    <button class="ui-btn ui-btn-a ui-corner-all ui-shadow ui-btn-inline" >Just FYI</button>
+		</form>
+
+		<br/>
+
+
+		<div data-role="collapsible" class="ui-mini" data-collapsed="false" data-inset="false" id="mySubmittedRequest">
+	    	<h4>My Requests</h4>
+			<table data-role="table" id="table-column-toggle-my-request" data-mode="columntoggle" class="ui-responsive table-stripe ui-mini" >
+		     <thead>
+		       <tr>
+		         <th data-priority="1">Time</th>
+		         <th data-priority="2">Room</th>
+		         <th >Topic</th>
+		         <th data-priority="3">Detail</th>
+		         <th >Status</th>
+		         <th >&nbsp;</th>
+		       </tr>
+		     </thead>
+		     <tbody>
+		       <tr>
+		         <th>08:31</th>
+		         <td>None</td>
+		         <td>AV</td>
+		         <td><abbr title="&quot;Speaker has trouble with his Mac when connecting it to the projector&quot;...">Speaker has trouble ...</abbr></td>
+		         <td>Resolved</td>
+		         <td><a href="#requestDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top">&nbsp;</a></td>
+		       </tr>
+		       <tr>
+		         <th>09:04</th>
+		         <td>N 1015</td>
+		         <td>AV</td>
+		         <td></td>
+		         <td>Resolved</td>
+		         <td><a href="#requestDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top"></a></td>
+		       </tr>
+		       <tr>
+		         <th>09:04</th>
+		         <td>W 3004</td>
+		         <td>AV</td>
+		         <td></td>
+		         <td>Cancelled</td>
+		         <td><a href="#requestDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top"></a></td>
+		       </tr>
+		       <tr>
+		         <th>09:05</th>
+		         <td>W 3004</td>
+		         <td>Record</td>
+		         <td></td>
+		         <td>Too late</td>
+		         <td><a href="#requestDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top"></a></td>
+		       </tr>
+		    </tbody>
+			</table>    		
+		</div>
+
+	</div><!-- /main -->
+
+	<div data-role="footer" class="ui-mini">
+		<h1 class="ui-bar-b">ASAPP - &copy; Digitally Speaking</h1>
+		<img src="ds-logo-3.png" class="ui-btn-right" />
+	</div>
+
+    <div data-role="popup" id="popup-menu-request">
+		<div data-role="controlgroup" style="margin:0px;">
+		    <a href="#room-configuration" class="ui-btn ">My Rooms</a>
+		    <a href="#profile-configuration" class="ui-btn ">My Profile</a>
+		    <!--<a href="#phone-configuration" class="ui-btn ">Phone / SMS</a>-->
+		</div>	            	
+    </div>
+
+</div><!-- /page -->
+
+<!-- Start of Group Configuration page -->
+<div data-role="page" id="group-configuration" data-theme="b">
+
+	<div data-role="header"  data-position="fixed" >
+	    <div data-role="navbar" data-iconpos="top" data-tap-toggle="false">
+	        <ul>
+	            <li><a href="#request" data-role="tab" data-icon="comment" class="ui-btn-active ui-state-persist" >Help!</a></li>
+	            <li><a href="#monitor" data-role="tab" data-icon="eye" >Monitor</a></li>
+	            <li><a href="#direct-messages" data-role="tab" data-icon="user" >Messages</a></li>
+	            <li><a href="#popup-menu-group-config" data-rel="popup" data-icon="gear" data-transition="pop">Settings</a>
+	        </ul>
+	    </div>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content ui-corner-all">
+
+		<div data-role="header">
+			<a href="#request" data-icon="arrow-l" data-iconpos="notext">Back</a>
+			<h3>Display Help</h3>
+		</div>
+
+		<p>Display the following groups on screen for quick help:</p>
+
+
+		<div class="ui-field-contain">
+			<label for="av-group">AV:</label>
+		    <input data-role="flipswitch" name="av-group" id="av-group" data-on-text="Visible" data-off-text="No" data-wrapper-class="custom-label-flipswitch" checked="" type="checkbox">
+		</div>
+		<div class="ui-field-contain">
+			<label for="record-group">Record:</label>
+		    <input data-role="flipswitch" name="record-group" id="record-group" data-on-text="Visible" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
+		</div>
+		<div class="ui-field-contain">
+			<label for="mgt-group">Management:</label>
+		    <input data-role="flipswitch" name="mgt-group" id="mgt-group" data-on-text="Visible" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
+		</div>
+		<div class="ui-field-contain">
+			<label for="hotel-group">Hotel:</label>
+		    <input data-role="flipswitch" name="hotel-group" id="hotel-group" data-on-text="Yes" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
+		</div>
+		<div class="ui-field-contain">
+			<label for="hotel-food">Food & Beverage:</label>
+		    <input data-role="flipswitch" name="hotel-food" id="hotel-food" data-on-text="Yes" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
+		</div>
+
+		<br/>
+		<button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">Save</button>
+		<br/>
+
+	</div>
+
+	<div data-role="footer" class="ui-mini">
+		<h1 class="ui-bar-b">ASAPP - &copy; Digitally Speaking</h1>
+		<img src="ds-logo-3.png" class="ui-btn-right" />
+	</div>
+
+    <div data-role="popup" id="popup-menu-group-config">
+		<div data-role="controlgroup" style="margin:0px;">
+		    <a href="#room-configuration" class="ui-btn ">My Rooms</a>
+		    <a href="#profile-configuration" class="ui-btn ">My Profile</a>
+		    <!--<a href="#phone-configuration" class="ui-btn ">Phone / SMS</a>-->
+		</div>	            	
+    </div>
+
+</div><!-- /page -->
+
+
+
+<!-- Start of Room Display Configuration page -->
+<div data-role="page" id="room-configuration" data-theme="b">
+
+	<div data-role="header"  data-position="fixed" >
+	    <div data-role="navbar" data-iconpos="top" data-tap-toggle="false">
+	        <ul>
+	            <li><a href="#request" data-role="tab" data-icon="comment">Help!</a></li>
+	            <li><a href="#monitor" data-role="tab" data-icon="eye" >Monitor</a></li>
+	            <li><a href="#direct-messages" data-role="tab" data-icon="user" >Messages</a></li>
+	            <li><a href="#popup-menu-room-config" data-rel="popup" data-icon="gear" data-transition="pop" class="ui-btn-active ui-state-persist" >Settings</a>
+	        </ul>
+	    </div>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content ui-corner-all">
+
+		<div data-role="header">
+			<h1>Rooms Configuration</h1>
+		</div>
+
+		<br/>
+
+		<fieldset data-role="controlgroup" data-type="horizontal">
+	        <legend>Pick the rooms you want to follow:</legend>
+	        <input name="room-choice-a" id="room-choice-a" type="checkbox">
+	        <label for="room-choice-a">W 3001</label>
+	        <input name="room-choice-b" id="room-choice-b" type="checkbox">
+	        <label for="room-choice-b">W 3002</label>
+	        <input name="room-choice-c" id="room-choice-c" type="checkbox">
+	        <label for="room-choice-c">W 3003</label>
+	        <input name="room-choice-d" id="room-choice-d" type="checkbox">
+	        <label for="room-choice-d">W 3004</label>
+	        <input name="room-choice-e" id="room-choice-e" type="checkbox">
+	        <label for="room-choice-e">W 3005</label>
+	        <input name="room-choice-f" id="room-choice-f" type="checkbox">
+	        <label for="room-choice-f">W 3006</label>
+	        <input name="room-choice-g" id="room-choice-g" type="checkbox">
+	        <label for="room-choice-g">W 3007</label>
+	        <input name="room-choice-h" id="room-choice-h" type="checkbox">
+	        <label for="room-choice-h">W 3008</label>
+	        <input name="room-choice-i" id="room-choice-i" type="checkbox">
+	        <label for="room-choice-i">W 3009</label>
+	        <input name="room-choice-j" id="room-choice-j" type="checkbox">
+	        <label for="room-choice-j">W 3010</label>
+
+	        <input name="room-choice-k" id="room-choice-k" type="checkbox">
+	        <label for="room-choice-k">N 101</label>
+	        <input name="room-choice-l" id="room-choice-l" type="checkbox">
+	        <label for="room-choice-l">N 102</label>
+	        <input name="room-choice-m" id="room-choice-m" type="checkbox">
+	        <label for="room-choice-m">N 103</label>
+	        <input name="room-choice-n" id="room-choice-n" type="checkbox">
+	        <label for="room-choice-n">N 104</label>
+	        <input name="room-choice-o" id="room-choice-o" type="checkbox">
+	        <label for="room-choice-o">N 105</label>
+	        <input name="room-choice-p" id="room-choice-p" type="checkbox">
+	        <label for="room-choice-p">N 106</label>
+	        <input name="room-choice-q" id="room-choice-q" type="checkbox">
+	        <label for="room-choice-q">N 107</label>
+	        <input name="room-choice-r" id="room-choice-r" type="checkbox">
+	        <label for="room-choice-r">N 108</label>
+	        <input name="room-choice-s" id="room-choice-s" type="checkbox">
+	        <label for="room-choice-s">N 109</label>
+	        <input name="room-choice-t" id="room-choice-t" type="checkbox">
+	        <label for="room-choice-t">W 3010</label>
+	    </fieldset>
+
+		<br/>
+		<button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">Save</button>
+		<br/>
+
+	</div>
+
+	<div data-role="footer" class="ui-mini">
+		<h1 class="ui-bar-b">ASAPP - &copy; Digitally Speaking</h1>
+		<img src="ds-logo-3.png" class="ui-btn-right" />
+	</div>
+
+    <div data-role="popup" id="popup-menu-room-config">
+		<div data-role="controlgroup" style="margin:0px;">
+		    <a href="#room-configuration" class="ui-btn ">My Rooms</a>
+		    <a href="#profile-configuration" class="ui-btn ">My Profile</a>
+		    <!--<a href="#phone-configuration" class="ui-btn ">Phone / SMS</a>-->
+		</div>	            	
+    </div>
+
+</div><!-- /page -->
+
+
+
+<!-- ################### -->
+<!-- Start of Monitoring page -->
+<!-- ################### -->
+<div data-role="page" id="monitor" data-theme="b">
+
+	<div data-role="header" data-position="fixed">
+
+	    <div data-role="navbar" data-iconpos="top" data-tap-toggle="false">
+	        <ul>
+	            <li><a href="#request" data-role="tab" data-icon="comment" >Help!</a></li>
+	            <li><a href="#monitor" data-role="tab" data-icon="eye"  class="ui-btn-active ui-state-persist">Monitor</a></li>
+	            <li><a href="#direct-messages" data-role="tab" data-icon="user">Messages</a></li>
+	            <li><a href="#popup-menu-monitor" data-rel="popup" data-icon="gear" data-transition="pop">Settings</a>
+	        </ul>
+	    </div>
+
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content ui-corner-all" >
+
+		<div data-role="header">
+			<h3 >Open Requests</h3>
+		</div>
+	
+	  	<!-- class="ui-icon-gear" data-iconpos="right" -->
+	  	<!-- columntoggle  reflow -->
+		<table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stripe" >
+	     <thead>
+	       <tr>
+	         <th data-priority="1">Time</th>
+	         <th>Room</th>
+	         <th data-priority="2">From</th>
+	         <th data-priority="1">Topic</th>
+	         <th data-priority="1">Status</th>
+	         <th data-priority="1"></th>
+	       </tr>
+	     </thead>
+	     <tbody>
+	       <tr>
+	         <th>09:25</th>
+	         <td>W 3004</td>
+	         <td>Leslie Audette, Event Manager</td>
+	         <td>Record</td>
+	         <td>Marni L. on it</td>
+	         <td><a href="#alertDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top"></a></td>
+	       </tr>
+	       <tr>
+	         <th>09:21</th>
+	         <td>W 3004</td>
+	         <td>Daniel Lalonde, Room Manager</td>
+	         <td>AV</td>
+	         <td>Open</td>
+	         <td><a href="#alertDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top"></a></td>
+	       </tr>
+	       <tr>
+	         <th>09:21</th>
+	         <td>W 3004</td>
+	         <td>Esteban Laliste, Recorder</td>
+	         <td>AV</td>
+	         <td>Karl S. on it</td>
+	         <td><a href="#alertDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top"></a></td>
+	       </tr>
+	       <tr>
+	         <th>09:18</th>
+	         <td>W 3002</td>
+	         <td>Mike Curtis, Room Manager<br/>&quot;Speaker has trouble with his Mac&quot;...</td>
+	         <td>AV</td>
+	         <td>Open</td>
+	         <td><a href="#alertDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top"></a></td>
+	       </tr>
+	    </tbody>
+	   </table>
+
+	   	<div data-role="popup" id="alertDetail" data-theme="a" data-overlay-theme="b" class="ui-content">
+		  <!-- insert data that was in the table + details-->
+		  <p>
+		  	<b>ASAP!</b>&nbsp;-&nbsp;<b>For AV - Room: W 3004</b><br/>
+		  	Time: 09:21 - From: Esteban Laliste, Recorder<br/>
+		  	Status: Open<br/>
+		  	Details: &quot;There is a problem with a audio hum that just popped-up. May be related to presenter computer...&quot;<br/>
+		  </p>
+		  <button class="ui-btn ui-btn-a ui-corner-all ui-shadow ui-btn-icon-left ui-icon-check ui-btn-inline">I'm on it</button>
+		  <button class="ui-btn ui-btn-a ui-corner-all ui-shadow ui-btn-icon-left ui-icon-delete ui-btn-inline ds-popup-close-button">Close</button>		  
+		</div>
+
+
+		<div data-role="collapsible" data-inset="false" class="ui-mini">
+	    	<h4>Processed Requests</h4>
+			<table data-role="table" id="table-column-toggle-handled" data-mode="reflow" class="ui-responsive table-stroke ui-mini" >
+		     <thead>
+		       <tr>
+		         <th data-priority="1">Time</th>
+		         <th>Room</th>
+		         <th data-priority="1">From</th>
+		         <th data-priority="1">Topic</th>
+		         <th data-priority="1">Status</th>
+		       </tr>
+		     </thead>
+		     <tbody>
+		       <tr>
+		         <th>08:31</th>
+		         <td>None</td>
+		         <td>Raymond Shank, AV Manager</td>
+		         <td>AV</td>
+		         <td>Resolved</td>
+		       </tr>
+		       <tr>
+		         <th>09:04</th>
+		         <td>N 1015</td>
+		         <td>Alvin Garrett, Room Manager</td>
+		         <td>AV</td>
+		         <td>Resolved</td>
+		       </tr>
+		       <tr>
+		         <th>09:04</th>
+		         <td>W 3004</td>
+		         <td>Lois Dimaggio, Recorder</td>
+		         <td>AV</td>
+		         <td>Cancelled</td>
+		       </tr>
+		       <tr>
+		         <th>09:05</th>
+		         <td>W 3004</td>
+		         <td>Leslie Audette, Event Manager</td>
+		         <td>Record</td>
+		         <td>Too late</td>
+		       </tr>
+		    </tbody>
+		   </table>    		
+		</div>
+
+	</div><!-- /main -->
+
+	<div data-role="footer" class="ui-mini">
+		<h1 class="ui-bar-b">ASAPP - &copy; Digitally Speaking</h1>
+		<img src="ds-logo-3.png" class="ui-btn-right" />
+	</div>
+
+    <div data-role="popup" id="popup-menu-monitor">
+		<div data-role="controlgroup" style="margin:0px;">
+		    <a href="#room-configuration" class="ui-btn ">My Rooms</a>
+		    <a href="#profile-configuration" class="ui-btn ">My Profile</a>
+		    <!--<a href="#phone-configuration" class="ui-btn ">Phone / SMS</a>-->
+		</div>	            	
+    </div>
+
+</div><!-- /page -->
+
+
+<!-- ################### -->
+<!-- Start of Direct Messages page -->
+<!-- ################### -->
+<div data-role="page" id="direct-messages" data-theme="b">
+
+	<div data-role="header" data-position="fixed" >
+	    <div data-role="navbar" data-iconpos="top" data-tap-toggle="false">
+	        <ul>
+	            <li><a href="#request" data-role="tab" data-icon="comment" >Help!</a></li>
+	            <li><a href="#monitor" data-role="tab" data-icon="eye" >Monitor</a></li>
+	            <li><a href="#direct-messages" data-role="tab" data-icon="user" class="ui-btn-active ui-state-persist">Messages</a></li>
+	            <li><a href="#popup-menu-messages" data-rel="popup" data-icon="gear" data-transition="pop">Settings</a>
+	        </ul>
+	    </div>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content ui-corner-all">
+        <a href="" class="ui-btn ui-btn-a ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon-right" style="color:#b31919;" >Disconnected! Please refresh</a>
+
+		<p>Direct Messages</p>
+		<p>For direct communication between users</p>
+		<p><a href="#request">Back to Help Request</a></p>
+
+	</div><!-- /content -->
+
+	<div data-role="footer" class="ui-mini">
+		<h1 class="ui-bar-b">ASAPP - &copy; Digitally Speaking</h1>
+		<img src="ds-logo-3.png" class="ui-btn-right" />
+	</div>
+
+    <div data-role="popup" id="popup-menu-messages">
+		<div data-role="controlgroup" style="margin:0px;">
+		    <a href="#room-configuration" class="ui-btn ">My Rooms</a>
+		    <a href="#profile-configuration" class="ui-btn ">My Profile</a>
+		    <!--<a href="#phone-configuration" class="ui-btn ">Phone / SMS</a>-->
+		</div>	            	
+    </div>
+
+
+</div><!-- /page -->
+
+
+<!-- ################### -->
+<!-- Start of Monitoring Configuration page -->
+<!-- ################### -->
+<div data-role="page" id="alert-configuration" data-theme="b">
+
+	<div data-role="header" data-position="fixed">
+	    <div data-role="navbar" data-iconpos="top" data-tap-toggle="false">
+	        <ul>
+	            <li><a href="#request" data-role="tab" data-icon="comment">Help!</a></li>
+	            <li><a href="#monitor" data-role="tab" data-icon="alert" class="ui-btn-active ui-state-persist">Monitor</a></li>
+	            <li><a href="#direct-messages" data-role="tab" data-icon="user">Messages</a></li>
+	            <li><a href="#popup-menu-monitor-conf" data-rel="popup" data-icon="gear" data-transition="pop">Settings</a>
+	        </ul>
+	    </div>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content ui-corner-all">
+
+		<div data-role="header">
+			<a href="#manage-alerts" data-icon="arrow-l" data-iconpos="notext"></a>
+			<h3>Rooms Monitoring</h3>
+		</div>
+
+		<br/>
+
+
+		<fieldset data-role="controlgroup" data-type="horizontal">
+	        <legend>I monitor requests coming from the following room(s):</legend>
+	        <input name="room-choice-a" id="room-choice-a" type="checkbox">
+	        <label for="room-choice-a">W 3001</label>
+	        <input name="room-choice-b" id="room-choice-b" type="checkbox">
+	        <label for="room-choice-b">W 3002</label>
+	        <input name="room-choice-c" id="room-choice-c" type="checkbox">
+	        <label for="room-choice-c">W 3003</label>
+	        <input name="room-choice-d" id="room-choice-d" type="checkbox">
+	        <label for="room-choice-d">W 3004</label>
+	        <input name="room-choice-e" id="room-choice-e" type="checkbox">
+	        <label for="room-choice-e">W 3005</label>
+	        <input name="room-choice-f" id="room-choice-f" type="checkbox">
+	        <label for="room-choice-f">W 3006</label>
+	        <input name="room-choice-g" id="room-choice-g" type="checkbox">
+	        <label for="room-choice-g">W 3007</label>
+	        <input name="room-choice-h" id="room-choice-h" type="checkbox">
+	        <label for="room-choice-h">W 3008</label>
+	        <input name="room-choice-i" id="room-choice-i" type="checkbox">
+	        <label for="room-choice-i">W 3009</label>
+	        <input name="room-choice-j" id="room-choice-j" type="checkbox">
+	        <label for="room-choice-j">W 3010</label>
+
+	        <input name="room-choice-k" id="room-choice-k" type="checkbox">
+	        <label for="room-choice-k">N 101</label>
+	        <input name="room-choice-l" id="room-choice-l" type="checkbox">
+	        <label for="room-choice-l">N 102</label>
+	        <input name="room-choice-m" id="room-choice-m" type="checkbox">
+	        <label for="room-choice-m">N 103</label>
+	        <input name="room-choice-n" id="room-choice-n" type="checkbox">
+	        <label for="room-choice-n">N 104</label>
+	        <input name="room-choice-o" id="room-choice-o" type="checkbox">
+	        <label for="room-choice-o">N 105</label>
+	        <input name="room-choice-p" id="room-choice-p" type="checkbox">
+	        <label for="room-choice-p">N 106</label>
+	        <input name="room-choice-q" id="room-choice-q" type="checkbox">
+	        <label for="room-choice-q">N 107</label>
+	        <input name="room-choice-r" id="room-choice-r" type="checkbox">
+	        <label for="room-choice-r">N 108</label>
+	        <input name="room-choice-s" id="room-choice-s" type="checkbox">
+	        <label for="room-choice-s">N 109</label>
+	        <input name="room-choice-t" id="room-choice-t" type="checkbox">
+	        <label for="room-choice-t">W 3010</label>
+	    </fieldset>
+
+		<br/>
+	
+		<button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">Save</button>
+
+		<br/>
+		<a href="#profile" >Configure Alerts by text messages</a>
+
+	</div><!-- /content -->
+
+	<div data-role="footer" class="ui-mini">
+		<h1 class="ui-bar-b">ASAPP - &copy; Digitally Speaking</h1>
+		<img src="ds-logo-3.png" class="ui-btn-right" />
+	</div>
+
+</div><!-- /page -->
+
+
+<!-- ################### -->
+<!-- Start of Profile page -->
+<!-- ################### -->
+<div data-role="page" id="profile-configuration" data-theme="b">
+
+	<div data-role="header" data-position="fixed">
+	    <div data-role="navbar" data-iconpos="top" data-tap-toggle="false">
+	        <ul>
+	            <li><a href="#request" data-role="tab" data-icon="comment">Help!</a></li>
+	            <li><a href="#monitor" data-role="tab" data-icon="eye" >Monitor</a></li>
+	            <li><a href="#direct-messages" data-role="tab" data-icon="user">Messages</a></li>
+	            <li><a href="#popup-menu-profile" data-rel="popup" data-icon="gear" data-transition="pop" class="ui-btn-active ui-state-persist">Settings</a>
+	        </ul>
+	    </div>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content ui-corner-all">
+		<h3>My Profile</h3>
+
+	    <div class="ui-field-contain">
+			<label for="first-name">First name:</label>
+     		<input name="first-name" id="first-name" value="Alice" type="text" data-theme="a">
+     	</div>
+	    <div class="ui-field-contain">
+			<label for="last-name">Last name:</label>
+     		<input name="last-name" id="last-name" value="Rodgers" type="text" data-theme="a">
+     	</div>
+
+     	<br/>
+
+		<div>My role: Room Manager</div>
+
+	    <br/>
+
+	    <div class="">
+			<label for="tel">My phone number (optional):</label>
+			<input data-clear-btn="true" name="tel" id="tel" value="" type="tel" data-theme="a">
+		</div>
+
+		<br/>
+	
+		<div class="">
+		<label for="flip-checkbox">I want to receive new "ASAP" requests by text messages too:</label>
+	    <input data-role="flipswitch" name="flip-checkbox" id="flip-checkbox" type="checkbox" data-on-text="Yes" data-off-text="No" data-wrapper-class="custom-label-flipswitch">
+	    &nbsp;(Additional charges may incur from your operator)
+		</div>
+
+		<br/>
+
+		<button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">Save</button>
+
+	</div><!-- /content -->
+
+	<div data-role="footer" class="ui-mini">
+		<h1 class="ui-bar-b">ASAPP - &copy; Digitally Speaking</h1>
+		<img src="ds-logo-3.png" class="ui-btn-right" />
+	</div>
+
+    <div data-role="popup" id="popup-menu-profile">
+		<div data-role="controlgroup" style="margin:0px;">
+		    <a href="#room-configuration" class="ui-btn ">My Rooms</a>
+		    <a href="#profile-configuration" class="ui-btn ">My Profile</a>
+		    <!--<a href="#phone-configuration" class="ui-btn ">Phone / SMS</a>-->
+		</div>	            	
+    </div>
+
+</div><!-- /page -->
+
+
+<script>
+ //$(document).on("mobileinit", function() {
+ $(document).ready(function() {
+
+ 	//speeding up transition effects:
+    $.mobile.defaultPageTransition = "none";
+
+    $(".ds-popup-close-button").on("click", function() {
+    	popupDialog = $(this).parent("div[data-role='popup']");
+    	popupDialog.popup("close");
+
+    })
+
+ });
+</script>
+
+</body>
