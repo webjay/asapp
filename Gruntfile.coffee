@@ -15,14 +15,12 @@ module.exports = (grunt) ->
             '_scripts/index.js'
           ]
 
-    cssmin:
-      combine:
+    less:
+      custom:
         options:
-          keepSpecialComments: 0
+          compress: true
         files:
-          'lib/the.css': [
-            '_styles/main.css'
-          ]
+          'css/custom.css': '_styles/*.less'
 
     assemble:
       options:
@@ -33,9 +31,7 @@ module.exports = (grunt) ->
         options:
           layout: 'default.hbs'
         files:
-          '.': [
-            '_pages/*.hbs'
-          ]
+          '.': '_pages/*.hbs'
 
     shell:
       jqmNpmInstall:
@@ -51,11 +47,10 @@ module.exports = (grunt) ->
           execOptions:
             cwd: 'bower_components/jquery-mobile'
 
-  grunt.registerTask 'default', ['assemble']
-  # grunt.registerTask 'default', ['assemble', 'cssmin', 'uglify']
+  grunt.registerTask 'default', ['less', 'assemble']
   grunt.registerTask 'jqm', ['shell']
 
   grunt.loadNpmTasks 'grunt-shell'
   # grunt.loadNpmTasks 'grunt-contrib-uglify'
-  # grunt.loadNpmTasks 'grunt-contrib-cssmin'
+  grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'assemble'

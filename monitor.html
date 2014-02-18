@@ -9,10 +9,10 @@
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="//code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
 
+	<link rel="stylesheet" href="css/custom.css">
+
 </head>
-
 <body>
-
 
 
 
@@ -22,22 +22,15 @@
 <div data-role="header" data-position="fixed">
   <div data-role="navbar" data-iconpos="top">
     <ul>
-      <li><a href="index.html" data-role="tab" data-icon="comment">Help!</a></li>
-      <li><a href="monitor.html" data-role="tab" data-icon="eye">Monitor</a></li>
-      <li><a href="#settings" data-rel="popup" data-icon="gear">Settings</a></li>
+      <li><a href="index.html" data-role="tab" data-icon="comment" data-prefetch="true" data-transition="none">Help!</a></li>
+      <li><a href="monitor.html" data-role="tab" data-icon="eye" data-prefetch="true" data-transition="none">Monitor</a></li>
+      <li><a href="settings.html" data-role="tab" data-icon="gear" data-prefetch="true" data-transition="none">Settings</a></li>
     </ul>
   </div>
 </div>
 
-<div data-role="popup" id="settings">
-	<div data-role="controlgroup">
-    <a href="settings-room.html" class="ui-btn">My Rooms</a>
-    <a href="settings-profile.html" class="ui-btn">My Profile</a>
-	</div>	            	
-</div>
 
-
-	<div role="main" class="ui-content ui-corner-all" >
+	<div role="content" class="ui-content ui-corner-all" >
 
 		<div data-role="header">
 			<h3 >Open Requests</h3>
@@ -160,6 +153,5 @@
 
 
 </div>
-
 
 </body>

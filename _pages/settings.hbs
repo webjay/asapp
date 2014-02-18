@@ -1,0 +1,32 @@
+---
+title: Settings
+---
+
+<div data-role="page" data-theme="b">
+
+	{{> header }}
+
+  <div data-role="tabs">
+    <ul data-role="listview" data-inset="true" class="tablist-left">
+      <li><a href="#profile">Profile settings</a></li>
+      <li><a href="#group" data-ajax="false">Group settings</a></li>
+      <li><a href="#room" data-ajax="false">Room settings</a></li>
+    </ul>
+
+    <div id="profile" class="ui-body-d tablist-content">
+      {{> settings-profile }}
+    </div>
+
+    <div id="group" class="ui-body-d tablist-content">
+      {{> settings-group }}
+    </div>
+
+    <div id="room" class="ui-body-d tablist-content">
+      {{> settings-room }}
+    </div>
+
+  </div>
+
+	{{> footer }}
+
+</div>
