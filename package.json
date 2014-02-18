@@ -1,0 +1,19 @@
+{
+  "name": "asapp",
+  "version": "0.0.0",
+  "description": "ASAP messaging app",
+  "main": "index.html",
+  "scripts": {
+    "test": "mocha",
+    "preinstall": "npm i -g bower grunt-cli mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/webjay/asapp.git"
+  },
+  "author": "Jacob Friis Saxberg",
+  "bugs": {
+    "url": "https://github.com/webjay/asapp/issues"
+  },
+  "homepage": "https://github.com/webjay/asapp"
+}
