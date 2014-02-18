@@ -1,42 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-	<title>ASAPP - Help</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-	<link rel="stylesheet" href="//code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.css">
-	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="//code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
-
-</head>
-
-<body>
-
-
-
+---
+title: Help
+---
 
 <!-- Start of first page -->
 <div data-role="page" data-theme="b" >
 
-	
-<div data-role="header" data-position="fixed">
-  <div data-role="navbar" data-iconpos="top">
-    <ul>
-      <li><a href="index.html" data-role="tab" data-icon="comment">Help!</a></li>
-      <li><a href="monitor.html" data-role="tab" data-icon="eye">Monitor</a></li>
-      <li><a href="#settings" data-rel="popup" data-icon="gear">Settings</a></li>
-    </ul>
-  </div>
-</div>
-
-<div data-role="popup" id="settings">
-	<div data-role="controlgroup">
-    <a href="settings-room.html" class="ui-btn">My Rooms</a>
-    <a href="settings-profile.html" class="ui-btn">My Profile</a>
-	</div>	            	
-</div>
-
+	{{> header }}
     
 	<div role="main" class="ui-content ui-corner-all">
 
@@ -146,15 +115,6 @@
 
 	</div><!-- /main -->
 
-	
-<div data-role="footer" class="ui-mini">
-	<h1 class="ui-bar-b">ASAPP &copy; Digitally Speaking</h1>
-	<!-- <img src="ds-logo-3.png" class="ui-btn-right"> -->
-</div>
-
+	{{> footer }}
 
 </div><!-- /page -->
-
-
-
-</body>

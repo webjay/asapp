@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/webjay/asapp/issues"
   },
-  "homepage": "https://github.com/webjay/asapp"
+  "homepage": "https://github.com/webjay/asapp",
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-shell": "0.6.x",
+    "assemble": "0.4.x"
+  }
 }
