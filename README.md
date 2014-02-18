@@ -29,7 +29,6 @@ The [Node package manager](http://www.npmjs.com) is needed to install packages. 
 If you start from scratch, start with [Homebrew](http://brew.sh/#install), then:
 
     brew install node
-    npm install -g bower grunt-cli mocha
 
 To start development, clone the repository:
 
