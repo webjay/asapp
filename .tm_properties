@@ -1,0 +1,7 @@
+tabSize = 2
+softTabs = true
+
+# Include File
+myExtraIncludes = ".tm_properties, .gitignore"
+fileBrowserGlob  = "{*, $myExtraIncludes}"
+include = "{$include,$myExtraIncludes}"
