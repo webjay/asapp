@@ -1,0 +1,20 @@
+{
+  "name": "asapp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/webjay/asapp",
+  "authors": [
+    "Jacob Friis Saxberg <jacob@webcom.dk>"
+  ],
+  "description": "ASAP messaging app",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery-mobile": "1.4.x"
+  }
+}
