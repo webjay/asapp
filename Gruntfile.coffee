@@ -9,10 +9,10 @@ module.exports = (grunt) ->
           compress: true
           wrap: true
         files:
-          'lib/index.js': [
+          'public/js/app.js': [
             'bower_components/zeptojs/src/zepto.js'
             'bower_components/zeptojs/src/event.js'
-            '_scripts/index.js'
+            '_scripts/app.js'
           ]
 
     less:
@@ -20,7 +20,7 @@ module.exports = (grunt) ->
         options:
           compress: true
         files:
-          'css/custom.css': '_styles/*.less'
+          'public/css/custom.css': '_styles/*.less'
 
     assemble:
       options:
@@ -31,7 +31,7 @@ module.exports = (grunt) ->
         options:
           layout: 'default.hbs'
         files:
-          '.': '_pages/*.hbs'
+          'public': '_pages/*.hbs'
 
     shell:
       jqmNpmInstall:
