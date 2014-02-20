@@ -5,22 +5,22 @@ module.exports = (grunt) ->
     uglify:
       components:
         options:
-          # mangle: false
+          mangle: false
           compress: true
-          wrap: true
+          wrap: false
         files:
           'public/js/app.js': [
-            'bower_components/zeptojs/src/zepto.js'
-            'bower_components/zeptojs/src/event.js'
-            '_scripts/app.js'
+            'bower_components/lodash/dist/lodash.underscore.js'
+            'bower_components/backbone/backbone.js'
+            '_scripts/*.js'
           ]
 
     less:
-      custom:
+      app:
         options:
           compress: true
         files:
-          'public/css/custom.css': '_styles/*.less'
+          'public/css/app.css': '_styles/*.less'
 
     assemble:
       options:
@@ -47,10 +47,10 @@ module.exports = (grunt) ->
           execOptions:
             cwd: 'bower_components/jquery-mobile'
 
-  grunt.registerTask 'default', ['less', 'assemble']
+  grunt.registerTask 'default', ['less', 'assemble', 'uglify']
   grunt.registerTask 'jqm', ['shell']
 
   grunt.loadNpmTasks 'grunt-shell'
-  # grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'assemble'
