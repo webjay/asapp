@@ -2,15 +2,16 @@
 title: Settings
 ---
 
-<div data-role="page" data-theme="b">
+<div data-role="page" id="page-{{basename}}" data-theme="{{ jqm.theme }}">
 
 	{{> header }}
 
   <div data-role="tabs">
+
     <ul data-role="listview" data-inset="true" class="tablist-left">
       <li><a href="#profile">Profile settings</a></li>
-      <li><a href="#group" data-ajax="false">Group settings</a></li>
-      <li><a href="#room" data-ajax="false">Room settings</a></li>
+      <li><a href="#group">Group settings</a></li>
+      <li><a href="#room">Room settings</a></li>
     </ul>
 
     <div id="profile" class="ui-body-d tablist-content">

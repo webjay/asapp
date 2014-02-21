@@ -6,155 +6,123 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<script src="./js/app.js"></script>
+
   <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.0/jquery.mobile.min.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.0/jquery.mobile.min.js"></script>
 
 	<link rel="stylesheet" href="./css/app.css">
-	<script src="./js/app.js"></script>
 
 </head>
 <body>
 
 
 
-<div data-role="page" data-theme="b">
+<div data-role="page" id="page-settings" data-theme="b">
 
-	
-<div data-role="header" data-position="fixed">
+	<div data-role="header" data-position="fixed">
   <div data-role="navbar" data-iconpos="top">
     <ul>
-      <li><a href="index.html" data-role="tab" data-icon="comment" data-prefetch="true" data-transition="none">Help!</a></li>
-      <li><a href="monitor.html" data-role="tab" data-icon="eye" data-prefetch="true" data-transition="none">Monitor</a></li>
-      <li><a href="settings.html" data-role="tab" data-icon="gear" data-prefetch="true" data-transition="none">Settings</a></li>
+      <li><a href="index.html" data-role="tab" data-icon="comment" data-prefetch="false" data-transition="none">Help!</a></li>
+      <li><a href="monitor.html" data-role="tab" data-icon="eye" data-prefetch="false" data-transition="none">Monitor</a></li>
+      <li><a href="settings.html" data-role="tab" data-icon="gear" data-prefetch="false" data-transition="none">Settings</a></li>
     </ul>
   </div>
 </div>
 
 
   <div data-role="tabs">
+
     <ul data-role="listview" data-inset="true" class="tablist-left">
       <li><a href="#profile">Profile settings</a></li>
-      <li><a href="#group" data-ajax="false">Group settings</a></li>
-      <li><a href="#room" data-ajax="false">Room settings</a></li>
+      <li><a href="#group">Group settings</a></li>
+      <li><a href="#room">Room settings</a></li>
     </ul>
 
     <div id="profile" class="ui-body-d tablist-content">
-      		<h3>My Profile</h3>
+      <h3>My Profile</h3>
 
-	    <div class="ui-field-contain">
-			<label for="first-name">First name:</label>
-     		<input name="first-name" id="first-name" value="Alice" type="text" data-theme="a">
-     	</div>
-	    <div class="ui-field-contain">
-			<label for="last-name">Last name:</label>
-     		<input name="last-name" id="last-name" value="Rodgers" type="text" data-theme="a">
-     	</div>
-
-     	<br/>
-
-		<div>My role: Room Manager</div>
-
-	    <br/>
-
-	    <div class="">
-			<label for="tel">My phone number (optional):</label>
-			<input data-clear-btn="true" name="tel" id="tel" value="" type="tel" data-theme="a">
-		</div>
-
-		<br/>
-	
-		<div class="">
-		<label for="flip-checkbox">I want to receive new "ASAP" requests by text messages too:</label>
-	    <input data-role="flipswitch" name="flip-checkbox" id="flip-checkbox" type="checkbox" data-on-text="Yes" data-off-text="No" data-wrapper-class="custom-label-flipswitch">
-	    &nbsp;(Additional charges may incur from your operator)
-		</div>
-
-		<br/>
-
-		<button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">Save</button>
+<div id="form-profile"></div>
 
     </div>
 
     <div id="group" class="ui-body-d tablist-content">
-      		<p>Display the following groups on screen for quick help:</p>
-
-
-		<div class="ui-field-contain">
-			<label for="av-group">AV:</label>
-		    <input data-role="flipswitch" name="av-group" id="av-group" data-on-text="Visible" data-off-text="No" data-wrapper-class="custom-label-flipswitch" checked="" type="checkbox">
-		</div>
-		<div class="ui-field-contain">
-			<label for="record-group">Record:</label>
-		    <input data-role="flipswitch" name="record-group" id="record-group" data-on-text="Visible" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
-		</div>
-		<div class="ui-field-contain">
-			<label for="mgt-group">Management:</label>
-		    <input data-role="flipswitch" name="mgt-group" id="mgt-group" data-on-text="Visible" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
-		</div>
-		<div class="ui-field-contain">
-			<label for="hotel-group">Hotel:</label>
-		    <input data-role="flipswitch" name="hotel-group" id="hotel-group" data-on-text="Yes" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
-		</div>
-		<div class="ui-field-contain">
-			<label for="hotel-food">Food & Beverage:</label>
-		    <input data-role="flipswitch" name="hotel-food" id="hotel-food" data-on-text="Yes" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
-		</div>
-
-		<br/>
-		<button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">Save</button>
-		<br/>
+      <p>
+  Display the following groups on screen for quick help:
+</p>
+<div class="ui-field-contain">
+  <label for="av-group">AV:</label> 
+  <input data-role="flipswitch" name="av-group" id="av-group" data-on-text="Visible" data-off-text="No" data-wrapper-class="custom-label-flipswitch" checked type="checkbox">
+</div>
+<div class="ui-field-contain">
+  <label for="record-group">Record:</label> 
+  <input data-role="flipswitch" name="record-group" id="record-group" data-on-text="Visible" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
+</div>
+<div class="ui-field-contain">
+  <label for="mgt-group">Management:</label> 
+  <input data-role="flipswitch" name="mgt-group" id="mgt-group" data-on-text="Visible" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
+</div>
+<div class="ui-field-contain">
+  <label for="hotel-group">Hotel:</label> 
+  <input data-role="flipswitch" name="hotel-group" id="hotel-group" data-on-text="Yes" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
+</div>
+<div class="ui-field-contain">
+  <label for="hotel-food">Food &amp; Beverage:</label> 
+  <input data-role="flipswitch" name="hotel-food" id="hotel-food" data-on-text="Yes" data-off-text="No" data-wrapper-class="custom-label-flipswitch" type="checkbox">
+</div>
+<p>
+  <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">Save</button><br>
+</p>
 
     </div>
 
     <div id="room" class="ui-body-d tablist-content">
-      		<fieldset data-role="controlgroup" data-type="horizontal">
-	        <legend>Pick the rooms you want to follow:</legend>
-	        <input name="room-choice-a" id="room-choice-a" type="checkbox">
-	        <label for="room-choice-a">W 3001</label>
-	        <input name="room-choice-b" id="room-choice-b" type="checkbox">
-	        <label for="room-choice-b">W 3002</label>
-	        <input name="room-choice-c" id="room-choice-c" type="checkbox">
-	        <label for="room-choice-c">W 3003</label>
-	        <input name="room-choice-d" id="room-choice-d" type="checkbox">
-	        <label for="room-choice-d">W 3004</label>
-	        <input name="room-choice-e" id="room-choice-e" type="checkbox">
-	        <label for="room-choice-e">W 3005</label>
-	        <input name="room-choice-f" id="room-choice-f" type="checkbox">
-	        <label for="room-choice-f">W 3006</label>
-	        <input name="room-choice-g" id="room-choice-g" type="checkbox">
-	        <label for="room-choice-g">W 3007</label>
-	        <input name="room-choice-h" id="room-choice-h" type="checkbox">
-	        <label for="room-choice-h">W 3008</label>
-	        <input name="room-choice-i" id="room-choice-i" type="checkbox">
-	        <label for="room-choice-i">W 3009</label>
-	        <input name="room-choice-j" id="room-choice-j" type="checkbox">
-	        <label for="room-choice-j">W 3010</label>
+      <fieldset data-role="controlgroup" data-type="horizontal">
+  <legend>Pick the rooms you want to follow:</legend>
+  <input name="room-choice-a" id="room-choice-a" type="checkbox">
+  <label for="room-choice-a">W 3001</label>
+  <input name="room-choice-b" id="room-choice-b" type="checkbox">
+  <label for="room-choice-b">W 3002</label>
+  <input name="room-choice-c" id="room-choice-c" type="checkbox">
+  <label for="room-choice-c">W 3003</label>
+  <input name="room-choice-d" id="room-choice-d" type="checkbox">
+  <label for="room-choice-d">W 3004</label>
+  <input name="room-choice-e" id="room-choice-e" type="checkbox">
+  <label for="room-choice-e">W 3005</label>
+  <input name="room-choice-f" id="room-choice-f" type="checkbox">
+  <label for="room-choice-f">W 3006</label>
+  <input name="room-choice-g" id="room-choice-g" type="checkbox">
+  <label for="room-choice-g">W 3007</label>
+  <input name="room-choice-h" id="room-choice-h" type="checkbox">
+  <label for="room-choice-h">W 3008</label>
+  <input name="room-choice-i" id="room-choice-i" type="checkbox">
+  <label for="room-choice-i">W 3009</label>
+  <input name="room-choice-j" id="room-choice-j" type="checkbox">
+  <label for="room-choice-j">W 3010</label>
+  <input name="room-choice-k" id="room-choice-k" type="checkbox">
+  <label for="room-choice-k">N 101</label>
+  <input name="room-choice-l" id="room-choice-l" type="checkbox">
+  <label for="room-choice-l">N 102</label>
+  <input name="room-choice-m" id="room-choice-m" type="checkbox">
+  <label for="room-choice-m">N 103</label>
+  <input name="room-choice-n" id="room-choice-n" type="checkbox">
+  <label for="room-choice-n">N 104</label>
+  <input name="room-choice-o" id="room-choice-o" type="checkbox">
+  <label for="room-choice-o">N 105</label>
+  <input name="room-choice-p" id="room-choice-p" type="checkbox">
+  <label for="room-choice-p">N 106</label>
+  <input name="room-choice-q" id="room-choice-q" type="checkbox">
+  <label for="room-choice-q">N 107</label>
+  <input name="room-choice-r" id="room-choice-r" type="checkbox">
+  <label for="room-choice-r">N 108</label>
+  <input name="room-choice-s" id="room-choice-s" type="checkbox">
+  <label for="room-choice-s">N 109</label>
+  <input name="room-choice-t" id="room-choice-t" type="checkbox">
+  <label for="room-choice-t">W 3010</label>
+</fieldset>
 
-	        <input name="room-choice-k" id="room-choice-k" type="checkbox">
-	        <label for="room-choice-k">N 101</label>
-	        <input name="room-choice-l" id="room-choice-l" type="checkbox">
-	        <label for="room-choice-l">N 102</label>
-	        <input name="room-choice-m" id="room-choice-m" type="checkbox">
-	        <label for="room-choice-m">N 103</label>
-	        <input name="room-choice-n" id="room-choice-n" type="checkbox">
-	        <label for="room-choice-n">N 104</label>
-	        <input name="room-choice-o" id="room-choice-o" type="checkbox">
-	        <label for="room-choice-o">N 105</label>
-	        <input name="room-choice-p" id="room-choice-p" type="checkbox">
-	        <label for="room-choice-p">N 106</label>
-	        <input name="room-choice-q" id="room-choice-q" type="checkbox">
-	        <label for="room-choice-q">N 107</label>
-	        <input name="room-choice-r" id="room-choice-r" type="checkbox">
-	        <label for="room-choice-r">N 108</label>
-	        <input name="room-choice-s" id="room-choice-s" type="checkbox">
-	        <label for="room-choice-s">N 109</label>
-	        <input name="room-choice-t" id="room-choice-t" type="checkbox">
-	        <label for="room-choice-t">W 3010</label>
-	    </fieldset>
-
-		<br/>
-		<button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">Save</button>
-		<br/>
+<button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">Save</button>
 
     </div>
 

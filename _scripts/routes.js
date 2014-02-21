@@ -1,11 +1,37 @@
-Backbone.Router.extend({
+
+var Router = Backbone.Router.extend({
 
   routes: {
-    'search/:query':        'search',  // #search/kiwis
-    'search/:query/p:page': 'search'   // #search/kiwis/p7
+    '': 'settings',
+    'index.html': 'request',
+    'monitor.html': 'monitor',
+    'settings.html': 'settings',
+    '*path': 'settings'
+  },
+  
+  request: function(){
+    var view = new RequestView();
+    view.render();
   },
 
-  search: function (query, page) {
+  monitor: function(){
+    page = '#page-monitor';
+    // var open = asapp.requests.where({
+    //   urgent: true
+    // });
+    var open = asapp.requests.models;
+    console.log(open);
+    $.each(open, function (index, model) {
+      var view = new MonitorView({
+        model: model
+      });
+      $(page).find('tbody').append(view.render().el);
+    });
+  },
+
+  settings: function(){
+    var view = new ProfileView();
+    view.render();
   }
 
 });

@@ -1,4 +1,4 @@
 
-var Library = Backbone.Collection.extend({
+var Requests = Backbone.Collection.extend({
   model: Request
 });

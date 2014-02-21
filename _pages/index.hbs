@@ -2,119 +2,18 @@
 title: Help
 ---
 
-<!-- Start of first page -->
-<div data-role="page" data-theme="b" >
+<div data-role="page" id="page-{{basename}}" data-theme="{{ jqm.theme }}">
 
 	{{> header }}
     
 	<div role="content" class="ui-content ui-corner-all">
 
-		<br/>
-		<div>I need help with:</div>
+		<h4>I need help</h4>
+    
+    <div class="bbform"></div>
 
-		<div>
-		<fieldset data-role="controlgroup" data-type="horizontal" style="display:inline;">
-		    <input name="radio-choice-h-2" id="radio-choice-h-2a" value="on" checked="checked" type="radio">
-		    <label for="radio-choice-h-2a">AV</label>
-		    <input name="radio-choice-h-2" id="radio-choice-h-2b" value="off" type="radio">
-		    <label for="radio-choice-h-2b">Record</label>
-		    <input name="radio-choice-h-2" id="radio-choice-h-2c" value="other" type="radio">
-		    <label for="radio-choice-h-2c">Mgt</label>
-		    <a href="settings-group.html" class="ui-btn ui-icon-gear ui-btn-icon-notext ui-corner-all">No text</a>
-		</fieldset>
-		</div>
-		
-		<div>I am in room:</div>
-
-		<fieldset data-role="controlgroup" data-type="horizontal" style="display:inline;" >
-		    <input name="radio-choice-h-3" id="radio-choice-h-3b" value="W 3002" type="radio" >
-		    <label for="radio-choice-h-3b">W 3002</label>
-		    <input name="radio-choice-h-3" id="radio-choice-h-3c" value="W 3003" type="radio" checked="checked" >
-		    <label for="radio-choice-h-3c">W 3003</label>
-		    <input name="radio-choice-h-3" id="radio-choice-h-3d" value="W 3010" type="radio">
-		    <label for="radio-choice-h-3d">W 3010</label>
-		    <input name="radio-choice-h-3" id="radio-choice-h-3e" value="N 3014" type="radio">
-		    <label for="radio-choice-h-3e">N 1014</label>
-		    <!--<input name="radio-choice-h-3" id="radio-choice-h-3f" value="other" type="radio">
-		    <label for="radio-choice-h-3f">W 3014</label>-->
-		    <select name="select-native-1" id="select-native-1" data-native-menu="false">
-		        <option value=""></option>
-		        <option value="1015">N 1015</option>
-		        <option value="1016">N 1016</option>
-		        <option value="1017">N 1017</option>
-		        <option value="1018">N 1018</option>
-		        <option value="1019">N 1019</option>
-		        <option value="1020">N 1020</option>
-		        <option value="Other">Other</option>
-		        <option value=""></option>
-		    </select>
-		</fieldset>
-
-		<br/>
-
-		<form>
-		    <label for="textarea-1">Description:</label>
-		    <textarea style="color: black; background-color: #EEEEEE;"  name="textarea-2" id="textarea-2" data-mini="true" ></textarea>
-		    <button class="ui-btn ui-btn-a ui-corner-all ui-shadow ui-btn-inline" style="color:#b31919;">I need Help ASAP!</button>
-		    &nbsp;&nbsp;&nbsp;
-		    <button class="ui-btn ui-btn-a ui-corner-all ui-shadow ui-btn-inline" >Just FYI</button>
-		</form>
-
-		<br/>
-
-
-		<div data-role="collapsible" class="ui-mini" data-collapsed="false" data-inset="false" id="mySubmittedRequest">
-	    	<h4>My Requests</h4>
-			<table data-role="table" id="table-column-toggle-my-request" data-mode="columntoggle" class="ui-responsive table-stripe ui-mini" >
-		     <thead>
-		       <tr>
-		         <th data-priority="1">Time</th>
-		         <th data-priority="2">Room</th>
-		         <th >Topic</th>
-		         <th data-priority="3">Detail</th>
-		         <th >Status</th>
-		         <th >&nbsp;</th>
-		       </tr>
-		     </thead>
-		     <tbody>
-		       <tr>
-		         <th>08:31</th>
-		         <td>None</td>
-		         <td>AV</td>
-		         <td><abbr title="&quot;Speaker has trouble with his Mac when connecting it to the projector&quot;...">Speaker has trouble ...</abbr></td>
-		         <td>Resolved</td>
-		         <td><a href="#requestDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top">&nbsp;</a></td>
-		       </tr>
-		       <tr>
-		         <th>09:04</th>
-		         <td>N 1015</td>
-		         <td>AV</td>
-		         <td></td>
-		         <td>Resolved</td>
-		         <td><a href="#requestDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top"></a></td>
-		       </tr>
-		       <tr>
-		         <th>09:04</th>
-		         <td>W 3004</td>
-		         <td>AV</td>
-		         <td></td>
-		         <td>Cancelled</td>
-		         <td><a href="#requestDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top"></a></td>
-		       </tr>
-		       <tr>
-		         <th>09:05</th>
-		         <td>W 3004</td>
-		         <td>Record</td>
-		         <td></td>
-		         <td>Too late</td>
-		         <td><a href="#requestDetail" data-rel="popup" data-position-to="window" data-transition="none" class="ui-btn ui-btn-b ui-btn-inline ui-icon-arrow-r ui-btn-icon-top"></a></td>
-		       </tr>
-		    </tbody>
-			</table>    		
-		</div>
-
-	</div><!-- /main -->
+	</div>
 
 	{{> footer }}
 
-</div><!-- /page -->
+</div>
