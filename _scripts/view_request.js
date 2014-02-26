@@ -1,6 +1,6 @@
 var RequestView = Backbone.View.extend({
   
-  el: '#page-index',
+  el: '#page-request',
 
   render: function(){
     

@@ -26,10 +26,12 @@ if ('development' == app.get('env')) {
 
 
 // routing
-var routes = require('./routes');
-var user = require('./routes/user');
-// app.get('/', routes.index);
-app.get('/users', user.list);
+// var routes = require('./routes');
+// var user = require('./routes/user');
+app.get('/', function (req, res) {
+  res.redirect('/request.html');
+});
+// app.get('/users', user.list);
 
 
 http.createServer(app).listen(app.get('port'), function(){

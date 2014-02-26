@@ -2,11 +2,9 @@
 var Router = Backbone.Router.extend({
 
   routes: {
-    '': 'settings',
-    'index.html': 'request',
+    'request.html': 'request',
     'monitor.html': 'monitor',
-    'settings.html': 'settings',
-    '*path': 'settings'
+    'settings.html': 'settings'
   },
   
   request: function(){

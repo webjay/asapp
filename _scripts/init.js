@@ -1,11 +1,6 @@
 
 // when jQuery Mobile has finished loading
 jQuery(document).on('mobileinit', function(){
-      
-  // we need to know who the user is
-  // $(document).one('pagebeforecreate', function(){
-  //   $(':mobile-pagecontainer').pagecontainer('change', 'settings.html');
-  // });
 
   $(document).on('pagebeforeshow', function(){
     asapp.router.navigate(document.location.pathname, {

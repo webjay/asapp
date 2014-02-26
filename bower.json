@@ -17,7 +17,7 @@
   "dependencies": {
     "jquery-mobile": "1.4.x",
     "lodash": "2.4.x",
-    "backbone": "1.1.x"
+    "backbone": "1.1.x",
     "backbone-forms": "0.14.x"
   }
 }
