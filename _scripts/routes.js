@@ -2,29 +2,33 @@
 var Router = Backbone.Router.extend({
 
   routes: {
+    'login.html': 'login',
     'request.html': 'request',
     'monitor.html': 'monitor',
     'settings.html': 'settings'
   },
-  
-  request: function(){
-    var view = new RequestView();
+
+  initialize: function () {
+    this.bind('all', function (route) {
+      // after BB view rendering, rerender JQM
+      $(':mobile-pagecontainer').pagecontainer('getActivePage').trigger('create');
+    });
+  },
+
+  login: function(){
+    (new LoginView()).render();
+  },
+
+  request: function () {
+    var view = new RequestView({
+      collection: asapp.requests,
+      model: new asapp.requests.model()
+    });
     view.render();
   },
 
   monitor: function(){
-    page = '#page-monitor';
-    // var open = asapp.requests.where({
-    //   urgent: true
-    // });
-    var open = asapp.requests.models;
-    console.log(open);
-    $.each(open, function (index, model) {
-      var view = new MonitorView({
-        model: model
-      });
-      $(page).find('tbody').append(view.render().el);
-    });
+    asapp.requests.fetch();
   },
 
   settings: function(){

@@ -8,11 +8,16 @@ module.exports = (grunt) ->
           mangle: false
           compress: true
           wrap: false
+          # sourceMap: true
+          # sourceMapIncludeSources: true
         files:
           'public/js/app.js': [
             'bower_components/lodash/dist/lodash.underscore.js'
             'bower_components/backbone/backbone.js'
             'bower_components/backbone-forms/distribution/backbone-forms.js'
+            '_scripts/models/*.js'
+            '_scripts/collections/*.js'
+            '_scripts/views/*.js'
             '_scripts/*.js'
           ]
 
