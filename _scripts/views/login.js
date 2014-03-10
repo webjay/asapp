@@ -1,6 +1,6 @@
 var LoginView = Backbone.View.extend({
 
-  el: '#page-login',
+  el: '#login',
 
   render: function(){
 
@@ -25,7 +25,7 @@ var LoginView = Backbone.View.extend({
             console.error(err);
             return;
           }
-          asapp.redirect('request.html');
+          asapp.redirect('#request');
         });
       }
     });

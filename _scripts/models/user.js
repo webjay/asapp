@@ -37,7 +37,7 @@ var User = Backbone.Model.extend({
       },
       error: function () {
         self.synced = true;
-        asapp.redirect('/login.html');
+        asapp.redirect('#login');
       }
     });
   },

@@ -4,10 +4,7 @@ var MonitorView = Backbone.View.extend({
   template: _.template('<td><%- new Date(created).toLocaleDateString() %> <%- new Date(created).toLocaleTimeString() %></td><td><%- location.name %></td><td><%- user.username %></td><td><%- type.name %></td><td><%- description %></td><td><%- status.name %></td>'),
 
   initialize: function () {
-    var self = this;
-    this.model.on('change', function () {
-      self.render();
-    });
+    this.listenTo(this.model, 'change', this.render);
   },
 
   render: function () {

@@ -33,10 +33,6 @@ module.exports = (grunt) ->
         flatten: true
         layoutdir: '_templates'
         partials: '_partials/*.hbs'
-        jqm:
-          prefetch: 'false'
-          transition: 'none'
-          theme: 'b'
       pages:
         options:
           layout: 'default.hbs'

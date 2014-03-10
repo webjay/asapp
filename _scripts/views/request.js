@@ -1,32 +1,32 @@
 var RequestView = Backbone.View.extend({
 
-  el: '#page-request',
+  el: '#request',
+
+  events: {
+    'submit': 'submit'
+  },
 
   render: function () {
-
-    var self = this;
-
-    var form = new Backbone.Form({
-      model: self.model
+    // create BB form
+    this.form = new Backbone.Form({
+      model: this.model
     }).render();
-
-    form.$el.append('<input type="submit" value="Save">');
-    this.$el.find('.bbform').html(form.el);
-
-    form.$el.submit(function (event) {
-      event.preventDefault();
-      var err = form.commit({
-        validate: true
-      });
-      if (err) {
-        // console.error(err);
-      } else {
-        self.collection.add(self.model);
-      }
-    });
-
+    this.form.$el.append('<input type="submit" value="Save">');
+    this.$el.find('.bbform').html(this.form.el);
+    // done
     return this;
+  },
 
+  submit: function (event) {
+    event.preventDefault();
+    var err = this.form.commit({
+      validate: true
+    });
+    if (err) {
+      // console.error(err);
+    } else {
+      this.collection.add(this.model);
+    }
   }
 
 });

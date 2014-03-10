@@ -50,9 +50,9 @@ var Request = Backbone.Model.extend({
   },
 
   initialize: function () {
-    this.on('change', function (model) {
-      model.save();
-    });
+    this.on('change', function () {
+      this.save();
+    }, this);
   }
 
 });

@@ -5,17 +5,17 @@ var Type = require('../models/type');
 
 exports.define = function (app) {
 
-  app.get('/', function (req, res) {
-    if (req.session.user) {
-      res.redirect('/request.html');
-    } else {
-      res.redirect('/login.html');
-    }
-  });
+  // app.get('/', function (req, res) {
+  //   if (req.session.user) {
+  //     res.redirect('/#request');
+  //   } else {
+  //     res.redirect('/#login');
+  //   }
+  // });
 
   app.get('/logout', function (req, res) {
     req.session.destroy();
-    res.redirect('/login.html');
+    res.redirect('/');
   });
 
   app.get('/user', function (req, res) {
