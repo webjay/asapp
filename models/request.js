@@ -1,10 +1,23 @@
 var mongoose = require('mongoose');
 var jsonBody = require('body/json');
+var Pusher = require('pusher');
 
 // define models hack
 require('../models/type');
 require('../models/location');
 require('../models/status');
+
+
+var pusher = new Pusher({
+  appId: '68298',
+  key: '89dd0fd43699d54bb1bf',
+  secret: 'e9bd4c33e1d52b195926'
+});
+
+function push (data) {
+  pusher.trigger('requests', 'add', data);
+}
+
 
 var schema = new mongoose.Schema({
   description: String,
@@ -79,6 +92,7 @@ module.exports.create = function (req, res) {
         res.end('Database error');
       } else {
         res.json(model);
+        push(model);
       }
     });
   });

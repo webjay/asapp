@@ -55,4 +55,11 @@ jQuery(function ($) {
     pushState: false
   });
 
+  // Pusher
+  var pusher = new Pusher('89dd0fd43699d54bb1bf');
+  var channel = pusher.subscribe('requests');
+  channel.bind('add', function (data) {
+    asapp.requests.fetch();
+  });
+
 });
