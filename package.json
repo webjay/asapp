@@ -28,8 +28,13 @@
     "grunt-contrib-uglify": "0.3.x"
   },
   "dependencies": {
-    "express": "3.4.x",
     "mongoose": "3.8.x",
-    "connect-mongo": "^0.4.0"
+    "connect-mongo": "0.4.x",
+    "express": "4.0.x",
+    "express-session": "1.0.x",
+    "cookie-parser": "1.0.x",
+    "body": "4.4.x",
+    "compression": "1.0.x",
+    "static-favicon": "1.0.x"
   }
 }

@@ -3,43 +3,26 @@ var Request = require('../models/request');
 var Location = require('../models/location');
 var Type = require('../models/type');
 
-exports.define = function (app) {
+exports.define = function (router) {
 
-  // app.get('/', function (req, res) {
-  //   if (req.session.user) {
-  //     res.redirect('/#request');
-  //   } else {
-  //     res.redirect('/#login');
-  //   }
-  // });
-
-  app.get('/logout', function (req, res) {
+  router.get('/logout', function (req, res) {
     req.session.destroy();
     res.redirect('/');
   });
 
-  app.get('/user', function (req, res) {
+  router.get('/user', function (req, res) {
     res.json(req.session.user);
   });
 
-  app.post('/user', function (req, res) {
-    var cond = {
-      username: req.body.username
-    }
-    User.findOne(cond, function (err, user) {
-      if (err) throw err;
-      req.session.user = user;
-      res.json(user);
-    });
-  });
+  router.post('/user', User.login);
 
-  app.get('/requests', User.auth, Request.all);
-  app.post('/request', User.auth, Request.create);
-  app.put('/request', User.auth, function (req, res) {
-    res.end();
-  });
+  router.route('/requests').all(User.auth).get(Request.all);
 
-  app.get('/locations', User.auth, Location.all);
-  app.get('/types', User.auth, Type.all);
+  router.route('/request').all(User.auth)
+  .post(Request.create)
+  .put(Request.update);
+
+  router.route('/types').all(User.auth).get(Type.all);
+  router.route('/locations').all(User.auth).get(Location.all);
 
 };

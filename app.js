@@ -1,9 +1,11 @@
 var express = require('express');
-var http = require('http');
-var path = require('path');
 var routes = require('./routes');
 var mongoose = require('mongoose');
-var MongoStore = require('connect-mongo')(express);
+// var MongoStore = require('connect-mongo')(express);
+var expressSession = require('express-session');
+var cookieParser = require('cookie-parser');
+var compress = require('compression');
+var favicon = require('static-favicon');
 
 var dbconf = {
   mongoose: {
@@ -21,35 +23,27 @@ mongoose.connect(dbconf.mongoose.url);
 
 var app = express();
 
-// all environments
 app.set('port', process.env.PORT || 3000);
-app.use(express.compress());
-app.use(express.favicon());
-// app.use(express.logger('dev'));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
-app.use(express.urlencoded());
-// app.use(express.methodOverride());
-app.use(express.cookieParser());
+app.use(compress());
+app.use(favicon('public/favicon.ico'));
+app.use(express.static(__dirname + '/public'));
 
 // if (app.get('env') == 'development') {
 //   app.use(express.session());
 // } else {
-  app.use(express.session({
-    store: new MongoStore(dbconf.sessions),
-    secret: dbconf.secret
-  }));
+  // app.use(express.session({
+  //   store: new MongoStore(dbconf.sessions),
+  //   secret: dbconf.secret
+  // }));
 // }
 
-app.use(app.router);
+app.use(cookieParser());
+app.use(expressSession({
+  secret: dbconf.secret
+}));
 
-// development only
-if (app.get('env') == 'development') {
-  app.use(express.errorHandler());
-}
+var router = express.Router();
+routes.define(router);
+app.use(router);
 
-routes.define(app);
-
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+app.listen(app.get('port'));

@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var jsonBody = require('body/json');
 
 // define models hack
 require('../models/type');
@@ -60,23 +61,29 @@ module.exports.all = function (req, res) {
 }
 
 module.exports.create = function (req, res) {
-  var obj = req.body;
-  obj.user = req.session.user._id;
-  if (obj._id) {
-    var id = obj._id;
-    delete obj._id;
-  } else {
-    var id = new mongoose.Types.ObjectId;
-  }
-  var options = {
-    upsert: true
-  };
-  Request.findByIdAndUpdate(id, obj, options, function (err, model) {
-    if (err) {
-      throw err;
-      res.end(err);
+  jsonBody(req, res, function (err, body) {
+    obj = body;
+    obj.user = req.session.user._id;
+    if (obj._id) {
+      var id = obj._id;
+      delete obj._id;
     } else {
-      res.json(model);
+      var id = new mongoose.Types.ObjectId;
     }
+    var options = {
+      upsert: true
+    };
+    Request.findByIdAndUpdate(id, obj, options, function (err, model) {
+      if (err) {
+        throw err;
+        res.end('Database error');
+      } else {
+        res.json(model);
+      }
+    });
   });
+}
+
+module.exports.update = function (req, res) {
+  res.end();
 }
