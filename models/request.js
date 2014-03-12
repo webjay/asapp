@@ -45,7 +45,7 @@ var schema = new mongoose.Schema({
 });
 
 var Request = mongoose.model('requests', schema);
-module.exports = Request;
+// module.exports = Request;
 
 module.exports.all = function (req, res) {
   var popuptions = [
@@ -75,29 +75,34 @@ module.exports.all = function (req, res) {
 
 module.exports.create = function (req, res) {
   jsonBody(req, res, function (err, body) {
-    obj = body;
+    if (err) throw err;
+    var obj = body;
     obj.user = req.session.user._id;
-    if (obj._id) {
-      var id = obj._id;
-      delete obj._id;
-    } else {
-      var id = new mongoose.Types.ObjectId;
-    }
-    var options = {
-      upsert: true
-    };
-    Request.findByIdAndUpdate(id, obj, options, function (err, model) {
-      if (err) {
-        throw err;
-        res.end('Database error');
-      } else {
-        res.json(model);
-        push(model);
-      }
+    Request.create(obj, function (err, doc) {
+      if (err) throw err;
+      res.json(doc);
+      push(doc);
     });
   });
 }
 
 module.exports.update = function (req, res) {
   res.end();
+  /*
+  jsonBody(req, res, function (err, body) {
+    if (err) throw err;
+    var obj = body;
+    var id = obj._id;
+    delete obj._id;
+    Request.findByIdAndUpdate(id, obj, function (err, doc) {
+      if (err) {
+        throw err;
+        res.end('Database error');
+      } else {
+        res.json(doc);
+        push(doc);
+      }
+    });
+  });
+  */
 }

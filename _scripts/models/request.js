@@ -44,13 +44,16 @@ var Request = Backbone.Model.extend({
 
   defaults: {
     user: {
-      name: null
+      username: null
     },
     created: new Date
   },
 
   initialize: function () {
-    this.on('change', function () {
+    // this.on('change', function () {
+    //   this.save();
+    // }, this);
+    this.on('add', function () {
       this.save();
     }, this);
   }
