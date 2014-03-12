@@ -1,8 +1,8 @@
 {
   "name": "asapp",
-  "version": "0.0.0",
+  "version": "0.1.2",
   "description": "ASAP messaging app",
-  "main": "index.html",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "mocha",
@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "mongoose": "3.8.x",
-    "connect-mongo": "0.4.x",
     "express": "4.0.x",
     "express-session": "1.0.x",
     "cookie-parser": "1.0.x",
