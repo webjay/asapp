@@ -7,17 +7,16 @@ require('../models/type');
 require('../models/location');
 require('../models/status');
 
+function push (data) {
+  pusher.trigger('requests', 'add', data);
+}
+
 
 var pusher = new Pusher({
   appId: '68298',
   key: '89dd0fd43699d54bb1bf',
   secret: 'e9bd4c33e1d52b195926'
 });
-
-function push (data) {
-  pusher.trigger('requests', 'add', data);
-}
-
 
 var schema = new mongoose.Schema({
   description: String,
@@ -45,7 +44,6 @@ var schema = new mongoose.Schema({
 });
 
 var Request = mongoose.model('requests', schema);
-// module.exports = Request;
 
 module.exports.all = function (req, res) {
   var popuptions = [
@@ -73,14 +71,14 @@ module.exports.all = function (req, res) {
   });
 }
 
-module.exports.create = function (req, res) {
+module.exports.create = function (req, res, next) {
   jsonBody(req, res, function (err, body) {
-    if (err) throw err;
+    if (err) return next(err);
     var obj = body;
     obj.user = req.session.user._id;
     Request.create(obj, function (err, doc) {
       if (err) throw err;
-      res.json(doc);
+      res.json(201, doc);
       push(doc);
     });
   });

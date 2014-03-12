@@ -22,19 +22,16 @@ var dbconf = {
 mongoose.connect(dbconf.mongoose.url);
 
 var app = express();
+module.exports = app;
 
 app.set('port', process.env.PORT || 3000);
 app.use(compress());
-app.use(favicon('public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(express.static(__dirname + '/public'));
 
 // if (app.get('env') == 'development') {
-//   app.use(express.session());
-// } else {
-  // app.use(express.session({
-  //   store: new MongoStore(dbconf.sessions),
-  //   secret: dbconf.secret
-  // }));
+//   var logger = require('morgan');
+//   app.use(logger());
 // }
 
 app.use(cookieParser());

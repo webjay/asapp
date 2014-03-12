@@ -4,4 +4,12 @@ var schema = new mongoose.Schema({
   name: String
 });
 
-module.exports = mongoose.model('status', schema);
+var Status = mongoose.model('status', schema);
+
+module.exports.all = function (req, res) {
+  var select = '-__v';
+  Status.find().select(select).exec(function (err, docs) {
+    if (err) throw err;
+    res.json(docs);
+  });
+}

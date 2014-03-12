@@ -6,8 +6,6 @@ var schema = new mongoose.Schema({
 
 var Type = mongoose.model('types', schema);
 
-module.exports = Type;
-
 module.exports.all = function (req, res) {
   var select = '-__v';
   Type.find().select(select).exec(function (err, docs) {

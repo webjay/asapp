@@ -5,27 +5,24 @@ var schema = new mongoose.Schema({
   username: String
 });
 
-module.exports.login = function (req, res) {
+var User = mongoose.model('users', schema);
+
+module.exports.login = function (req, res, next) {
   jsonBody(req, res, function (err, body) {
-    if (err) {
-      res.statusCode = 500;
-      throw err;
-      return res.end('HTTP error');
-    }
-    var User = mongoose.model('users', schema);
+    if (err) return next(err);
     var cond = {
       username: body.username
     }
     User.findOne(cond, function (err, user) {
-      if (err) throw err;
+      if (err) return next(err);
       if (user) {
-        req.session.user = user;
-        res.json(user);
+        req.user = user;
+        next();
       } else {
         User.create(cond, function (err, user) {
-          if (err) throw err;
-          req.session.user = user;
-          res.json(user);
+          if (err) return next(err);
+          req.user = user;
+          next();
         });
       }
     });
@@ -33,7 +30,7 @@ module.exports.login = function (req, res) {
 }
 
 module.exports.auth = function (req, res, next) {
-  if (req.session.user) {
+  if (typeof req.session.user === 'object' && req.session.user !== null) {
     next();
   } else {
     res.send(401, 'Please login');

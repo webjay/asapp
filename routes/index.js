@@ -10,15 +10,20 @@ exports.define = function (router) {
     res.redirect('/');
   });
 
-  router.get('/user', function (req, res) {
+  router.route('/user')
+  .get(function (req, res) {
+    res.json(req.session.user);
+  })
+  .post(User.login)
+  .post(function (req, res) {
+    req.session.user = req.user;
     res.json(req.session.user);
   });
 
-  router.post('/user', User.login);
-
   router.route('/requests').all(User.auth).get(Request.all);
 
-  router.route('/request').all(User.auth)
+  router.route('/request')
+  .all(User.auth)
   .post(Request.create)
   .put(Request.update);
 

@@ -6,8 +6,6 @@ var schema = new mongoose.Schema({
 
 var Location = mongoose.model('locations', schema);
 
-module.exports = Location;
-
 module.exports.all = function (req, res) {
   var select = '-__v';
   Location.find().select(select).exec(function (err, docs) {
