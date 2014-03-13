@@ -10,6 +10,11 @@ var RequestView = Backbone.View.extend({
     'submit form': 'submit'
   },
 
+  initialize: function () {
+    this.listenTo(asapp.types, 'sync', this.render);
+    this.listenTo(asapp.locations, 'sync', this.render);
+  },
+
   render: function () {
     var self = this;
 

@@ -14,7 +14,6 @@ module.exports = (grunt) ->
           'public/js/app.js': [
             'bower_components/lodash/dist/lodash.underscore.js'
             'bower_components/backbone/backbone.js'
-            'bower_components/backbone-forms/distribution/backbone-forms.js'
             '_tmp/templates.js'
             '_scripts/models/*.js'
             '_scripts/collections/*.js'
@@ -63,9 +62,20 @@ module.exports = (grunt) ->
           '_tmp/templates.js': '_templates/*.jst'
 
     watch:
+      options:
+        atBegin: true
       scripts:
         files: ['_scripts/**/*.js']
         tasks: ['uglify']
+      jst:
+        files: ['_templates/*.jst']
+        tasks: ['jst', 'uglify']
+      less:
+        files: ['_styles/*.less']
+        tasks: ['less']
+      assemble:
+        files: ['_partials/*.hbs', '_pages/*.hbs', '_templates/*.hbs']
+        tasks: ['assemble']
 
   grunt.registerTask 'default', ['less', 'assemble', 'jst', 'uglify']
   grunt.registerTask 'scripts', ['jst', 'uglify']

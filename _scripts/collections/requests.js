@@ -3,17 +3,19 @@ var Requests = Backbone.Collection.extend({
 
   model: Request,
   url: '/requests',
-  el: '#monitor tbody',
+  el: '#monitor',
+  el_tbody: '#monitor tbody',
 
   initialize: function () {
     this.$el = $(this.el);
+    this.$el_tbody = $(this.el_tbody);
     this.on({
       add: function (model) {
-        // create view
         var view = new MonitorView({
           model: model
-        });
-        this.$el.append(view.render().el);
+        }).render();
+        this.$el_tbody.append(view.el);
+        this.$el.trigger('create');
       }
     }, this);
   }

@@ -1,66 +1,27 @@
 var User = Backbone.Model.extend({
 
-  // schema: {
-  //   name: {
-  //     validators: ['required']
-  //   },
-  //   email: {
-  //     dataType: 'email',
-  //     validators: ['required', 'email']
-  //   },
-  //   phone: {
-  //     dataType: 'tel'
-  //   },
-  //   role: {
-  //     type: 'Select',
-  //     options: new Roles()
-  //   }
-  // },
+  urlRoot: 'user',
+  idAttribute: '_id',
+  fetched: false,
 
-  schema: {
-    username: {
-      validators: ['required']
+  initialize: function () {
+    this.once('sync', function () {
+      this.fetched = true;
+    }, this);
+    this.on('error', function () {
+      this.fetched = true;
+      asapp.redirect('#login');
+    });
+  },
+
+  validate: function (attrs, options) {
+    if (attrs.username && attrs.username.trim().length < 3) {
+      return 'invalid username';
     }
   },
 
-  urlRoot: 'user',
-  idAttribute: '_id',
-  synced: false,
-
-  initialize: function () {
-    var self = this;
-    // get user from backend
-    this.fetch({
-      success: function (model) {
-        self.set(model.attributes);
-        self.synced = true;
-      },
-      error: function () {
-        self.synced = true;
-        asapp.redirect('#login');
-      }
-    });
-  },
-
-  isSynced: function () {
-    return this.synced;
-  },
-
-  login: function (callback) {
-    var self = this;
-    this.save(null, {
-      success: function (model) {
-        if (model.id) {
-          self.set(model.attributes);
-          callback();
-        } else {
-          callback('login failed');
-        }
-      },
-      error: function () {
-        console.error('login error');
-      }
-    });
+  isFetched: function () {
+    return this.fetched;
   }
 
 });

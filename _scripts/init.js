@@ -3,6 +3,12 @@ function getCurrentPage () {
   return $(page).attr('id');
 }
 
+if (!String.prototype.trim) {
+  String.prototype.trim = function () {
+    return this.replace(/^\s+|\s+$/g, '');
+  }
+}
+
 
 // when jQuery Mobile has finished loading
 jQuery(document).on('mobileinit', function(){
@@ -16,18 +22,18 @@ jQuery(document).on('mobileinit', function(){
   $.mobile.page.prototype.options.theme = 'b';
 
   $(document).on('pagecontainerbeforeshow', function (event) {
-    if (asapp.user.isSynced() && !asapp.user.id && getCurrentPage() !== 'login') {
+    if (asapp.user.isFetched() && !asapp.user.id && getCurrentPage() !== 'login') {
       event.preventDefault();
       asapp.redirect('#login');
     }
   });
 
-  $(document).on('pagecontainershow', function () {
-    // notify Backbone about our whereabouts
-    asapp.router.navigate(getCurrentPage(), {
-      trigger: true
-    });
-  });
+  // $(document).on('pagecontainershow', function () {
+  //   // notify Backbone about our whereabouts
+  //   asapp.router.navigate(getCurrentPage(), {
+  //     trigger: true
+  //   });
+  // });
 
 });
 
@@ -37,6 +43,11 @@ var asapp = {
 
   redirect: function (page) {
     $(':mobile-pagecontainer').pagecontainer('change', page);
+  },
+
+  preload: function () {
+    asapp.types.fetch();
+    asapp.locations.fetch();
   }
 
 };
@@ -55,6 +66,11 @@ jQuery(function ($) {
   asapp.router = new Router();
   asapp.views = {};
 
+  asapp.user.on('sync', asapp.preload);
+  asapp.user.fetch();
+
+  $.mobile.initializePage();
+
   Backbone.history.start({
     pushState: false
   });
@@ -65,7 +81,5 @@ jQuery(function ($) {
   channel.bind('add', function (data) {
     asapp.requests.fetch();
   });
-
-  $.mobile.initializePage();
 
 });

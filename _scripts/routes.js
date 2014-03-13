@@ -2,6 +2,7 @@
 var Router = Backbone.Router.extend({
 
   routes: {
+    '': 'redirect',
     'login': 'login',
     'request': 'request',
     'monitor': 'monitor',
@@ -9,19 +10,34 @@ var Router = Backbone.Router.extend({
   },
 
   initialize: function () {
-    this.bind('all', function (route) {
+    this.bind('route', function (route) {
       // after BB view rendering, rerender JQM
-      $(':mobile-pagecontainer').pagecontainer('getActivePage').trigger('create');
+      // $(':mobile-pagecontainer').pagecontainer('getActivePage').trigger('create');
+      $('#' + route).trigger('create');
+      // set active menu
+      console.log(route);
     });
   },
 
+  redirect: function () {
+    asapp.redirect('#request');
+  },
+
   login: function(){
-    (new LoginView()).render();
+    if (asapp.views.login) {
+      asapp.views.login.remove();
+    }
+    asapp.views.login = new LoginView({
+      model: asapp.user
+    });
+    asapp.views.login.render();
   },
 
   request: function () {
     if (asapp.views.request) {
-      asapp.views.request.remove();
+      // asapp.views.request.remove();
+      // asapp.views.request.$el.trigger('create');
+      return;
     }
     asapp.views.request = new RequestView({
       collection: asapp.requests,

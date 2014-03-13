@@ -10,6 +10,9 @@ var User = mongoose.model('users', schema);
 module.exports.login = function (req, res, next) {
   jsonBody(req, res, function (err, body) {
     if (err) return next(err);
+    if (body.username.trim().length < 3) {
+      return next('Invalid username');
+    }
     var cond = {
       username: body.username
     }
