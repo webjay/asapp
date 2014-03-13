@@ -20,18 +20,21 @@ var Router = Backbone.Router.extend({
   },
 
   request: function () {
-    var view = new RequestView({
+    if (asapp.views.request) {
+      asapp.views.request.remove();
+    }
+    asapp.views.request = new RequestView({
       collection: asapp.requests,
       model: new asapp.requests.model()
     });
-    view.render();
+    asapp.views.request.render();
   },
 
-  monitor: function(){
+  monitor: function () {
     asapp.requests.fetch();
   },
 
-  settings: function(){
+  settings: function () {
     var view = new ProfileView();
     view.render();
   }

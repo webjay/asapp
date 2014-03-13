@@ -1,8 +1,9 @@
 var Request = Backbone.Model.extend({
 
+  /*
   schema: {
     type: {
-      type: 'Select',
+      type: 'Radio',
       options: function (callback) {
         var types = new Types;
         types.fetch({
@@ -10,7 +11,8 @@ var Request = Backbone.Model.extend({
             callback(types);
           }
         });
-      }
+      },
+      template: JST['_templates/radio-inline.jst']
     },
     location: {
       type: 'Select',
@@ -38,6 +40,7 @@ var Request = Backbone.Model.extend({
       type: 'Hidden'
     }
   },
+  */
 
   idAttribute: '_id',
   url: '/request',
@@ -46,7 +49,8 @@ var Request = Backbone.Model.extend({
     user: {
       username: null
     },
-    created: new Date
+    created: new Date,
+    description: ''
   },
 
   initialize: function () {

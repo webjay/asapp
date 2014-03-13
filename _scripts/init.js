@@ -10,6 +10,7 @@ jQuery(document).on('mobileinit', function(){
   console.log('JQM ready');
 
   $.extend($.mobile, {
+    autoInitializePage: false,
     defaultPageTransition: 'none'
   });
   $.mobile.page.prototype.options.theme = 'b';
@@ -48,8 +49,11 @@ jQuery(function ($) {
   Backbone.$ = $;
 
   asapp.user = new User();
+  asapp.types = new Types();
+  asapp.locations = new Locations();
   asapp.requests = new Requests();
   asapp.router = new Router();
+  asapp.views = {};
 
   Backbone.history.start({
     pushState: false
@@ -61,5 +65,7 @@ jQuery(function ($) {
   channel.bind('add', function (data) {
     asapp.requests.fetch();
   });
+
+  $.mobile.initializePage();
 
 });

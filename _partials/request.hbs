@@ -4,9 +4,25 @@
 
 	<div data-role="content" class="ui-content ui-corner-all">
 
-		<h4>I need help</h4>
+    <form>
 
-    <div class="bbform"></div>
+			<fieldset data-role="controlgroup" data-type="horizontal" id="request-types">
+			  <legend>I need help with:</legend>
+			</fieldset>
+
+			<fieldset data-role="controlgroup" data-type="horizontal" id="request-locations">
+				<legend>I am in room:</legend>
+			</fieldset>
+
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<legend>Description:</legend>
+				<textarea name="description"></textarea>
+			</fieldset>
+
+			<button type="submit" name="urgent" value="true" class="ui-btn ui-btn-inline">I need Help ASAP!</button>
+			<button type="submit" name="urgent" value="false" class="ui-btn ui-btn-inline">just FYI</button>
+
+		</form>
 
 	</div>
 

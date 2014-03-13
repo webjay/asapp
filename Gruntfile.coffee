@@ -15,6 +15,7 @@ module.exports = (grunt) ->
             'bower_components/lodash/dist/lodash.underscore.js'
             'bower_components/backbone/backbone.js'
             'bower_components/backbone-forms/distribution/backbone-forms.js'
+            '_tmp/templates.js'
             '_scripts/models/*.js'
             '_scripts/collections/*.js'
             '_scripts/views/*.js'
@@ -53,10 +54,26 @@ module.exports = (grunt) ->
           execOptions:
             cwd: 'bower_components/jquery-mobile'
 
-  grunt.registerTask 'default', ['less', 'assemble', 'uglify']
+    jst:
+      bbform:
+        options:
+          processContent: (src) ->
+            src.replace /(^\s+|\s+$)/gm, ''
+        files:
+          '_tmp/templates.js': '_templates/*.jst'
+
+    watch:
+      scripts:
+        files: ['_scripts/**/*.js']
+        tasks: ['uglify']
+
+  grunt.registerTask 'default', ['less', 'assemble', 'jst', 'uglify']
+  grunt.registerTask 'scripts', ['jst', 'uglify']
   grunt.registerTask 'jqm', ['shell']
 
   grunt.loadNpmTasks 'grunt-shell'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'assemble'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-jst'

@@ -3,30 +3,46 @@ var RequestView = Backbone.View.extend({
   el: '#request',
 
   events: {
-    'submit': 'submit'
+    'change input': 'modelSet',
+    'change select': 'modelSet',
+    'change textarea': 'modelSet',
+    'click button': 'modelSet',
+    'submit form': 'submit'
   },
 
   render: function () {
-    // create BB form
-    this.form = new Backbone.Form({
-      model: this.model
-    }).render();
-    this.form.$el.append('<input type="submit" value="Save">');
-    this.$el.find('.bbform').html(this.form.el);
-    // done
+    var self = this;
+
+    asapp.types.each(function (model) {
+      var view = new TypeView({
+        model: model
+      }).render();
+      self.$el.find('#request-types').append(view.el);
+    });
+
+    asapp.locations.each(function (model) {
+      var view = new LocationView({
+        model: model
+      }).render();
+      self.$el.find('#request-locations').append(view.el);
+    });
+
+    this.$el.trigger('create');
+
     return this;
+  },
+
+  modelSet: function (event) {
+    var el = $(event.currentTarget);
+    var data = {}
+    data[el.attr('name')] = el.val();
+    this.model.set(data);
   },
 
   submit: function (event) {
     event.preventDefault();
-    var err = this.form.commit({
-      validate: true
-    });
-    if (err) {
-      // console.error(err);
-    } else {
-      this.collection.add(this.model);
-    }
+    this.collection.add(this.model);
+    asapp.redirect('#monitor');
   }
 
 });
