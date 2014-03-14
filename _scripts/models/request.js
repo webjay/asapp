@@ -8,7 +8,13 @@ var Request = Backbone.Model.extend({
       username: null
     },
     created: new Date,
-    description: ''
+    description: null,
+    type: {
+      name: null
+    },
+    location: {
+      name: null
+    }
   },
 
   initialize: function () {

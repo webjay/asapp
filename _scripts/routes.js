@@ -10,12 +10,10 @@ var Router = Backbone.Router.extend({
   },
 
   initialize: function () {
-    this.bind('route', function (route) {
-      // after BB view rendering, rerender JQM
-      // $(':mobile-pagecontainer').pagecontainer('getActivePage').trigger('create');
-      $('#' + route).trigger('create');
+    this.on('route', function (route) {
       // set active menu
-      console.log(route);
+      $('nav ul li a').removeClass('ui-btn-active');
+      $('.nav-' + route).addClass('ui-btn-active');
     });
   },
 
@@ -35,15 +33,13 @@ var Router = Backbone.Router.extend({
 
   request: function () {
     if (asapp.views.request) {
-      // asapp.views.request.remove();
-      // asapp.views.request.$el.trigger('create');
       return;
     }
     asapp.views.request = new RequestView({
       collection: asapp.requests,
       model: new asapp.requests.model()
     });
-    asapp.views.request.render();
+    // asapp.views.request.render();
   },
 
   monitor: function () {

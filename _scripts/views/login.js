@@ -18,19 +18,19 @@ var LoginView = Backbone.View.extend({
 
   render: function () {
     if (this.model.validationError) {
-      this.$el.find('.errormsg').text(this.model.validationError);
+      this.$('.errormsg').text(this.model.validationError);
     }
     return this;
   },
 
   clearErr: function () {
-    this.$el.find('.errormsg').empty();
+    this.$('.errormsg').empty();
   },
 
   submit: function (event) {
     event.preventDefault();
     asapp.user.save({
-      username: this.$el.find('#username').val()
+      username: this.$('#username').val()
     });
   }
 

@@ -15,7 +15,7 @@ var Requests = Backbone.Collection.extend({
           model: model
         }).render();
         this.$el_tbody.append(view.el);
-        this.$el.trigger('create');
+        this.$el.enhanceWithin();
       }
     }, this);
   }

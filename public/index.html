@@ -17,46 +17,61 @@
 
   <div data-role="page" id="request" data-title="Request help">
 
-	<div data-role="header" data-position="fixed">
-  <div data-role="navbar" data-iconpos="top">
+	<header data-role="header">
+  <nav data-role="navbar" data-iconpos="top">
     <ul>
-      <li><a href="#request" data-role="tab" data-icon="comment">Help!</a></li>
-      <li><a href="#monitor" data-role="tab" data-icon="eye">Monitor</a></li>
-      <!-- <li><a href="#settings" data-role="tab" data-icon="gear">Settings</a></li> -->
+      <li><a href="#request" class="nav-request" data-role="tab" data-icon="comment">Help!</a></li>
+      <li><a href="#monitor" class="nav-monitor" data-role="tab" data-icon="eye">Monitor</a></li>
+<!--       <li><a href="#settings" class="nav-settings" data-role="tab" data-icon="gear">Settings</a></li> -->
     </ul>
-  </div>
-</div>
+  </nav>
+</header>
 
 
 	<div data-role="content" class="ui-content ui-corner-all">
 
-    <form>
+		<form>
 
 			<fieldset data-role="controlgroup" data-type="horizontal" id="request-types">
-			  <legend>I need help with:</legend>
+				<div role="heading" class="ui-controlgroup-label">
+					<legend>I need help with:</legend>
+				</div>
+				<div class="ui-controlgroup-controls"></div>
 			</fieldset>
 
 			<fieldset data-role="controlgroup" data-type="horizontal" id="request-locations">
-				<legend>I am in room:</legend>
+				<div role="heading" class="ui-controlgroup-label">
+					<legend>I am in room:</legend>
+				</div>
+				<div class="ui-controlgroup-controls"></div>
 			</fieldset>
 
 			<fieldset data-role="controlgroup" data-type="horizontal">
-				<legend>Description:</legend>
-				<textarea name="description"></textarea>
+				<div role="heading" class="ui-controlgroup-label">
+					<legend>Description:</legend>
+				</div>
+				<div class="ui-controlgroup-controls">
+					<textarea name="description"></textarea>
+				</div>
 			</fieldset>
 
-			<button type="submit" name="urgent" value="true" class="ui-btn ui-btn-inline">I need Help ASAP!</button>
-			<button type="submit" name="urgent" value="false" class="ui-btn ui-btn-inline">just FYI</button>
+			<fieldset>
+				<button type="submit" name="urgent" value="true" class="ui-btn ui-btn-inline">I need Help ASAP!</button>
+				<button type="submit" name="urgent" value="false" class="ui-btn ui-btn-inline">just FYI</button>
+			</fieldset>
 
 		</form>
 
 	</div>
 
-	
-<div data-role="footer" class="ui-mini">
-	<h1 class="ui-bar-b">ASAPP &copy; Digitally Speaking</h1>
-	<img src="./img/ds-logo-3.png" alt="logo" class="ui-btn-right">
-</div>
+	<footer data-role="footer" data-position="fixed" class="asapp-footer">
+	<div class="ui-mini">
+		ASAPP
+		&copy;
+		<img src="./img/ds-logo-3.png" alt="logo" class="dslogo">
+		Digitally Speaking
+	</div>
+</footer>
 
 
 </div>
@@ -64,15 +79,15 @@
 
 <div data-role="page" id="monitor" data-title="Requests">
 
-	<div data-role="header" data-position="fixed">
-  <div data-role="navbar" data-iconpos="top">
+	<header data-role="header">
+  <nav data-role="navbar" data-iconpos="top">
     <ul>
-      <li><a href="#request" data-role="tab" data-icon="comment">Help!</a></li>
-      <li><a href="#monitor" data-role="tab" data-icon="eye">Monitor</a></li>
-      <!-- <li><a href="#settings" data-role="tab" data-icon="gear">Settings</a></li> -->
+      <li><a href="#request" class="nav-request" data-role="tab" data-icon="comment">Help!</a></li>
+      <li><a href="#monitor" class="nav-monitor" data-role="tab" data-icon="eye">Monitor</a></li>
+<!--       <li><a href="#settings" class="nav-settings" data-role="tab" data-icon="gear">Settings</a></li> -->
     </ul>
-  </div>
-</div>
+  </nav>
+</header>
 
 
 	<div data-role="content" class="ui-content ui-corner-all" >
@@ -97,11 +112,14 @@
 
 	</div>
 
-	
-<div data-role="footer" class="ui-mini">
-	<h1 class="ui-bar-b">ASAPP &copy; Digitally Speaking</h1>
-	<img src="./img/ds-logo-3.png" alt="logo" class="ui-btn-right">
-</div>
+	<footer data-role="footer" data-position="fixed" class="asapp-footer">
+	<div class="ui-mini">
+		ASAPP
+		&copy;
+		<img src="./img/ds-logo-3.png" alt="logo" class="dslogo">
+		Digitally Speaking
+	</div>
+</footer>
 
 
 </div>
@@ -109,15 +127,15 @@
 
 <div data-role="page" id="login" data-title="Login">
 
-	<div data-role="header" data-position="fixed">
-  <div data-role="navbar" data-iconpos="top">
+	<header data-role="header">
+  <nav data-role="navbar" data-iconpos="top">
     <ul>
-      <li><a href="#request" data-role="tab" data-icon="comment">Help!</a></li>
-      <li><a href="#monitor" data-role="tab" data-icon="eye">Monitor</a></li>
-      <!-- <li><a href="#settings" data-role="tab" data-icon="gear">Settings</a></li> -->
+      <li><a href="#request" class="nav-request" data-role="tab" data-icon="comment">Help!</a></li>
+      <li><a href="#monitor" class="nav-monitor" data-role="tab" data-icon="eye">Monitor</a></li>
+<!--       <li><a href="#settings" class="nav-settings" data-role="tab" data-icon="gear">Settings</a></li> -->
     </ul>
-  </div>
-</div>
+  </nav>
+</header>
 
 
 	<div data-role="content" class="ui-content ui-corner-all">
@@ -142,11 +160,14 @@
 
 	</div>
 
-	
-<div data-role="footer" class="ui-mini">
-	<h1 class="ui-bar-b">ASAPP &copy; Digitally Speaking</h1>
-	<img src="./img/ds-logo-3.png" alt="logo" class="ui-btn-right">
-</div>
+	<footer data-role="footer" data-position="fixed" class="asapp-footer">
+	<div class="ui-mini">
+		ASAPP
+		&copy;
+		<img src="./img/ds-logo-3.png" alt="logo" class="dslogo">
+		Digitally Speaking
+	</div>
+</footer>
 
 
 </div>

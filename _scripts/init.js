@@ -1,7 +1,3 @@
-function getCurrentPage () {
-  var page = $(':mobile-pagecontainer').pagecontainer('getActivePage');
-  return $(page).attr('id');
-}
 
 if (!String.prototype.trim) {
   String.prototype.trim = function () {
@@ -20,26 +16,25 @@ jQuery(document).on('mobileinit', function(){
     defaultPageTransition: 'none'
   });
   $.mobile.page.prototype.options.theme = 'b';
+  $.mobile.page.prototype.options.domCache = true;
 
   $(document).on('pagecontainerbeforeshow', function (event) {
-    if (asapp.user.isFetched() && !asapp.user.id && getCurrentPage() !== 'login') {
+    if (asapp.user.isFetched() && !asapp.user.id && asapp.getCurrentPage() !== 'login') {
       event.preventDefault();
       asapp.redirect('#login');
     }
   });
-
-  // $(document).on('pagecontainershow', function () {
-  //   // notify Backbone about our whereabouts
-  //   asapp.router.navigate(getCurrentPage(), {
-  //     trigger: true
-  //   });
-  // });
 
 });
 
 
 // global
 var asapp = {
+
+  getCurrentPage: function () {
+    var page = $(':mobile-pagecontainer').pagecontainer('getActivePage');
+    return $(page).attr('id');
+  },
 
   redirect: function (page) {
     $(':mobile-pagecontainer').pagecontainer('change', page);
@@ -48,6 +43,7 @@ var asapp = {
   preload: function () {
     asapp.types.fetch();
     asapp.locations.fetch();
+    asapp.requests.fetch();
   }
 
 };

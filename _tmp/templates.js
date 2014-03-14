@@ -32,6 +32,8 @@ __p += '<input type="radio" name="' +
 __e( fieldName ) +
 '" value="' +
 __e( _id ) +
+'" id="radio-' +
+__e( cid ) +
 '">\n' +
 __e( name );
 
