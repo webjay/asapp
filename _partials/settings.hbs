@@ -1,29 +1,22 @@
 <div data-role="page" id="settings" data-title="Settings">
 
-	{{> header }}
-
   <div data-role="tabs">
 
-    <ul data-role="listview" data-inset="true" class="tablist-left">
-      <li><a href="#profile">Profile settings</a></li>
-      <li><a href="#group">Group settings</a></li>
-      <li><a href="#room">Room settings</a></li>
-    </ul>
+		<nav data-role="navbar" class="ui-body-a">
+			<ul>
+				<li><a href="#profile" data-role="tab" class="ui-btn-active ui-state-persist">Profile settings</a></li>
+				<li><a href="#location" data-role="tab">Location settings</a></li>
+			</ul>
+		</nav>
 
-    <div id="profile" class="ui-body-d tablist-content">
-      {{!-- {{> settings-profile }} --}}
-    </div>
+		<div id="profile">
+			{{> settings-profile }}
+		</div>
 
-    <div id="group" class="ui-body-d tablist-content">
-      {{!-- {{> settings-group }} --}}
-    </div>
-
-    <div id="room" class="ui-body-d tablist-content">
-      {{!-- {{> settings-room }} --}}
-    </div>
+		<div id="location">
+			{{> settings-room }}
+		</div>
 
   </div>
-
-	{{> footer }}
 
 </div>

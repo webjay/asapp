@@ -12,7 +12,7 @@ jQuery(document).on('mobileinit', function(){
   console.log('JQM ready');
 
   $.extend($.mobile, {
-    autoInitializePage: false,
+    // autoInitializePage: false,
     defaultPageTransition: 'none'
   });
   $.mobile.page.prototype.options.theme = 'b';
@@ -43,6 +43,7 @@ var asapp = {
   preload: function () {
     asapp.types.fetch();
     asapp.locations.fetch();
+    asapp.statuses.fetch();
     asapp.requests.fetch();
   }
 
@@ -58,6 +59,7 @@ jQuery(function ($) {
   asapp.user = new User();
   asapp.types = new Types();
   asapp.locations = new Locations();
+  asapp.statuses = new Statuses();
   asapp.requests = new Requests();
   asapp.router = new Router();
   asapp.views = {};
@@ -65,7 +67,11 @@ jQuery(function ($) {
   asapp.user.on('sync', asapp.preload);
   asapp.user.fetch();
 
-  $.mobile.initializePage();
+  // $.mobile.initializePage();
+  $('header[data-role="header"], footer[data-role="footer"]').toolbar({
+    theme: 'b'
+  });
+  $('nav[data-role="navbar"]').navbar();
 
   Backbone.history.start({
     pushState: false

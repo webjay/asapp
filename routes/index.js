@@ -2,6 +2,7 @@ var User = require('../models/user');
 var Request = require('../models/request');
 var Location = require('../models/location');
 var Type = require('../models/type');
+var Status = require('../models/status');
 
 exports.define = function (router) {
 
@@ -29,5 +30,6 @@ exports.define = function (router) {
 
   router.route('/types').all(User.auth).get(Type.all);
   router.route('/locations').all(User.auth).get(Location.all);
+  router.route('/statuses').all(User.auth).get(Status.all);
 
 };

@@ -13,20 +13,20 @@
 </head>
 <body>
 
-  <div data-role="page" id="start"></div>
-
-  <div data-role="page" id="request" data-title="Request help">
-
-	<header data-role="header">
+  <header data-role="header" data-position="fixed">
   <nav data-role="navbar" data-iconpos="top">
     <ul>
       <li><a href="#request" class="nav-request" data-role="tab" data-icon="comment">Help!</a></li>
       <li><a href="#monitor" class="nav-monitor" data-role="tab" data-icon="eye">Monitor</a></li>
-<!--       <li><a href="#settings" class="nav-settings" data-role="tab" data-icon="gear">Settings</a></li> -->
+      <li><a href="#settings" class="nav-settings" data-role="tab" data-icon="gear">Settings</a></li>
     </ul>
   </nav>
 </header>
 
+
+<div data-role="page" id="start"></div>
+
+<div data-role="page" id="request" data-title="Request help">
 
 	<div data-role="content" class="ui-content ui-corner-all">
 
@@ -58,31 +58,10 @@
 
 	</div>
 
-	<footer data-role="footer" data-position="fixed" class="asapp-footer">
-	<div class="ui-mini">
-		ASAPP
-		&copy;
-		<img src="./img/ds-logo-3.png" alt="logo" class="dslogo">
-		Digitally Speaking
-	</div>
-</footer>
-
-
 </div>
 
 
 <div data-role="page" id="monitor" data-title="Requests">
-
-	<header data-role="header">
-  <nav data-role="navbar" data-iconpos="top">
-    <ul>
-      <li><a href="#request" class="nav-request" data-role="tab" data-icon="comment">Help!</a></li>
-      <li><a href="#monitor" class="nav-monitor" data-role="tab" data-icon="eye">Monitor</a></li>
-<!--       <li><a href="#settings" class="nav-settings" data-role="tab" data-icon="gear">Settings</a></li> -->
-    </ul>
-  </nav>
-</header>
-
 
 	<div data-role="content" class="ui-content ui-corner-all" >
 
@@ -106,31 +85,94 @@
 
 	</div>
 
-	<footer data-role="footer" data-position="fixed" class="asapp-footer">
-	<div class="ui-mini">
-		ASAPP
-		&copy;
-		<img src="./img/ds-logo-3.png" alt="logo" class="dslogo">
-		Digitally Speaking
-	</div>
-</footer>
+</div>
 
+
+<div data-role="page" id="settings" data-title="Settings">
+
+  <div data-role="tabs">
+
+		<nav data-role="navbar" class="ui-body-a">
+			<ul>
+				<li><a href="#profile" data-role="tab" class="ui-btn-active ui-state-persist">Profile settings</a></li>
+				<li><a href="#location" data-role="tab">Location settings</a></li>
+			</ul>
+		</nav>
+
+		<div id="profile">
+			<form>
+
+  <fieldset class="ui-field-contain">
+    <label for="mobile">Mobile</label>
+    <input type="tel" name="mobile" id="mobile">
+    <!-- <div class="errormsg"></div> -->
+  </fieldset>
+
+  <button class="ui-btn">Save</button>
+
+</form>
+
+		</div>
+
+		<div id="location">
+			<form>
+
+  <fieldset data-role="controlgroup" data-type="horizontal">
+    <legend>Pick the rooms you want to follow:</legend>
+    <input name="room-choice-a" id="room-choice-a" type="checkbox">
+    <label for="room-choice-a">W 3001</label>
+    <input name="room-choice-b" id="room-choice-b" type="checkbox">
+    <label for="room-choice-b">W 3002</label>
+    <input name="room-choice-c" id="room-choice-c" type="checkbox">
+    <label for="room-choice-c">W 3003</label>
+    <input name="room-choice-d" id="room-choice-d" type="checkbox">
+    <label for="room-choice-d">W 3004</label>
+    <input name="room-choice-e" id="room-choice-e" type="checkbox">
+    <label for="room-choice-e">W 3005</label>
+    <input name="room-choice-f" id="room-choice-f" type="checkbox">
+    <label for="room-choice-f">W 3006</label>
+    <input name="room-choice-g" id="room-choice-g" type="checkbox">
+    <label for="room-choice-g">W 3007</label>
+    <input name="room-choice-h" id="room-choice-h" type="checkbox">
+    <label for="room-choice-h">W 3008</label>
+    <input name="room-choice-i" id="room-choice-i" type="checkbox">
+    <label for="room-choice-i">W 3009</label>
+    <input name="room-choice-j" id="room-choice-j" type="checkbox">
+    <label for="room-choice-j">W 3010</label>
+    <input name="room-choice-k" id="room-choice-k" type="checkbox">
+    <label for="room-choice-k">N 101</label>
+    <input name="room-choice-l" id="room-choice-l" type="checkbox">
+    <label for="room-choice-l">N 102</label>
+    <input name="room-choice-m" id="room-choice-m" type="checkbox">
+    <label for="room-choice-m">N 103</label>
+    <input name="room-choice-n" id="room-choice-n" type="checkbox">
+    <label for="room-choice-n">N 104</label>
+    <input name="room-choice-o" id="room-choice-o" type="checkbox">
+    <label for="room-choice-o">N 105</label>
+    <input name="room-choice-p" id="room-choice-p" type="checkbox">
+    <label for="room-choice-p">N 106</label>
+    <input name="room-choice-q" id="room-choice-q" type="checkbox">
+    <label for="room-choice-q">N 107</label>
+    <input name="room-choice-r" id="room-choice-r" type="checkbox">
+    <label for="room-choice-r">N 108</label>
+    <input name="room-choice-s" id="room-choice-s" type="checkbox">
+    <label for="room-choice-s">N 109</label>
+    <input name="room-choice-t" id="room-choice-t" type="checkbox">
+    <label for="room-choice-t">W 3010</label>
+  </fieldset>
+
+  <button class="ui-btn">Save</button>
+
+</form>
+
+		</div>
+
+  </div>
 
 </div>
 
 
 <div data-role="page" id="login" data-title="Login">
-
-	<header data-role="header">
-  <nav data-role="navbar" data-iconpos="top">
-    <ul>
-      <li><a href="#request" class="nav-request" data-role="tab" data-icon="comment">Help!</a></li>
-      <li><a href="#monitor" class="nav-monitor" data-role="tab" data-icon="eye">Monitor</a></li>
-<!--       <li><a href="#settings" class="nav-settings" data-role="tab" data-icon="gear">Settings</a></li> -->
-    </ul>
-  </nav>
-</header>
-
 
 	<div data-role="content" class="ui-content ui-corner-all">
 
@@ -154,7 +196,10 @@
 
 	</div>
 
-	<footer data-role="footer" data-position="fixed" class="asapp-footer">
+</div>
+
+
+<footer data-role="footer" data-position="fixed" class="asapp-footer">
 	<div class="ui-mini">
 		ASAPP
 		&copy;
@@ -162,9 +207,6 @@
 		Digitally Speaking
 	</div>
 </footer>
-
-
-</div>
 
 
 

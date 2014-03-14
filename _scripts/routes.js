@@ -47,7 +47,7 @@ var Router = Backbone.Router.extend({
   },
 
   settings: function () {
-    var view = new ProfileView();
+    var view = new SettingsView();
     view.render();
   }
 
