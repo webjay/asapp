@@ -32,14 +32,13 @@ var Router = Backbone.Router.extend({
   },
 
   request: function () {
-    if (asapp.views.request) {
-      return;
+    if (!asapp.views.request) {
+      asapp.views.request = new RequestView({
+        collection: asapp.requests,
+        model: new asapp.requests.model()
+      });
     }
-    asapp.views.request = new RequestView({
-      collection: asapp.requests,
-      model: new asapp.requests.model()
-    });
-    // asapp.views.request.render();
+    asapp.views.request.render();
   },
 
   monitor: function () {
