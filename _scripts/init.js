@@ -45,6 +45,10 @@ var asapp = {
     asapp.locations.fetch();
     asapp.statuses.fetch();
     asapp.requests.fetch();
+  },
+
+  date: function (d) {
+    return moment(d).format('h:mm a');
   }
 
 };

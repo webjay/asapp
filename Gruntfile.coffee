@@ -14,6 +14,7 @@ module.exports = (grunt) ->
           'public/js/app.js': [
             'bower_components/lodash/dist/lodash.underscore.js'
             'bower_components/backbone/backbone.js'
+            'bower_components/momentjs/moment.js'
             '_tmp/templates.js'
             '_scripts/models/*.js'
             '_scripts/collections/*.js'
@@ -33,6 +34,7 @@ module.exports = (grunt) ->
         flatten: true
         layoutdir: '_templates'
         partials: '_partials/*.hbs'
+        # helpers: ['_helpers/*.js']
       pages:
         options:
           layout: 'default.hbs'

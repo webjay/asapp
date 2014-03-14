@@ -4,11 +4,11 @@ this["JST"]["_templates/monitor-item.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<td>' +
-__e( new Date(created).toLocaleDateString() ) +
-' ' +
-__e( new Date(created).toLocaleTimeString() ) +
-'</td><td>' +
+__p += '<td><time datetime="' +
+__e( created ) +
+'">' +
+__e( asapp.date(created) ) +
+'</time></td><td>' +
 __e( location.name ) +
 '</td><td>' +
 __e( user.username ) +
