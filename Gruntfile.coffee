@@ -34,7 +34,6 @@ module.exports = (grunt) ->
         flatten: true
         layoutdir: '_templates'
         partials: '_partials/*.hbs'
-        # helpers: ['_helpers/*.js']
       pages:
         options:
           layout: 'default.hbs'
