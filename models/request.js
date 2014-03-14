@@ -65,7 +65,7 @@ module.exports.all = function (req, res) {
     }
   ];
   var select = '-__v';
-  Request.find().select(select).populate(popuptions).exec(function (err, requests) {
+  Request.find().select(select).sort('-created').populate(popuptions).exec(function (err, requests) {
     if (err) throw err;
     res.json(requests);
   });
