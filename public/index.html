@@ -88,21 +88,19 @@
 
 <div data-role="page" id="settings" data-title="Settings">
 
-  <div data-role="tabs">
+  <div data-role="tabs" class="space-top">
 
-		<nav data-role="navbar">
-			<ul>
-				<li><a href="#profile" data-role="tab">Profile settings</a></li>
-				<li><a href="#location" data-role="tab">Location settings</a></li>
-			</ul>
-		</nav>
+		<ul data-role="listview" data-inset="true" class="tablist-left">
+			<li><a href="#profile">Profile settings</a></li>
+			<li><a href="#location">Location settings</a></li>
+		</ul>
 
-		<div id="profile">
+		<div id="profile" class="tablist-content">
 			<form>
 
-  <fieldset class="ui-field-contain">
-    <label for="mobile">Mobile</label>
-    <input type="tel" name="mobile" id="mobile" disabled="disabled">
+  <fieldset>
+    <label for="mobile" class="ui-hidden-accessible">Mobile</label>
+    <input type="tel" name="mobile" id="mobile" placeholder="Mobile" disabled="disabled">
     <!-- <div class="errormsg"></div> -->
   </fieldset>
 
@@ -112,10 +110,10 @@
 
 		</div>
 
-		<div id="location">
+		<div id="location" class="tablist-content">
 			<form>
 
-  <fieldset data-role="controlgroup" data-type="horizontal">
+  <fieldset data-role="controlgroup">
     <legend>Pick the rooms you want to follow:</legend>
     <input disabled="disabled"  name="room-choice-a" id="room-choice-a" type="checkbox">
     <label for="room-choice-a">W 3001</label>
