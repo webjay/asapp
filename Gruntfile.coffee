@@ -7,7 +7,7 @@ module.exports = (grunt) ->
         options:
           compress: true
           mangle: {
-            except: ['jQuery', '$', 'Pusher']
+            except: ['jQuery', '$']
           }
         files:
           'public/js/app.js': [
