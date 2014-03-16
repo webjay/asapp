@@ -5,11 +5,12 @@ module.exports = (grunt) ->
     uglify:
       components:
         options:
-          mangle: false
           compress: true
-          wrap: false
-          # sourceMap: true
-          # sourceMapIncludeSources: true
+          # mangle: false
+          mangle: {
+            except: ['jQuery', '$', 'Pusher']
+          }
+          # wrap: false
         files:
           'public/js/app.js': [
             'bower_components/lodash/dist/lodash.underscore.js'

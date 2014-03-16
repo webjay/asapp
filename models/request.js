@@ -76,6 +76,7 @@ module.exports.create = function (req, res, next) {
     if (err) return next(err);
     var obj = body;
     obj.user = req.session.user._id;
+    obj.created = new Date;
     Request.create(obj, function (err, doc) {
       if (err) throw err;
       res.json(201, doc);

@@ -17,10 +17,10 @@ var Request = Backbone.Model.extend({
     }
   },
 
-  initialize: function () {
-    // this.set({
-    //   status: asapp.statuses.at(0)
-    // });
-  }
+  // initialize: function () {
+  //   // this.set({
+  //   //   status: asapp.statuses.at(0)
+  //   // });
+  // }
 
 });
