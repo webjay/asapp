@@ -18,9 +18,6 @@ var Request = Backbone.Model.extend({
   },
 
   initialize: function () {
-    this.on('add', function () {
-      this.save();
-    }, this);
     // this.set({
     //   status: asapp.statuses.at(0)
     // });

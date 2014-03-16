@@ -4,26 +4,25 @@ var Router = Backbone.Router.extend({
   routes: {
     '': 'redirect',
     'login': 'login',
-    'request': 'request',
+    'help': 'help',
     'monitor': 'monitor',
     'settings': 'settings'
   },
 
   initialize: function () {
     this.on('route', function (route) {
-      // set active menu
       $('nav ul li a').removeClass('ui-btn-active');
       $('.nav-' + route).addClass('ui-btn-active');
     });
   },
 
   redirect: function () {
-    asapp.redirect('#request');
+    asapp.redirect('#help');
   },
 
   login: function(){
     if (asapp.views.login) {
-      asapp.views.login.remove();
+      asapp.views.login.stopListening();
     }
     asapp.views.login = new LoginView({
       model: asapp.user
@@ -31,23 +30,33 @@ var Router = Backbone.Router.extend({
     asapp.views.login.render();
   },
 
-  request: function () {
-    if (!asapp.views.request) {
-      asapp.views.request = new RequestView({
-        collection: asapp.requests,
-        model: new asapp.requests.model()
-      });
+  help: function () {
+    if (asapp.views.help) {
+      asapp.views.help.stopListening();
     }
-    asapp.views.request.render();
+    asapp.views.help = new HelpView({
+      collection: asapp.requests,
+      model: new asapp.requests.model()
+    });
+    asapp.views.help.render();
   },
 
   monitor: function () {
-    asapp.requests.fetch();
+    if (asapp.views.monitor) {
+      asapp.views.monitor.stopListening();
+    }
+    asapp.views.monitor = new MonitorView({
+      collection: asapp.requests
+    });
+    asapp.views.monitor.render();
   },
 
   settings: function () {
-    var view = new SettingsView();
-    view.render();
+    if (asapp.views.settings) {
+      asapp.views.settings.stopListening();
+    }
+    asapp.views.settings = new SettingsView();
+    asapp.views.settings.render();
   }
 
 });

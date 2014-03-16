@@ -1,14 +1,21 @@
 var MonitorView = Backbone.View.extend({
 
-  tagName: 'tr',
-  template: JST['_templates/monitor-item.jst'],
+  el: '#monitor',
 
   initialize: function () {
-    this.listenTo(this.model, 'change', this.render);
+    this.listenTo(this.collection, 'sync', this.render);
   },
 
   render: function () {
-    this.$el.html(this.template(this.model.attributes));
+    var tbody = this.$('tbody');
+    tbody.empty();
+    this.collection.each(function (model) {
+      var view = new RequestView({
+        model: model
+      }).render();
+      tbody.append(view.el);
+    });
+    this.$el.enhanceWithin();
     return this;
   }
 

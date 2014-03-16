@@ -16,7 +16,7 @@
   <header data-role="header" data-position="fixed">
   <nav data-role="navbar" data-iconpos="top">
     <ul>
-      <li><a href="#request" class="nav-request" data-role="tab" data-icon="comment">Help!</a></li>
+      <li><a href="#help" class="nav-help" data-role="tab" data-icon="comment">Help!</a></li>
       <li><a href="#monitor" class="nav-monitor" data-role="tab" data-icon="eye">Monitor</a></li>
       <li><a href="#settings" class="nav-settings" data-role="tab" data-icon="gear">Settings</a></li>
     </ul>
@@ -26,7 +26,7 @@
 
 <div data-role="page" id="start"></div>
 
-<div data-role="page" id="request" data-title="Request help">
+<div data-role="page" id="help" data-title="Request help">
 
 	<div data-role="content" class="ui-content ui-corner-all">
 
@@ -93,6 +93,7 @@
 		<ul data-role="listview" data-inset="true" class="tablist-left">
 			<li><a href="#profile">Profile settings</a></li>
 			<li><a href="#location">Location settings</a></li>
+      <li><a href="/logout" data-ajax="false">Log out</a></li>
 		</ul>
 
 		<div id="profile" class="tablist-content">
