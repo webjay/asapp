@@ -9,6 +9,13 @@
   height: 10px;
   margin: 0 5px;
 }
+.asapp-footer a {
+  color: #fff ! important;
+  text-decoration: none;
+}
+.asapp-footer a:visited {
+  color: #fff ! important;
+}
 .tablist-left {
   width: 25%;
   display: inline-block;
