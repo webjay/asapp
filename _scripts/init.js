@@ -48,7 +48,7 @@ var asapp = {
   },
 
   date: function (d) {
-    return moment(d).format('h:mm a');
+    return moment(d).format('h:mm');
   }
 
 };
