@@ -6,11 +6,13 @@ module.exports = (grunt) ->
       components:
         options:
           compress: true
-          mangle: {
-            except: ['jQuery', '$']
-          }
+          mangle: false
+          # mangle: {
+          #   except: ['jQuery', '$']
+          # }
         files:
           'public/js/app.js': [
+            'bower_components/jquery/jquery.js'
             'bower_components/lodash/dist/lodash.underscore.js'
             'bower_components/backbone/backbone.js'
             'bower_components/momentjs/moment.js'
@@ -20,14 +22,23 @@ module.exports = (grunt) ->
             '_scripts/collections/*.js'
             '_scripts/views/*.js'
             '_scripts/*.js'
+            'bower_components/jquery-mobile/dist/jquery.mobile.js'
           ]
 
     less:
       app:
-        options:
-          compress: true
+        # options:
+        #   compress: true
         files:
-          'public/css/app.css': '_styles/*.less'
+          '_tmp/app.css': '_styles/*.less'
+
+    cssmin:
+      all:
+        files:
+          'public/css/app.css': [
+            'bower_components/jquery-mobile/dist/jquery.mobile.css'
+            '_tmp/app.css'
+          ]
 
     assemble:
       options:
@@ -71,14 +82,14 @@ module.exports = (grunt) ->
       jst:
         files: ['_templates/*.jst']
         tasks: ['jst', 'uglify']
-      less:
+      style:
         files: ['_styles/*.less']
-        tasks: ['less']
+        tasks: ['less', 'cssmin']
       assemble:
         files: ['_partials/*.hbs', '_pages/*.hbs', '_templates/*.hbs']
         tasks: ['assemble']
 
-  grunt.registerTask 'default', ['less', 'assemble', 'jst', 'uglify']
+  grunt.registerTask 'default', ['less', 'cssmin', 'assemble', 'jst', 'uglify']
   grunt.registerTask 'scripts', ['jst', 'uglify']
   grunt.registerTask 'jqm', ['shell']
 
@@ -88,3 +99,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'assemble'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-jst'
+  grunt.loadNpmTasks 'grunt-contrib-cssmin'
