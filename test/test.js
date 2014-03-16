@@ -1,4 +1,4 @@
-var request = require('supertest')
+var request = require('supertest');
 
 var app = require('../app.js');
 var agent = request.agent(app);

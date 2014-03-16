@@ -6,11 +6,9 @@ module.exports = (grunt) ->
       components:
         options:
           compress: true
-          # mangle: false
           mangle: {
             except: ['jQuery', '$', 'Pusher']
           }
-          # wrap: false
         files:
           'public/js/app.js': [
             'bower_components/lodash/dist/lodash.underscore.js'
@@ -56,7 +54,7 @@ module.exports = (grunt) ->
             cwd: 'bower_components/jquery-mobile'
 
     jst:
-      bbform:
+      app:
         options:
           processContent: (src) ->
             src.replace /(^\s+|\s+$)/gm, ''
