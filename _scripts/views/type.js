@@ -1,7 +1,7 @@
 var TypeView = Backbone.View.extend({
 
   tagName: 'label',
-  template: JST['_templates/radio-item.jst'],
+  template: JST['_templates/radio-item.hjs'],
 
   attributes: function () {
     return {
