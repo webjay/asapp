@@ -25,8 +25,12 @@ exports.define = function (router) {
 
   router.route('/request')
   .all(User.auth)
-  .post(Request.create)
-  .put(Request.update);
+  .post(Request.create);
+
+  router.route('/request/:id')
+  .all(User.auth)
+  .put(Request.update)
+  .delete(Request.delete);
 
   router.route('/types').all(User.auth).get(Type.all);
   router.route('/locations').all(User.auth).get(Location.all);

@@ -26,10 +26,10 @@ module.exports = app;
 
 app.set('port', process.env.PORT || 3000);
 
-// if (app.get('env') == 'development') {
-//   var logger = require('morgan');
-//   app.use(logger());
-// }
+if (app.get('env') == 'development') {
+  var logger = require('morgan');
+  app.use(logger());
+}
 
 app.use(compress());
 app.use(favicon(__dirname + '/public/favicon.ico'));

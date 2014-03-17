@@ -78,7 +78,7 @@ module.exports.create = function (req, res, next) {
     obj.user = req.session.user._id;
     obj.created = new Date;
     Request.create(obj, function (err, doc) {
-      if (err) throw err;
+      if (err) return next(err);
       res.json(201, doc);
       push(doc);
     });
@@ -104,4 +104,16 @@ module.exports.update = function (req, res) {
     });
   });
   */
+}
+
+module.exports.delete = function (req, res, next) {
+  var conditions = {
+    _id: req.params.id,
+    user: req.session.user._id
+  }
+  Request.findOneAndRemove(conditions, function (err) {
+    if (err) return next(err);
+    res.type('json');
+    res.send(204);
+  });
 }
