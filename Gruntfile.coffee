@@ -27,8 +27,6 @@ module.exports = (grunt) ->
 
     less:
       app:
-        # options:
-        #   compress: true
         files:
           '_tmp/app.css': '_styles/*.less'
 
@@ -71,7 +69,7 @@ module.exports = (grunt) ->
           processContent: (src) ->
             src.replace /(^\s+|\s+$)/gm, ''
         files:
-          '_tmp/templates.js': '_templates/*.jst'
+          '_tmp/templates.js': '_templates/*.hjs'
 
     watch:
       options:
