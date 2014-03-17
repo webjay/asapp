@@ -12,7 +12,7 @@ module.exports = (grunt) ->
           # }
         files:
           'public/js/app.js': [
-            'bower_components/jquery/jquery.js'
+            'bower_components/jquery/dist/jquery.js'
             'bower_components/lodash/dist/lodash.underscore.js'
             'bower_components/backbone/backbone.js'
             'bower_components/momentjs/moment.js'
