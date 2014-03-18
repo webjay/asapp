@@ -13,3 +13,7 @@ module.exports.all = function (req, res) {
     res.json(docs);
   });
 }
+
+module.exports.getDefault = function (callback) {
+  Status.findOne({}, callback);
+}

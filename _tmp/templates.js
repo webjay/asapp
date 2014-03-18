@@ -34,7 +34,7 @@ __e( type.name ) +
 '</td><td>' +
 __e( description ) +
 '</td><td>' +
-__e( status.name ) +
+__e( (status) ? status.name : '' ) +
 '</td>';
 
 }

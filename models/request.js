@@ -5,7 +5,7 @@ var Pusher = require('pusher');
 // define models hack
 require('../models/type');
 require('../models/location');
-require('../models/status');
+var Status = require('../models/status');
 
 function push (data) {
   pusher.trigger('requests', 'add', data);
@@ -77,10 +77,14 @@ module.exports.create = function (req, res, next) {
     var obj = body;
     obj.user = req.session.user._id;
     obj.created = new Date;
-    Request.create(obj, function (err, doc) {
+    Status.getDefault(function (err, doc) {
       if (err) return next(err);
-      res.json(201, doc);
-      push(doc);
+      obj.status = doc._id;
+      Request.create(obj, function (err, doc) {
+        if (err) return next(err);
+        res.json(201, doc);
+        push(doc);
+      });
     });
   });
 }

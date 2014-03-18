@@ -78,7 +78,7 @@ module.exports = (grunt) ->
         files: ['_scripts/**/*.js']
         tasks: ['uglify']
       jst:
-        files: ['_templates/*.jst']
+        files: ['_templates/*.hjs']
         tasks: ['jst', 'uglify']
       style:
         files: ['_styles/*.less']

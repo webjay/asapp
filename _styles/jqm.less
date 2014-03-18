@@ -44,3 +44,30 @@ button.ui-btn-red {
 .space-top {
   margin-top: 15px;
 }
+
+
+#monitor {
+
+  tbody {
+
+    tr {
+
+      &:nth-child(odd) td {
+        background-color: #eeeeee; /* non-RGBA fallback  */
+        background-color: rgba(0,0,0,.04);
+      }
+
+      &.urgent {
+        border-left: 1px solid red;
+      }
+
+      td {
+        border-bottom: 1px solid #e6e6e6; /* non-RGBA fallback  */
+        border-bottom: 1px solid rgba(0,0,0,.05);
+      }
+
+    }
+
+  }
+
+}

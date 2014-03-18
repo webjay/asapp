@@ -14,7 +14,8 @@ var Request = Backbone.Model.extend({
     },
     location: {
       name: null
-    }
+    },
+    urgent: false
   },
 
   // initialize: function () {
