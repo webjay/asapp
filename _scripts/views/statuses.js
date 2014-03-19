@@ -48,7 +48,8 @@ var StatusesView = Backbone.View.extend({
       _id: this.model.id,
       status: $el.val()
     }, {
-      patch: true
+      patch: true,
+      validate: false
     });
   }
 

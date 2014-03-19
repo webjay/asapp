@@ -18,6 +18,12 @@ var Request = Backbone.Model.extend({
     urgent: false
   },
 
+  initialize: function () {
+    this.on('invalid', function () {
+      console.error(this.validationError);
+    });
+  },
+
   validate: function (attrs, options) {
     if (!_.isString(attrs.type)) {
       return 'Type must be set';
