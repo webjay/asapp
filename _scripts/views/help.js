@@ -45,18 +45,19 @@ var HelpView = Backbone.View.extend({
     return this;
   },
 
-  modelSet: function (event) {
-    var el = $(event.currentTarget);
-    var data = {}
-    data[el.attr('name')] = el.val();
-    this.model.set(data);
+  modelSet: function () {
+    this.model.set(this.$('form').serializeObject());
   },
 
   submit: function (event) {
     event.preventDefault();
-    this.collection.create(this.model);
-    asapp.redirect('#monitor');
-    this.$('textarea').val('');
+    this.modelSet();
+    if (this.model.isValid()) {
+      this.collection.create(this.model);
+      asapp.redirect('#monitor');
+      this.$('textarea').val('');
+      this.model = new this.collection.model;
+    }
   }
 
 });
