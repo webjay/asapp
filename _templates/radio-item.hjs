@@ -1,2 +1,2 @@
-<input type="radio" name="<%- fieldName %>" value="<%- _id %>" id="radio-<%- cid %>">
+<input type="radio" name="<%- fieldName %>" value="<%- _id %>" id="<%= uid %>">
 <%- name %>

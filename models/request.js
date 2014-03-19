@@ -89,25 +89,18 @@ module.exports.create = function (req, res, next) {
   });
 }
 
-module.exports.update = function (req, res) {
-  res.end();
-  /*
+module.exports.update = function (req, res, next) {
   jsonBody(req, res, function (err, body) {
     if (err) throw err;
     var obj = body;
     var id = obj._id;
     delete obj._id;
     Request.findByIdAndUpdate(id, obj, function (err, doc) {
-      if (err) {
-        throw err;
-        res.end('Database error');
-      } else {
-        res.json(doc);
-        push(doc);
-      }
+      if (err) return next(err);
+      res.json(doc);
+      push(doc);
     });
   });
-  */
 }
 
 module.exports.delete = function (req, res, next) {

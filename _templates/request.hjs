@@ -1,1 +1,7 @@
-<td><time datetime="<%- created %>"><%- asapp.date(created) %></time></td><td><%- location.name %></td><td><%- user.username %></td><td><%- type.name %></td><td><%- description %></td><td><%- (status) ? status.name : '' %></td>
+<td>
+  <time datetime="<%- created %>"><%- asapp.date(created) %></time>
+</td>
+<td><%- location.name %></td>
+<td><%- user.username %></td>
+<td><%- type.name %></td>
+<td><%- description %></td>

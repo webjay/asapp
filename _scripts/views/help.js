@@ -21,7 +21,10 @@ var HelpView = Backbone.View.extend({
     this.$('#request-types .ui-controlgroup-controls').empty();
     asapp.types.each(function (model) {
       var view = new TypeView({
-        model: model
+        model: model,
+        attributes: {
+          for: _.uniqueId('sts')
+        }
       }).render();
       self.$('#request-types .ui-controlgroup-controls').append(view.el);
     });
@@ -30,7 +33,10 @@ var HelpView = Backbone.View.extend({
     this.$('#request-locations .ui-controlgroup-controls').empty();
     asapp.locations.each(function (model) {
       var view = new LocationView({
-        model: model
+        model: model,
+        attributes: {
+          for: _.uniqueId('sts')
+        }
       }).render();
       self.$('#request-locations .ui-controlgroup-controls').append(view.el);
     });

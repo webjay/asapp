@@ -8,8 +8,8 @@ __p += '<input type="radio" name="' +
 __e( fieldName ) +
 '" value="' +
 __e( _id ) +
-'" id="radio-' +
-__e( cid ) +
+'" id="' +
+((__t = ( uid )) == null ? '' : __t) +
 '">\n' +
 __e( name );
 
@@ -21,21 +21,29 @@ this["JST"]["_templates/request.hjs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<td><time datetime="' +
+__p += '<td>\n<time datetime="' +
 __e( created ) +
 '">' +
 __e( asapp.date(created) ) +
-'</time></td><td>' +
+'</time>\n</td>\n<td>' +
 __e( location.name ) +
-'</td><td>' +
+'</td>\n<td>' +
 __e( user.username ) +
-'</td><td>' +
+'</td>\n<td>' +
 __e( type.name ) +
-'</td><td>' +
+'</td>\n<td>' +
 __e( description ) +
-'</td><td>' +
-__e( (status) ? status.name : '' ) +
 '</td>';
+
+}
+return __p
+};
+
+this["JST"]["_templates/statuses.hjs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true"></fieldset>';
 
 }
 return __p

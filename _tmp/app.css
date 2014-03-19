@@ -45,3 +45,6 @@ button.ui-btn-red {
   /* non-RGBA fallback  */
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
+#monitor tbody tr td fieldset.ui-controlgroup {
+  margin: 0;
+}
