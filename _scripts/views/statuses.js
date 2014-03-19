@@ -15,7 +15,6 @@ var StatusesView = Backbone.View.extend({
   render: function () {
     this.$el.html(this.template());
     this.$('fieldset').html(this.subview.el);
-    // this.setChecked();
     return this;
   },
 
@@ -37,14 +36,6 @@ var StatusesView = Backbone.View.extend({
         });
       }
       self.subview.$el.append(view.el);
-    });
-  },
-
-  setChecked: function () {
-    var self = this;
-    asapp.statuses.each(function (model) {
-      if (!self.model.get('status')) return;
-      self.subview.$('input[name="status-' + self.model.id + '"][value="' + self.model.get('status')._id + '"]').prop('checked', true).checkboxradio('refresh');
     });
   },
 

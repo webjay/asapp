@@ -17,7 +17,6 @@ var MonitorView = Backbone.View.extend({
   },
 
   append: function (model) {
-    // console.log('append');
     var view = new RequestView({
       model: model
     }).render();
@@ -25,7 +24,6 @@ var MonitorView = Backbone.View.extend({
   },
 
   prepend: function (model) {
-    // console.log('prepend');
     var view = new RequestView({
       model: model
     }).render();
