@@ -43,7 +43,7 @@ var Router = Backbone.Router.extend({
 
   monitor: function () {
     if (asapp.views.monitor) {
-      asapp.views.monitor.stopListening();
+      return;
     }
     asapp.views.monitor = new MonitorView({
       collection: asapp.requests
