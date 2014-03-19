@@ -54,10 +54,9 @@ var HelpView = Backbone.View.extend({
 
   submit: function (event) {
     event.preventDefault();
-    this.model.save();
-    this.collection.add(this.model);
+    this.collection.create(this.model);
     asapp.redirect('#monitor');
-    this.$('form')[0].reset();
+    this.$('textarea').val('');
   }
 
 });

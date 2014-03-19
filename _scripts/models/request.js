@@ -16,12 +16,6 @@ var Request = Backbone.Model.extend({
       name: null
     },
     urgent: false
-  },
-
-  // initialize: function () {
-  //   // this.set({
-  //   //   status: asapp.statuses.at(0)
-  //   // });
-  // }
+  }
 
 });
