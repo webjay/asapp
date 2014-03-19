@@ -8,6 +8,7 @@ var StatusesView = Backbone.View.extend({
   },
 
   initialize: function () {
+    this.listenTo(this.model, 'change', this.statusRefresh);
     this.subview = new Backbone.View;
     this.renderRdios();
   },
@@ -31,9 +32,7 @@ var StatusesView = Backbone.View.extend({
         name: 'status-' + self.model.id
       });
       if (self.model.get('status') && self.model.get('status')._id == model.id) {
-        view.$('input').attr({
-          checked: 'checked'
-        });
+        view.$('input').prop('checked', true);
       }
       self.subview.$el.append(view.el);
     });
@@ -51,6 +50,13 @@ var StatusesView = Backbone.View.extend({
       patch: true,
       validate: false
     });
+  },
+
+  statusRefresh: function () {
+    if (!this.model.get('status')._id) return;
+    this.$('input').not('input[value="' + this.model.get('status')._id + '"]').prop('checked', false);
+    this.$('input[value="' + this.model.get('status')._id + '"]').prop('checked', true);
+    this.$('input').checkboxradio('refresh');
   }
 
 });
