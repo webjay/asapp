@@ -5,7 +5,7 @@ module.exports = (grunt) ->
     uglify:
       components:
         options:
-          compress: false
+          compress: true
           mangle: false
           # mangle: {
           #   except: ['jQuery', '$']
