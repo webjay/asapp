@@ -14,8 +14,8 @@ var data = {
 describe('GET /', function () {
   it('respond with HTML', function (done) {
     request(app).get('/').expect(200, done);
-  })
-})
+  });
+});
 
 describe('User', function () {
 
@@ -37,7 +37,7 @@ describe('User', function () {
         }
       });
     });
-  })
+  });
 
   describe('auth', function () {
     it('respond with json', function (done) {

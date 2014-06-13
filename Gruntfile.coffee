@@ -5,14 +5,15 @@ module.exports = (grunt) ->
     uglify:
       components:
         options:
-          compress: true
+          # compress: true
+          compress: false
           mangle: false
           # mangle: {
           #   except: ['jQuery', '$']
           # }
         files:
           'public/js/app.js': [
-            'bower_components/jquery/dist/jquery.js'
+            'bower_components/jquery/jquery.js'
             'bower_components/jQuery.serializeObject/dist/jquery.serializeObject.min.js'
             'bower_components/lodash/dist/lodash.underscore.js'
             'bower_components/backbone/backbone.js'

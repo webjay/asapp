@@ -44,6 +44,7 @@ var asapp = {
     asapp.locations.fetch();
     asapp.statuses.fetch();
     asapp.requests.fetch();
+    asapp.messages.fetch();
   },
 
   date: function (d) {
@@ -78,6 +79,7 @@ jQuery(function ($) {
   asapp.locations = new Locations();
   asapp.statuses = new Statuses();
   asapp.requests = new Requests();
+  asapp.messages = new Messages();
   asapp.router = new Router();
   asapp.views = {};
 
@@ -90,9 +92,13 @@ jQuery(function ($) {
 
   // Pusher
   var pusher = new Pusher('89dd0fd43699d54bb1bf');
-  var channel = pusher.subscribe('requests');
-  channel.bind('add', function (data) {
+  var channel1 = pusher.subscribe('requests');
+  channel1.bind('add', function (data) {
     asapp.requests.fetch();
+  });
+  var channel2 = pusher.subscribe('messages');
+  channel2.bind('add', function (data) {
+    asapp.messages.fetch();
   });
 
 });

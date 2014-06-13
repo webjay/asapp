@@ -3,6 +3,7 @@ var Request = require('../models/request');
 var Location = require('../models/location');
 var Type = require('../models/type');
 var Status = require('../models/status');
+var Message = require('../models/message');
 
 exports.define = function (router) {
 
@@ -32,6 +33,18 @@ exports.define = function (router) {
   router.route('/request/:id')
   .all(User.auth)
   .delete(Request.delete);
+
+  router.route('/messages').all(User.auth).get(Message.all);
+
+  router.route('/message')
+  .all(User.auth)
+  .post(Message.create)
+  .put(Message.update)
+  .patch(Message.update);
+
+  router.route('/message/:id')
+  .all(User.auth)
+  .delete(Message.delete);
 
   router.route('/types').all(User.auth).get(Type.all);
   router.route('/locations').all(User.auth).get(Location.all);

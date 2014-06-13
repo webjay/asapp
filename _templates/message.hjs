@@ -1,0 +1,5 @@
+<td>
+  <time datetime="<%- created %>"><%- asapp.date(created) %></time>
+</td>
+<td><%- user.username %></td>
+<td><%- text %></td>

@@ -1,5 +1,23 @@
 this["JST"] = this["JST"] || {};
 
+this["JST"]["_templates/message.hjs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<td>\n<time datetime="' +
+__e( created ) +
+'">' +
+__e( asapp.date(created) ) +
+'</time>\n</td>\n<td>' +
+__e( user.username ) +
+'</td>\n<td>' +
+__e( text ) +
+'</td>';
+
+}
+return __p
+};
+
 this["JST"]["_templates/radio-item.hjs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -33,7 +51,7 @@ __e( user.username ) +
 __e( type.name ) +
 '</td>\n<td>' +
 __e( description ) +
-'</td>';
+'</td>\n<td><a href="#chat" class="ui-btn ui-btn-inline">Chat</a></td>';
 
 }
 return __p

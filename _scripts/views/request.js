@@ -2,6 +2,12 @@ var RequestView = Backbone.View.extend({
 
   tagName: 'tr',
   template: JST['_templates/request.hjs'],
+  
+  attributes: function () {
+    return {
+      id: 'request-' + this.model.id
+    }
+  },
 
   className: function () {
     return this.model.get('urgent') ? 'urgent' : '';

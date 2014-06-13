@@ -6,7 +6,8 @@ var Router = Backbone.Router.extend({
     'login': 'login',
     'help': 'help',
     'monitor': 'monitor',
-    'settings': 'settings'
+    'settings': 'settings',
+    'chat': 'chat'
   },
 
   initialize: function () {
@@ -57,6 +58,17 @@ var Router = Backbone.Router.extend({
     }
     asapp.views.settings = new SettingsView();
     asapp.views.settings.render();
+  },
+
+  chat: function (e) {
+    if (asapp.views.chat) {
+      return;
+    }
+    asapp.views.chat = new ChatView({
+      collection: asapp.messages,
+      model: new asapp.messages.model
+    });
+    asapp.views.chat.render();
   }
 
 });
