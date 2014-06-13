@@ -60,7 +60,8 @@ var Router = Backbone.Router.extend({
     asapp.views.settings.render();
   },
 
-  chat: function (e) {
+  chat: function () {
+    $('#chatmsg').focus();
     if (asapp.views.chat) {
       return;
     }

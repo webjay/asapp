@@ -51,7 +51,7 @@ __e( user.username ) +
 __e( type.name ) +
 '</td>\n<td>' +
 __e( description ) +
-'</td>\n<td><a href="#chat" class="ui-btn ui-btn-inline">Chat</a></td>';
+'</td>\n<td><a href="#chat" class="ui-btn ui-btn-inline gotoChat">Chat</a></td>';
 
 }
 return __p
