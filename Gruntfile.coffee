@@ -24,7 +24,6 @@ module.exports = (grunt) ->
             '_scripts/collections/*.js'
             '_scripts/views/*.js'
             '_scripts/*.js'
-            'bower_components/jquery-mobile/dist/jquery.mobile.js'
           ]
 
     less:
@@ -36,7 +35,6 @@ module.exports = (grunt) ->
       all:
         files:
           'public/css/app.css': [
-            'bower_components/jquery-mobile/dist/jquery.mobile.css'
             '_tmp/app.css'
           ]
 
@@ -50,20 +48,6 @@ module.exports = (grunt) ->
           layout: 'default.hbs'
         files:
           'public': '_pages/*.hbs'
-
-    shell:
-      jqmNpmInstall:
-        command: 'npm install'
-        options:
-          stdout: true
-          execOptions:
-            cwd: 'bower_components/jquery-mobile'
-      jqmBowerInstall:
-        command: 'grunt dist'
-        options:
-          stdout: true
-          execOptions:
-            cwd: 'bower_components/jquery-mobile'
 
     jst:
       app:
@@ -91,9 +75,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'default', ['less', 'cssmin', 'assemble', 'jst', 'uglify']
   grunt.registerTask 'scripts', ['jst', 'uglify']
-  grunt.registerTask 'jqm', ['shell']
 
-  grunt.loadNpmTasks 'grunt-shell'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'assemble'

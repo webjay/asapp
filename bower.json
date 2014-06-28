@@ -1,6 +1,6 @@
 {
   "name": "asapp",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "homepage": "https://github.com/webjay/asapp",
   "authors": [
     "Jacob Friis Saxberg <jacob@webcom.dk>"
@@ -20,6 +20,7 @@
     "momentjs": "2.5.x",
     "pusher": "2.1.x",
     "jquery": "1.x",
-    "jQuery.serializeObject": "2.0.x"
+    "jQuery.serializeObject": "2.0.x",
+    "bootstrap": "3.x"
   }
 }

@@ -6,38 +6,8 @@ if (!String.prototype.trim) {
 }
 
 
-// when jQuery Mobile has finished loading
-jQuery(document).on('mobileinit', function(){
-
-  console.log('JQM ready');
-
-  $.extend($.mobile, {
-    defaultPageTransition: 'none'
-  });
-  $.mobile.page.prototype.options.theme = 'b';
-  $.mobile.page.prototype.options.domCache = true;
-
-  $(document).on('pagecontainerbeforeshow', function (event) {
-    if (asapp.user.isFetched() && !asapp.user.id && asapp.getCurrentPage() !== 'login') {
-      event.preventDefault();
-      asapp.redirect('#login');
-    }
-  });
-
-});
-
-
 // global
 var asapp = {
-
-  getCurrentPage: function () {
-    var page = $(':mobile-pagecontainer').pagecontainer('getActivePage');
-    return $(page).attr('id');
-  },
-
-  redirect: function (page) {
-    $(':mobile-pagecontainer').pagecontainer('change', page);
-  },
 
   preload: function () {
     asapp.types.fetch();
@@ -66,11 +36,6 @@ jQuery(function ($) {
       $.mobile.loading('hide');
     }
   });
-
-  $('header[data-role="header"], footer[data-role="footer"]').toolbar({
-    theme: 'b'
-  });
-  $('nav[data-role="navbar"]').navbar();
 
   Backbone.$ = $;
 
