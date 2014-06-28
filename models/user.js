@@ -14,7 +14,7 @@ module.exports.login = function (req, res, next) {
       return next('Invalid username');
     }
     var cond = {
-      username: body.username
+      username: body.username.trim()
     }
     User.findOne(cond, function (err, user) {
       if (err) return next(err);
