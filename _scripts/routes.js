@@ -9,16 +9,26 @@ var Router = Backbone.Router.extend({
     'settings': 'settings',
     'chat': 'chat'
   },
+  
+  view_current: null,
+  view_ignore: ['goto_help'],
 
   initialize: function () {
     this.on('route', function (route) {
-      $('nav ul li a').removeClass('ui-btn-active');
-      $('.nav-' + route).addClass('ui-btn-active');
+      if (this.view_ignore.indexOf(route) === -1) {
+        // set active menu item
+        $('nav ul li').removeClass('active');
+        $('.nav-' + route).addClass('active');
+        // toggle view
+        $('#' + this.view_current).addClass('hidden');
+        this.view_current = route;
+        $('#' + route).removeClass('hidden');
+      }
     });
   },
 
   goto_help: function () {
-    asapp.redirect('#help');
+    asapp.redirect('help');
   },
 
   login: function(){
