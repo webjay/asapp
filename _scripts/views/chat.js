@@ -26,9 +26,6 @@ var ChatView = Backbone.View.extend({
       model: model
     }).render();
     this.$tbody.append(view.el);
-    $('html, body').animate({ 
-      scrollTop: $('#chatmsg').offset().top + $('#chatmsg').height()
-    }, 'slow');
   },
 
   modelSet: function () {

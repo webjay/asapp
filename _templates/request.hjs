@@ -5,4 +5,6 @@
 <td><%- user.username %></td>
 <td><%- type.name %></td>
 <td><%- description %></td>
-<td><a href="#chat" class="ui-btn ui-btn-inline gotoChat">Chat</a></td>
+<td>
+  <a href="#chat" class="btn btn-info gotoChat">Chat</a>
+</td>

@@ -11,11 +11,18 @@ var Router = Backbone.Router.extend({
   },
   
   view_current: null,
-  view_ignore: ['goto_help'],
+  route_ignore: ['goto_help'],
 
   initialize: function () {
     this.on('route', function (route) {
-      if (this.view_ignore.indexOf(route) === -1) {
+      // check login
+      if (route !== 'login' && !asapp.user.has('username')) {
+        asapp.redirect('login');
+        return;
+      }
+      if (this.route_ignore.indexOf(route) === -1) {
+        // set title
+        document.title = 'ASAPP - ' + $('#' + route).data('title');
         // set active menu item
         $('nav ul li').removeClass('active');
         $('.nav-' + route).addClass('active');

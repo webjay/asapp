@@ -17,7 +17,14 @@
 <body>
 
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
+  <div class="container">
+
+    <p class="navbar-text navbar-right small text-muted hidden-xs">
+  		ASAPP
+  		&copy;
+  		<img src="./img/ds-logo.png" alt="Digitally Speaking logo" class="dslogo">
+  		<a href="http://www.digitallyspeaking.com/" class="text-muted">Digitally Speaking</a>
+    </p>
 
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#asapp-navbar">
@@ -43,68 +50,61 @@
 
 <div class="container">
 
-  <div data-role="page" id="help" data-title="Request help" class="hidden">
+  <div id="help" data-title="Request help" class="hidden">
 
-	<div data-role="content" class="ui-content ui-corner-all">
+	<form role="form" class="form-horizontal">
 
-		<form>
+		<fieldset class="form-group" id="request-types">
+			<legend>I need help with:</legend>
+			<div></div>
+		</fieldset>
 
-			<fieldset data-role="controlgroup" data-type="horizontal" id="request-types">
-				<legend>I need help with:</legend>
-				<div class="ui-controlgroup-controls"></div>
-			</fieldset>
+		<fieldset class="form-group" id="request-locations">
+			<legend>I am in room:</legend>
+			<div></div>
+		</fieldset>
 
-			<fieldset data-role="controlgroup" data-type="horizontal" id="request-locations">
-				<legend>I am in room:</legend>
-				<div class="ui-controlgroup-controls"></div>
-			</fieldset>
+		<fieldset class="form-group">
+			<legend>Description:</legend>
+			<textarea name="description" class="form-control"></textarea>
+		</fieldset>
 
-			<fieldset>
-				<legend>Description:</legend>
-				<textarea name="description" data-theme="a"></textarea>
-			</fieldset>
+		<fieldset class="form-group">
+			<button type="submit" name="urgent" value="true" class="btn btn-danger">I need Help ASAP!</button>
+			<button type="submit" name="urgent" value="false" class="btn btn-default">just FYI</button>
+		</fieldset>
 
-			<fieldset>
-				<button type="submit" name="urgent" value="true" class="ui-btn ui-btn-inline ui-corner-all ui-btn-a ui-btn-red">I need Help ASAP!</button>
-				<button type="submit" name="urgent" value="false" class="ui-btn ui-btn-inline ui-corner-all ui-btn-a">just FYI</button>
-			</fieldset>
-
-		</form>
-
-	</div>
+	</form>
 
 </div>
 
 
-  <div data-role="page" id="monitor" data-title="Monitor" class="hidden">
+  <div id="monitor" data-title="Monitor" class="hidden">
 
-	<div data-role="content" class="ui-content ui-corner-all" >
-
-		<table data-role="table" class="ui-responsive">
-			<thead>
-				<tr>
-					<th>Time</th>
-					<th>Room</th>
-					<th>From</th>
-					<th>Topic</th>
-					<th>Description</th>
+  <div class="table-responsive">
+  	<table class="table table-hover">
+  		<thead>
+  			<tr>
+  				<th>Time</th>
+  				<th>Room</th>
+  				<th>From</th>
+  				<th>Topic</th>
+  				<th>Description</th>
           <th>&nbsp;</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
-
-	</div>
+  				<th>Status</th>
+  			</tr>
+  		</thead>
+  		<tbody></tbody>
+  	</table>
+  </div>
 
 </div>
 
 
-  <div data-role="page" id="chat" data-title="Chat" class="hidden">
+  <div id="chat" data-title="Chat" class="hidden">
 
-	<div data-role="content" class="ui-content ui-corner-all" >
-
-		<table data-role="table" class="ui-responsive">
+  <div class="table-responsive">
+  	<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>Time</th>
@@ -114,91 +114,90 @@
 			</thead>
 			<tbody></tbody>
 		</table>
+  </div>
 
-		<form>
-			<fieldset>
-        <input type="text" name="text" id="chatmsg" placeholder="Say say say" value="">
-			</fieldset>
-		</form>
-
-	</div>
+	<form role="form">
+		<fieldset class="form-group">
+      <label for="chatmsg" class="sr-only">Message</label>
+      <input type="text" name="text" id="chatmsg" placeholder="Say say say" autofocus class="form-control">
+		</fieldset>
+	</form>
 
 </div>
 
 
-  <div data-role="page" id="settings" data-title="Settings" class="hidden">
+  <div id="settings" data-title="Settings" class="hidden">
 
-  <div data-role="tabs" class="space-top">
+	<ul class="nav nav-tabs" role="tablist">
+		<li><a href="#profile" role="tab" data-toggle="tab">Profile settings</a></li>
+		<li><a href="#location" role="tab" data-toggle="tab">Location settings</a></li>
+    <li><a href="/logout">Log out</a></li>
+	</ul>
 
-		<ul data-role="listview" data-inset="true" class="tablist-left">
-			<li><a href="#profile">Profile settings</a></li>
-			<li><a href="#location">Location settings</a></li>
-      <li><a href="/logout" data-ajax="false">Log out</a></li>
-		</ul>
+  <div class="tab-content">
 
-		<div id="profile" class="tablist-content">
-			<form>
+		<div class="tab-pane" id="profile">
+			<form role="form">
 
-  <fieldset>
-    <label for="mobile" class="ui-hidden-accessible">Mobile</label>
-    <input type="tel" name="mobile" id="mobile" placeholder="Mobile" disabled="disabled">
-    <!-- <div class="errormsg"></div> -->
+  <fieldset class="form-group disabled">
+    <label for="mobile" class="sr-only">Mobile</label>
+    <input type="tel" name="mobile" id="mobile" placeholder="Mobile">
   </fieldset>
 
-  <button class="ui-btn" disabled="disabled">Save</button>
+  <button class="btn btn-default">Save</button>
 
 </form>
 
 		</div>
 
-		<div id="location" class="tablist-content">
-			<form>
+		<div class="tab-pane" id="location">
+			<form role="form">
 
-  <fieldset data-role="controlgroup">
-    <legend>Pick the rooms you want to follow:</legend>
-    <input disabled="disabled"  name="room-choice-a" id="room-choice-a" type="checkbox">
+  <fieldset class="form-group disabled">
+    <legend>Pick the rooms you want to follow</legend>
+    <input name="room-choice-a" id="room-choice-a" type="checkbox">
     <label for="room-choice-a">W 3001</label>
-    <input disabled="disabled"  name="room-choice-b" id="room-choice-b" type="checkbox">
+    <input name="room-choice-b" id="room-choice-b" type="checkbox">
     <label for="room-choice-b">W 3002</label>
-    <input disabled="disabled"  name="room-choice-c" id="room-choice-c" type="checkbox">
+    <input name="room-choice-c" id="room-choice-c" type="checkbox">
     <label for="room-choice-c">W 3003</label>
-    <input disabled="disabled"  name="room-choice-d" id="room-choice-d" type="checkbox">
+    <input name="room-choice-d" id="room-choice-d" type="checkbox">
     <label for="room-choice-d">W 3004</label>
-    <input disabled="disabled"  name="room-choice-e" id="room-choice-e" type="checkbox">
+    <input name="room-choice-e" id="room-choice-e" type="checkbox">
     <label for="room-choice-e">W 3005</label>
-    <input disabled="disabled"  name="room-choice-f" id="room-choice-f" type="checkbox">
+    <input name="room-choice-f" id="room-choice-f" type="checkbox">
     <label for="room-choice-f">W 3006</label>
-    <input disabled="disabled"  name="room-choice-g" id="room-choice-g" type="checkbox">
+    <input name="room-choice-g" id="room-choice-g" type="checkbox">
     <label for="room-choice-g">W 3007</label>
-    <input disabled="disabled"  name="room-choice-h" id="room-choice-h" type="checkbox">
+    <input name="room-choice-h" id="room-choice-h" type="checkbox">
     <label for="room-choice-h">W 3008</label>
-    <input disabled="disabled"  name="room-choice-i" id="room-choice-i" type="checkbox">
+    <input name="room-choice-i" id="room-choice-i" type="checkbox">
     <label for="room-choice-i">W 3009</label>
-    <input disabled="disabled"  name="room-choice-j" id="room-choice-j" type="checkbox">
+    <input name="room-choice-j" id="room-choice-j" type="checkbox">
     <label for="room-choice-j">W 3010</label>
-    <input disabled="disabled"  name="room-choice-k" id="room-choice-k" type="checkbox">
+    <input name="room-choice-k" id="room-choice-k" type="checkbox">
     <label for="room-choice-k">N 101</label>
-    <input disabled="disabled"  name="room-choice-l" id="room-choice-l" type="checkbox">
+    <input name="room-choice-l" id="room-choice-l" type="checkbox">
     <label for="room-choice-l">N 102</label>
-    <input disabled="disabled"  name="room-choice-m" id="room-choice-m" type="checkbox">
+    <input name="room-choice-m" id="room-choice-m" type="checkbox">
     <label for="room-choice-m">N 103</label>
-    <input disabled="disabled"  name="room-choice-n" id="room-choice-n" type="checkbox">
+    <input name="room-choice-n" id="room-choice-n" type="checkbox">
     <label for="room-choice-n">N 104</label>
-    <input disabled="disabled"  name="room-choice-o" id="room-choice-o" type="checkbox">
+    <input name="room-choice-o" id="room-choice-o" type="checkbox">
     <label for="room-choice-o">N 105</label>
-    <input disabled="disabled"  name="room-choice-p" id="room-choice-p" type="checkbox">
+    <input name="room-choice-p" id="room-choice-p" type="checkbox">
     <label for="room-choice-p">N 106</label>
-    <input disabled="disabled"  name="room-choice-q" id="room-choice-q" type="checkbox">
+    <input name="room-choice-q" id="room-choice-q" type="checkbox">
     <label for="room-choice-q">N 107</label>
-    <input disabled="disabled"  name="room-choice-r" id="room-choice-r" type="checkbox">
+    <input name="room-choice-r" id="room-choice-r" type="checkbox">
     <label for="room-choice-r">N 108</label>
-    <input disabled="disabled"  name="room-choice-s" id="room-choice-s" type="checkbox">
+    <input name="room-choice-s" id="room-choice-s" type="checkbox">
     <label for="room-choice-s">N 109</label>
-    <input disabled="disabled"  name="room-choice-t" id="room-choice-t" type="checkbox">
+    <input name="room-choice-t" id="room-choice-t" type="checkbox">
     <label for="room-choice-t">W 3010</label>
   </fieldset>
 
-  <button class="ui-btn" disabled="disabled">Save</button>
+  <button class="btn btn-default">Save</button>
 
 </form>
 
@@ -211,20 +210,16 @@
 
   <div id="login" data-title="Login" class="hidden">
 
-	<div data-role="content" class="">
-
-		<form>
-			<fieldset>
-				<label for="username" class="sr-only">Username:</label>
-				<input type="text" name="username" id="username" placeholder="username">
-				<div class="errormsg"></div>
-			</fieldset>
-			<fieldset>
-				<button type="submit" class="btn btn-default btn-sm">Login</button>
-			</fieldset>
-		</form>
-
-	</div>
+	<form role="form" class="form-inline">
+		<fieldset class="form-group">
+			<label for="username" class="sr-only">Username</label>
+			<input type="text" name="username" id="username" placeholder="username" autofocus class="form-control">
+			<div class="errormsg"></div>
+		</fieldset>
+		<fieldset class="form-group">
+			<button type="submit" class="btn btn-default btn-sm">Login</button>
+		</fieldset>
+	</form>
 
 </div>
 

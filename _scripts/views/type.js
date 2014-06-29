@@ -5,7 +5,6 @@ var TypeView = Backbone.View.extend({
 
   render: function () {
     var data = this.model.attributes;
-    data.uid = this.attributes.for;
     data.fieldName = 'type';
     this.$el.html(this.template(data));
     return this;

@@ -10,7 +10,7 @@ var User = Backbone.Model.extend({
     }, this);
     this.on('error', function () {
       this.fetched = true;
-      asapp.redirect('#login');
+      asapp.redirect('login');
     });
   },
 

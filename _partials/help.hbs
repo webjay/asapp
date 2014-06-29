@@ -1,31 +1,27 @@
-<div data-role="page" id="help" data-title="Request help" class="hidden">
+<div id="help" data-title="Request help" class="hidden">
 
-	<div data-role="content" class="ui-content ui-corner-all">
+	<form role="form" class="form-horizontal">
 
-		<form>
+		<fieldset class="form-group" id="request-types">
+			<legend>I need help with:</legend>
+			<div></div>
+		</fieldset>
 
-			<fieldset data-role="controlgroup" data-type="horizontal" id="request-types">
-				<legend>I need help with:</legend>
-				<div class="ui-controlgroup-controls"></div>
-			</fieldset>
+		<fieldset class="form-group" id="request-locations">
+			<legend>I am in room:</legend>
+			<div></div>
+		</fieldset>
 
-			<fieldset data-role="controlgroup" data-type="horizontal" id="request-locations">
-				<legend>I am in room:</legend>
-				<div class="ui-controlgroup-controls"></div>
-			</fieldset>
+		<fieldset class="form-group">
+			<legend>Description:</legend>
+			<textarea name="description" class="form-control"></textarea>
+		</fieldset>
 
-			<fieldset>
-				<legend>Description:</legend>
-				<textarea name="description" data-theme="a"></textarea>
-			</fieldset>
+		<fieldset class="form-group">
+			<button type="submit" name="urgent" value="true" class="btn btn-danger">I need Help ASAP!</button>
+			<button type="submit" name="urgent" value="false" class="btn btn-default">just FYI</button>
+		</fieldset>
 
-			<fieldset>
-				<button type="submit" name="urgent" value="true" class="ui-btn ui-btn-inline ui-corner-all ui-btn-a ui-btn-red">I need Help ASAP!</button>
-				<button type="submit" name="urgent" value="false" class="ui-btn ui-btn-inline ui-corner-all ui-btn-a">just FYI</button>
-			</fieldset>
-
-		</form>
-
-	</div>
+	</form>
 
 </div>

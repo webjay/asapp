@@ -1,8 +1,7 @@
-<div data-role="page" id="chat" data-title="Chat" class="hidden">
+<div id="chat" data-title="Chat" class="hidden">
 
-	<div data-role="content" class="ui-content ui-corner-all" >
-
-		<table data-role="table" class="ui-responsive">
+  <div class="table-responsive">
+  	<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>Time</th>
@@ -12,13 +11,13 @@
 			</thead>
 			<tbody></tbody>
 		</table>
+  </div>
 
-		<form>
-			<fieldset>
-        <input type="text" name="text" id="chatmsg" placeholder="Say say say" value="">
-			</fieldset>
-		</form>
-
-	</div>
+	<form role="form">
+		<fieldset class="form-group">
+      <label for="chatmsg" class="sr-only">Message</label>
+      <input type="text" name="text" id="chatmsg" placeholder="Say say say" autofocus class="form-control">
+		</fieldset>
+	</form>
 
 </div>

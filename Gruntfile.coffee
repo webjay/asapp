@@ -9,7 +9,7 @@ module.exports = (grunt) ->
           compress: false
         files:
           '_tmp/bootstrap/js/bootstrap.js': [
-            # 'bower_components/bootstrap/js/tab.js'
+            'bower_components/bootstrap/js/tab.js'
             # 'bower_components/bootstrap/js/alert.js'
             # 'bower_components/bootstrap/js/modal.js'
             'bower_components/bootstrap/js/collapse.js'

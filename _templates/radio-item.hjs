@@ -1,2 +1,6 @@
-<input type="radio" name="<%- fieldName %>" value="<%- _id %>" id="<%= uid %>">
-<%- name %>
+<!-- <div class="radio"> -->
+  <label class="radio-inline">
+    <input type="radio" name="<%- fieldName %>" value="<%- _id %>">
+    <%- name %>
+  </label>
+<!-- </div> -->

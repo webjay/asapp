@@ -5,7 +5,6 @@ var LocationView = Backbone.View.extend({
 
   render: function () {
     var data = this.model.attributes;
-    data.uid = this.attributes.for;
     data.fieldName = 'location';
     this.$el.html(this.template(data));
     return this;

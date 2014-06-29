@@ -23,10 +23,7 @@ var StatusesView = Backbone.View.extend({
     var self = this;
     asapp.statuses.each(function (model) {
       var view = new StatusView({
-        model: model,
-        attributes: {
-          for: _.uniqueId('sts')
-        }
+        model: model
       }).render();
       view.$('input').attr({
         name: 'status-' + self.model.id

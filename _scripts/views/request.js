@@ -14,7 +14,7 @@ var RequestView = Backbone.View.extend({
   },
 
   className: function () {
-    return this.model.get('urgent') ? 'urgent' : '';
+    return this.model.get('urgent') ? 'danger' : '';
   },
 
   initialize: function () {

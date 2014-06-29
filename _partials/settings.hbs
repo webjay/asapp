@@ -1,18 +1,18 @@
-<div data-role="page" id="settings" data-title="Settings" class="hidden">
+<div id="settings" data-title="Settings" class="hidden">
 
-  <div data-role="tabs" class="space-top">
+	<ul class="nav nav-tabs" role="tablist">
+		<li><a href="#profile" role="tab" data-toggle="tab">Profile settings</a></li>
+		<li><a href="#location" role="tab" data-toggle="tab">Location settings</a></li>
+    <li><a href="/logout">Log out</a></li>
+	</ul>
 
-		<ul data-role="listview" data-inset="true" class="tablist-left">
-			<li><a href="#profile">Profile settings</a></li>
-			<li><a href="#location">Location settings</a></li>
-      <li><a href="/logout" data-ajax="false">Log out</a></li>
-		</ul>
+  <div class="tab-content">
 
-		<div id="profile" class="tablist-content">
+		<div class="tab-pane" id="profile">
 			{{> settings-profile }}
 		</div>
 
-		<div id="location" class="tablist-content">
+		<div class="tab-pane" id="location">
 			{{> settings-room }}
 		</div>
 

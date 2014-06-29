@@ -18,26 +18,20 @@ var HelpView = Backbone.View.extend({
   render: function () {
     var self = this;
 
-    this.$('#request-types .ui-controlgroup-controls').empty();
+    this.$('#request-types > div').empty();
     asapp.types.each(function (model) {
       var view = new TypeView({
-        model: model,
-        attributes: {
-          for: _.uniqueId('sts')
-        }
+        model: model
       }).render();
-      self.$('#request-types .ui-controlgroup-controls').append(view.el);
+      self.$('#request-types > div').append(view.el);
     });
 
-    this.$('#request-locations .ui-controlgroup-controls').empty();
+    this.$('#request-locations > div').empty();
     asapp.locations.each(function (model) {
       var view = new LocationView({
-        model: model,
-        attributes: {
-          for: _.uniqueId('sts')
-        }
+        model: model
       }).render();
-      self.$('#request-locations .ui-controlgroup-controls').append(view.el);
+      self.$('#request-locations > div').append(view.el);
     });
 
     return this;
@@ -52,7 +46,7 @@ var HelpView = Backbone.View.extend({
     this.modelSet();
     if (this.model.isValid()) {
       this.collection.create(this.model);
-      asapp.redirect('#monitor');
+      asapp.redirect('monitor');
       this.$('textarea').val('');
       this.model = new this.collection.model;
     }

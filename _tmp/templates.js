@@ -22,14 +22,13 @@ this["JST"]["_templates/radio-item.hjs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<input type="radio" name="' +
+__p += '<!-- <div class="radio"> -->\n<label class="radio-inline">\n<input type="radio" name="' +
 __e( fieldName ) +
 '" value="' +
 __e( _id ) +
-'" id="' +
-((__t = ( uid )) == null ? '' : __t) +
 '">\n' +
-__e( name );
+__e( name ) +
+'\n</label>\n<!-- </div> -->';
 
 }
 return __p
@@ -51,7 +50,7 @@ __e( user.username ) +
 __e( type.name ) +
 '</td>\n<td>' +
 __e( description ) +
-'</td>\n<td><a href="#chat" class="ui-btn ui-btn-inline gotoChat">Chat</a></td>';
+'</td>\n<td>\n<a href="#chat" class="btn btn-info gotoChat">Chat</a>\n</td>';
 
 }
 return __p
@@ -61,7 +60,7 @@ this["JST"]["_templates/statuses.hjs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true"></fieldset>';
+__p += '<fieldset></fieldset>';
 
 }
 return __p
