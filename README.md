@@ -8,7 +8,7 @@ All frontend packages are installed with [Bower](http://bower.io) and tasks like
 
 #### Framework
 
-The frontend application is built in [jQuery Mobile](http://jquerymobile.com). For a start we will use the default theme, which later can be adjusted i.e. via [ThemeRoller](http://themeroller.jquerymobile.com).
+The frontend application is built in [Twitter Bootstrap](http://getbootstrap.com). For a start we will use the default theme, which later can be adjusted i.e. via [Themes](http://expo.getbootstrap.com/resources/).
 
 ### Backend
 
