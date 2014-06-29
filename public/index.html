@@ -16,20 +16,34 @@
 </head>
 <body>
 
-  <header data-role="header" data-position="fixed">
-  <nav data-role="navbar" data-iconpos="top">
-    <ul>
-      <li><a href="#help" class="nav-help" data-role="tab" data-icon="comment">Help!</a></li>
-      <li><a href="#monitor" class="nav-monitor" data-role="tab" data-icon="eye">Monitor</a></li>
-      <li><a href="#settings" class="nav-settings" data-role="tab" data-icon="gear">Settings</a></li>
-    </ul>
-  </nav>
-</header>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#asapp-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="./">ASAPP</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="asapp-navbar">
+      <ul class="nav navbar-nav">
+        <li class="nav-help"><a href="#help"><span class="glyphicon glyphicon-bullhorn"></span> Help</a></li>
+        <li class="nav-monitor"><a href="#monitor"><span class="glyphicon glyphicon-list"></span> Monitor</a></li>
+        <li class="nav-settings"><a href="#settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
 
 
 <div class="container">
 
-  <div data-role="page" id="help" data-title="Request help">
+  <div data-role="page" id="help" data-title="Request help" class="hidden">
 
 	<div data-role="content" class="ui-content ui-corner-all">
 
@@ -62,7 +76,7 @@
 </div>
 
 
-  <div data-role="page" id="monitor" data-title="Monitor">
+  <div data-role="page" id="monitor" data-title="Monitor" class="hidden">
 
 	<div data-role="content" class="ui-content ui-corner-all" >
 
@@ -86,7 +100,7 @@
 </div>
 
 
-  <div data-role="page" id="chat" data-title="Chat">
+  <div data-role="page" id="chat" data-title="Chat" class="hidden">
 
 	<div data-role="content" class="ui-content ui-corner-all" >
 
@@ -112,7 +126,7 @@
 </div>
 
 
-  <div data-role="page" id="settings" data-title="Settings">
+  <div data-role="page" id="settings" data-title="Settings" class="hidden">
 
   <div data-role="tabs" class="space-top">
 
@@ -195,18 +209,18 @@
 </div>
 
 
-  <div id="login" data-title="Login">
+  <div id="login" data-title="Login" class="hidden">
 
 	<div data-role="content" class="">
 
 		<form>
 			<fieldset>
-				<label for="username" class="ui-hidden-accessible">Username:</label>
+				<label for="username" class="sr-only">Username:</label>
 				<input type="text" name="username" id="username" placeholder="username">
 				<div class="errormsg"></div>
 			</fieldset>
 			<fieldset>
-				<button type="submit" class="ui-btn ui-mini">Login</button>
+				<button type="submit" class="btn btn-default btn-sm">Login</button>
 			</fieldset>
 		</form>
 
@@ -216,16 +230,6 @@
 
 
 </div>
-
-<footer data-role="footer" class="asapp-footer">
-	<div class="ui-mini">
-		ASAPP
-		&copy;
-		<img src="./img/ds-logo.png" alt="logo" class="dslogo">
-		<a href="http://www.digitallyspeaking.com/" rel="external">Digitally Speaking</a>
-	</div>
-</footer>
-
 
 
 </body>

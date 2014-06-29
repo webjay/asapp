@@ -56,7 +56,6 @@ var StatusesView = Backbone.View.extend({
     if (!this.model.get('status')._id) return;
     this.$('input').not('input[value="' + this.model.get('status')._id + '"]').prop('checked', false);
     this.$('input[value="' + this.model.get('status')._id + '"]').prop('checked', true);
-    this.$('input').checkboxradio('refresh');
   }
 
 });
