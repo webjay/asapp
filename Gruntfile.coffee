@@ -3,6 +3,18 @@ module.exports = (grunt) ->
   grunt.initConfig
 
     uglify:
+      bootstrap:
+        options:
+          mangle: false
+          compress: false
+        files:
+          '_tmp/bootstrap/js/bootstrap.js': [
+            'bower_components/bootstrap/js/tab.js'
+            'bower_components/bootstrap/js/alert.js'
+            'bower_components/bootstrap/js/modal.js'
+            'bower_components/bootstrap/js/collapse.js'
+            'bower_components/bootstrap/js/dropdown.js'
+          ]
       components:
         options:
           # compress: true
@@ -13,7 +25,7 @@ module.exports = (grunt) ->
           # }
         files:
           'public/js/app.js': [
-            'bower_components/jquery/jquery.js'
+            'bower_components/jquery/dist/jquery.js'
             'bower_components/jQuery.serializeObject/dist/jquery.serializeObject.min.js'
             'bower_components/lodash/dist/lodash.underscore.js'
             'bower_components/backbone/backbone.js'
@@ -27,6 +39,12 @@ module.exports = (grunt) ->
           ]
 
     less:
+      bootstrap:
+        options:
+          compress: true
+          paths: ['bower_components/bootstrap/less']
+        files:
+          'public/css/bootstrap.min.css': ['_scripts/less/bootstrap.less']
       app:
         files:
           '_tmp/app.css': '_styles/*.less'
@@ -37,6 +55,14 @@ module.exports = (grunt) ->
           'public/css/app.css': [
             '_tmp/app.css'
           ]
+
+    copy:
+      bootstrap:
+        cwd: 'bower_components/bootstrap/dist/fonts/'
+        src: '*'
+        dest: 'public/fonts/'
+        expand: true
+        filter: 'isFile'
 
     assemble:
       options:
@@ -73,7 +99,7 @@ module.exports = (grunt) ->
         files: ['_partials/*.hbs', '_pages/*.hbs', '_templates/*.hbs']
         tasks: ['assemble']
 
-  grunt.registerTask 'default', ['less', 'cssmin', 'assemble', 'jst', 'uglify']
+  grunt.registerTask 'default', ['copy', 'less', 'cssmin', 'assemble', 'jst', 'uglify']
   grunt.registerTask 'scripts', ['jst', 'uglify']
 
   grunt.loadNpmTasks 'grunt-contrib-uglify'
@@ -81,4 +107,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'assemble'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-jst'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-cssmin'

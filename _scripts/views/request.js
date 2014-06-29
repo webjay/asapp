@@ -28,7 +28,6 @@ var RequestView = Backbone.View.extend({
   render: function () {
     this.$el.html(this.template(this.model.attributes));
     this.$el.append(this.statusView.el);
-    this.$el.enhanceWithin();
     return this;
   },
   

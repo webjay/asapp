@@ -8,6 +8,12 @@ if (!String.prototype.trim) {
 
 // global
 var asapp = {
+  
+  redirect: function (route) {
+    asapp.router.navigate(route, {
+      trigger: true
+    });
+  },
 
   preload: function () {
     asapp.types.fetch();
@@ -30,10 +36,10 @@ jQuery(function ($) {
 
   $(document).on({
     ajaxStart: function(){
-      $.mobile.loading('show');
+      // $.mobile.loading('show');
     },
     ajaxComplete: function(){
-      $.mobile.loading('hide');
+      // $.mobile.loading('hide');
     }
   });
 

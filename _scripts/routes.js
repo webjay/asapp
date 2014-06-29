@@ -2,7 +2,7 @@
 var Router = Backbone.Router.extend({
 
   routes: {
-    '': 'redirect',
+    '': 'goto_help',
     'login': 'login',
     'help': 'help',
     'monitor': 'monitor',
@@ -17,7 +17,7 @@ var Router = Backbone.Router.extend({
     });
   },
 
-  redirect: function () {
+  goto_help: function () {
     asapp.redirect('#help');
   },
 

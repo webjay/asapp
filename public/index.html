@@ -4,12 +4,15 @@
   <meta charset="utf-8">
   <title>ASAPP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
   <script src="./js/app.js"></script>
+  <!--
   <script src="//cdn.ravenjs.com/1.1.11/raven.min.js"></script>
   <script>
     Raven.config('https://259a312ff6b946b4a256a10cdc11865e@app.getsentry.com/21134').install();
   </script>
+  -->
 </head>
 <body>
 
@@ -24,9 +27,9 @@
 </header>
 
 
-<div data-role="page" id="start"></div>
+<div class="container">
 
-<div data-role="page" id="help" data-title="Request help">
+  <div data-role="page" id="help" data-title="Request help">
 
 	<div data-role="content" class="ui-content ui-corner-all">
 
@@ -59,7 +62,7 @@
 </div>
 
 
-<div data-role="page" id="monitor" data-title="Monitor">
+  <div data-role="page" id="monitor" data-title="Monitor">
 
 	<div data-role="content" class="ui-content ui-corner-all" >
 
@@ -83,7 +86,7 @@
 </div>
 
 
-<div data-role="page" id="chat" data-title="Chat">
+  <div data-role="page" id="chat" data-title="Chat">
 
 	<div data-role="content" class="ui-content ui-corner-all" >
 
@@ -109,7 +112,7 @@
 </div>
 
 
-<div data-role="page" id="settings" data-title="Settings">
+  <div data-role="page" id="settings" data-title="Settings">
 
   <div data-role="tabs" class="space-top">
 
@@ -192,9 +195,9 @@
 </div>
 
 
-<div data-role="page" id="login" data-title="Login">
+  <div id="login" data-title="Login">
 
-	<div data-role="content" class="ui-content ui-corner-all">
+	<div data-role="content" class="">
 
 		<form>
 			<fieldset>
@@ -211,6 +214,8 @@
 
 </div>
 
+
+</div>
 
 <footer data-role="footer" class="asapp-footer">
 	<div class="ui-mini">
