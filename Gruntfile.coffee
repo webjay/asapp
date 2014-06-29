@@ -9,11 +9,11 @@ module.exports = (grunt) ->
           compress: false
         files:
           '_tmp/bootstrap/js/bootstrap.js': [
-            'bower_components/bootstrap/js/tab.js'
-            'bower_components/bootstrap/js/alert.js'
-            'bower_components/bootstrap/js/modal.js'
+            # 'bower_components/bootstrap/js/tab.js'
+            # 'bower_components/bootstrap/js/alert.js'
+            # 'bower_components/bootstrap/js/modal.js'
             'bower_components/bootstrap/js/collapse.js'
-            'bower_components/bootstrap/js/dropdown.js'
+            # 'bower_components/bootstrap/js/dropdown.js'
           ]
       components:
         options:
@@ -31,6 +31,7 @@ module.exports = (grunt) ->
             'bower_components/backbone/backbone.js'
             'bower_components/momentjs/moment.js'
             'bower_components/pusher/dist/pusher.js'
+            '_tmp/bootstrap/js/bootstrap.js'
             '_tmp/templates.js'
             '_scripts/models/*.js'
             '_scripts/collections/*.js'
