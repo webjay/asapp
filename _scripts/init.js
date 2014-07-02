@@ -10,6 +10,9 @@ if (!String.prototype.trim) {
 var asapp = {
   
   redirect: function (route) {
+    if (!route) {
+      route = asapp.router.goto;
+    }
     asapp.router.navigate(route, {
       trigger: true
     });
@@ -62,6 +65,7 @@ jQuery(function ($) {
   });
 
   // Pusher
+  return;
   var pusher = new Pusher('89dd0fd43699d54bb1bf');
   var channel1 = pusher.subscribe('requests');
   channel1.bind('add', function (data) {

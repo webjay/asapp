@@ -11,7 +11,7 @@ var LoginView = Backbone.View.extend({
     this.listenTo(this.model, 'invalid', this.render);
     this.listenTo(this.model, 'change', function () {
       if (this.model.isValid()) {
-        asapp.redirect('help');
+        asapp.redirect();
       }
     });
   },

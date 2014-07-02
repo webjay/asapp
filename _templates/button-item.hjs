@@ -1,0 +1,1 @@
+<button type="button" class="btn btn-default" data-name="<%- fieldName %>" data-value="<%- _id %>"><%- name %></button>

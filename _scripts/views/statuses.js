@@ -1,7 +1,7 @@
 var StatusesView = Backbone.View.extend({
 
-  tagName: 'td',
-  template: JST['_templates/statuses.hjs'],
+  tagName: 'div',
+  className: 'btn-group',
 
   events: {
     'change input[type="radio"]': 'statusUpdate',
@@ -9,17 +9,14 @@ var StatusesView = Backbone.View.extend({
 
   initialize: function () {
     this.listenTo(this.model, 'change', this.statusRefresh);
-    this.subview = new Backbone.View;
-    this.renderRdios();
+    this.renderStatuses();
   },
 
   render: function () {
-    this.$el.html(this.template());
-    this.$('fieldset').html(this.subview.el);
     return this;
   },
 
-  renderRdios: function () {
+  renderStatuses: function () {
     var self = this;
     asapp.statuses.each(function (model) {
       var view = new StatusView({
@@ -31,7 +28,7 @@ var StatusesView = Backbone.View.extend({
       if (self.model.get('status') && self.model.get('status')._id == model.id) {
         view.$('input').prop('checked', true);
       }
-      self.subview.$el.append(view.el);
+      self.$el.append(view.el);
     });
   },
 

@@ -1,12 +1,13 @@
 var StatusView = Backbone.View.extend({
 
-  tagName: 'label',
-  template: JST['_templates/radio-item.hjs'],
+  tagName: 'button',
+  className: 'btn btn-default',
+  attributes: {
+    type: 'button'
+  },
 
   render: function () {
-    var data = this.model.attributes;
-    data.fieldName = 'status';
-    this.$el.html(this.template(data));
+    this.$el.html(this.model.get('name'));
     return this;
   },
 

@@ -1,6 +1,7 @@
 var TypeView = Backbone.View.extend({
 
   tagName: 'label',
+  className: 'radio-inline',
   template: JST['_templates/radio-item.hjs'],
 
   render: function () {

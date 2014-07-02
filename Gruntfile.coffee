@@ -9,11 +9,11 @@ module.exports = (grunt) ->
           compress: false
         files:
           '_tmp/bootstrap/js/bootstrap.js': [
-            'bower_components/bootstrap/js/tab.js'
+            # 'bower_components/bootstrap/js/tab.js'
             # 'bower_components/bootstrap/js/alert.js'
             # 'bower_components/bootstrap/js/modal.js'
-            'bower_components/bootstrap/js/collapse.js'
-            # 'bower_components/bootstrap/js/dropdown.js'
+            # 'bower_components/bootstrap/js/collapse.js'
+            'bower_components/bootstrap/js/dropdown.js'
           ]
       components:
         options:
@@ -43,7 +43,7 @@ module.exports = (grunt) ->
       bootstrap:
         options:
           compress: true
-          paths: ['bower_components/bootstrap/less']
+          paths: ['_scripts/less', 'bower_components/bootstrap/less']
         files:
           'public/css/bootstrap.min.css': ['_scripts/less/bootstrap.less']
       app:

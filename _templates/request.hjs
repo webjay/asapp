@@ -8,3 +8,4 @@
 <td>
   <a href="#chat" class="btn btn-info gotoChat">Chat</a>
 </td>
+<td class="statuses"></td>

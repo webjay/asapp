@@ -2,18 +2,23 @@
 var Router = Backbone.Router.extend({
 
   routes: {
-    '': 'goto_help',
+    '': 'goto_default',
     'login': 'login',
     'help': 'help',
     'monitor': 'monitor',
-    'settings': 'settings',
+    'settings-profile': 'settings_profile',
+    'settings-location': 'settings_location',
     'chat': 'chat'
   },
-  
+
+  goto: 'help',
   view_current: null,
-  route_ignore: ['goto_help'],
+  route_ignore: ['goto_default'],
 
   initialize: function () {
+    if (window.location.hash) {
+      this.goto = window.location.hash;
+    }
     this.on('route', function (route) {
       // check login
       if (route !== 'login' && !asapp.user.has('username')) {
@@ -34,8 +39,8 @@ var Router = Backbone.Router.extend({
     });
   },
 
-  goto_help: function () {
-    asapp.redirect('help');
+  goto_default: function () {
+    asapp.redirect();
   },
 
   login: function(){
@@ -69,13 +74,8 @@ var Router = Backbone.Router.extend({
     asapp.views.monitor.render();
   },
 
-  settings: function () {
-    if (asapp.views.settings) {
-      asapp.views.settings.stopListening();
-    }
-    asapp.views.settings = new SettingsView();
-    asapp.views.settings.render();
-  },
+  settings_profile: function () {},
+  settings_location: function () {},
 
   chat: function () {
     $('#chatmsg').focus();
