@@ -83,8 +83,11 @@ module.exports.create = function (req, res, next) {
       obj.status = doc._id;
       Request.create(obj, function (err, doc) {
         if (err) return next(err);
-        res.json(201, doc);
-        push(doc);
+        Request.findOne(doc).populate(popuptions).exec(function (err, doc) {
+          if (err) return next(err);
+          res.json(201, doc);
+          push(doc);
+        });
       });
     });
   });

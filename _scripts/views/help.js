@@ -3,9 +3,9 @@ var HelpView = Backbone.View.extend({
   el: '#help',
 
   events: {
-    'change input': 'modelSet',
-    'change select': 'modelSet',
-    'change textarea': 'modelSet',
+    // 'change input': 'modelSet',
+    // 'change select': 'modelSet',
+    // 'change textarea': 'modelSet',
     'click button': 'modelSet',
     'submit form': 'submit'
   },
@@ -17,6 +17,8 @@ var HelpView = Backbone.View.extend({
 
   render: function () {
     var self = this;
+    
+    this.$('textarea').val('');
 
     this.$('#request-types > div').empty();
     asapp.types.each(function (model) {
@@ -37,7 +39,13 @@ var HelpView = Backbone.View.extend({
     return this;
   },
 
-  modelSet: function () {
+  modelSet: function (event) {
+    if (event) {
+      var $el = $(event.currentTarget);
+      if ($el.attr('name') == 'urgent') {
+        this.model.set('urgent', $el.attr('value'));
+      }
+    }
     this.model.set(this.$('form').serializeObject());
   },
 
@@ -47,8 +55,6 @@ var HelpView = Backbone.View.extend({
     if (this.model.isValid()) {
       this.collection.create(this.model);
       asapp.redirect('monitor');
-      this.$('textarea').val('');
-      this.model = new this.collection.model;
     }
   }
 

@@ -25,10 +25,10 @@ var Request = Backbone.Model.extend({
   },
 
   validate: function (attrs, options) {
-    if (!_.isString(attrs.type)) {
+    if (!attrs.type) {
       return 'Type must be set';
     }
-    if (!_.isString(attrs.location)) {
+    if (!attrs.location) {
       return 'Location must be set';
     }
   }

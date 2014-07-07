@@ -55,7 +55,7 @@ var Router = Backbone.Router.extend({
 
   help: function () {
     if (asapp.views.help) {
-      return;
+      asapp.views.help.stopListening();
     }
     asapp.views.help = new HelpView({
       collection: asapp.requests,
