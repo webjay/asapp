@@ -1,45 +1,37 @@
 var StatusesView = Backbone.View.extend({
 
   tagName: 'div',
-  className: 'btn-group',
+  className: 'btn-group btn-group-sm',
 
   events: {
-    'change input[type="radio"]': 'statusUpdate',
-  },
-
-  initialize: function () {
-    this.listenTo(this.model, 'change', this.statusRefresh);
-    this.renderStatuses();
+    'click button': 'statusUpdate',
   },
 
   render: function () {
-    return this;
-  },
-
-  renderStatuses: function () {
     var self = this;
+    self.$el.empty();
     asapp.statuses.each(function (model) {
       var view = new StatusView({
         model: model
       }).render();
-      view.$('input').attr({
-        name: 'status-' + self.model.id
-      });
       if (self.model.get('status') && self.model.get('status')._id == model.id) {
-        view.$('input').prop('checked', true);
+        self.setActive(view.$el);
       }
       self.$el.append(view.el);
     });
+    return this;
+  },
+  
+  setActive: function ($el) {
+    $el.siblings('.btn-primary').removeClass('btn-primary').addClass('btn-default');
+    $el.removeClass('btn-default').addClass('btn-primary');
   },
 
   statusUpdate: function (event) {
     var $el = $(event.currentTarget);
-    if (!$el.prop('checked')) {
-      return;
-    }
     this.model.save({
       _id: this.model.id,
-      status: $el.val()
+      status: $el.data('id')
     }, {
       patch: true,
       validate: false

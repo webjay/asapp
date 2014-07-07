@@ -43,27 +43,28 @@ var schema = new mongoose.Schema({
   }
 });
 
+var popuptions = [
+  {
+    path: 'user',
+    select: 'username'
+  },
+  {
+    path: 'type',
+    select: 'name'
+  },
+  {
+    path: 'location',
+    select: 'name'
+  },
+  {
+    path: 'status',
+    select: 'name'
+  }
+];
+
 var Request = mongoose.model('requests', schema);
 
 module.exports.all = function (req, res) {
-  var popuptions = [
-    {
-      path: 'user',
-      select: 'username'
-    },
-    {
-      path: 'type',
-      select: 'name'
-    },
-    {
-      path: 'location',
-      select: 'name'
-    },
-    {
-      path: 'status',
-      select: 'name'
-    }
-  ];
   var select = '-__v';
   Request.find().select(select).sort('-created').populate(popuptions).exec(function (err, requests) {
     if (err) throw err;
@@ -95,10 +96,9 @@ module.exports.update = function (req, res, next) {
     var obj = body;
     var id = obj._id;
     delete obj._id;
-    Request.findByIdAndUpdate(id, obj, function (err, doc) {
+    Request.findByIdAndUpdate(id, obj).populate(popuptions).exec(function (err, doc) {
       if (err) return next(err);
       res.json(doc);
-      push(doc);
     });
   });
 }

@@ -8,6 +8,7 @@ var StatusView = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.model.get('name'));
+    this.$el.data('id', this.model.get('_id'));
     return this;
   },
 

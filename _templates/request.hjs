@@ -6,6 +6,6 @@
 <td><%- type.name %></td>
 <td><%- description %></td>
 <td>
-  <a href="#chat" class="btn btn-info gotoChat">Chat</a>
+  <a href="#chat" class="btn btn-sm btn-info gotoChat">Chat</a>
 </td>
 <td class="statuses"></td>
