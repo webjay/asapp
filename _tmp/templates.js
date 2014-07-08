@@ -70,3 +70,24 @@ __e( description ) +
 }
 return __p
 };
+
+this["JST"]["_templates/statuses.hjs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">\n' +
+__e( status ) +
+'\n<span class="caret"></span>\n</button>\n<ul class="dropdown-menu" role="menu">\n';
+ _.each(statuses, function (status) { ;
+__p += '\n<li><a href="#" data-id="' +
+__e( status._id ) +
+'">' +
+__e( status.name ) +
+'</a></li>\n';
+ }); ;
+__p += '\n</ul>';
+
+}
+return __p
+};
