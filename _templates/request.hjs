@@ -1,11 +1,23 @@
-<td>
-  <time datetime="<%- created %>"><%- asapp.date(created) %></time>
-</td>
-<td><%- location.name %></td>
-<td><%- user.username %></td>
-<td><%- type.name %></td>
-<td><%- description %></td>
-<td>
-  <a href="#chat" class="btn btn-sm btn-info gotoChat">Chat</a>
-</td>
-<td class="statuses"></td>
+<div class="thumbnail">
+  <div class="caption">
+    <small>
+      <strong><time datetime="<%- created %>"><%- asapp.date(created) %></time></strong>
+      in <strong><%- location.name %></strong>
+      by <strong><%- user.username %></strong>
+      about <strong><%- type.name %></strong>
+    </small>
+    <% if (urgent) { %>
+      <div class="pull-right">
+        <span class="label label-danger">Urgent</span>
+      </div>
+    <% } %>
+    <p>
+      <%- description %>
+    </p>
+    <div class="btn-toolbar">
+      <div class="btn-group btn-group-xs">
+        <a href="#chat" class="btn btn-info">Discuss</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -35,8 +35,6 @@ var asapp = {
 // when DOM has finished loading
 jQuery(function ($) {
 
-  console.log('DOM ready');
-
   $(document).on({
     ajaxStart: function(){
       // $.mobile.loading('show');

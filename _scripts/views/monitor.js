@@ -3,7 +3,6 @@ var MonitorView = Backbone.View.extend({
   el: '#monitor',
 
   initialize: function () {
-    this.$tbody = this.$('tbody');
     this.listenToOnce(this.collection, 'sync', function () {
       this.render();
       this.listenTo(this.collection, 'add', this.prepend);
@@ -11,7 +10,7 @@ var MonitorView = Backbone.View.extend({
   },
 
   render: function () {
-    this.$tbody.empty();
+    this.$el.empty();
     this.collection.each(this.append, this);
     return this;
   },
@@ -20,14 +19,14 @@ var MonitorView = Backbone.View.extend({
     var view = new RequestView({
       model: model
     }).render();
-    this.$tbody.append(view.el);
+    this.$el.append(view.el);
   },
 
   prepend: function (model) {
     var view = new RequestView({
       model: model
     }).render();
-    this.$tbody.prepend(view.el);
+    this.$el.prepend(view.el);
   }
 
 });

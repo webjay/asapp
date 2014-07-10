@@ -51,21 +51,26 @@ return __p
 
 this["JST"]["_templates/request.hjs"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<td>\n<time datetime="' +
+__p += '<div class="thumbnail">\n<div class="caption">\n<small>\n<strong><time datetime="' +
 __e( created ) +
 '">' +
 __e( asapp.date(created) ) +
-'</time>\n</td>\n<td>' +
+'</time></strong>\nin <strong>' +
 __e( location.name ) +
-'</td>\n<td>' +
+'</strong>\nby <strong>' +
 __e( user.username ) +
-'</td>\n<td>' +
+'</strong>\nabout <strong>' +
 __e( type.name ) +
-'</td>\n<td>' +
+'</strong>\n</small>\n';
+ if (urgent) { ;
+__p += '\n<div class="pull-right">\n<span class="label label-danger">Urgent</span>\n</div>\n';
+ } ;
+__p += '\n<p>\n' +
 __e( description ) +
-'</td>\n<td>\n<a href="#chat" class="btn btn-sm btn-info gotoChat">Chat</a>\n</td>\n<td class="statuses"></td>';
+'\n</p>\n<div class="btn-toolbar">\n<div class="btn-group btn-group-xs">\n<a href="#chat" class="btn btn-info">Discuss</a>\n</div>\n</div>\n</div>\n</div>';
 
 }
 return __p

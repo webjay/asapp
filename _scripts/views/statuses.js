@@ -1,7 +1,7 @@
 var StatusesView = Backbone.View.extend({
 
   tagName: 'div',
-  className: 'btn-group btn-group-sm',
+  className: 'btn-group btn-group-xs',
   template: JST['_templates/statuses.hjs'],
 
   events: {
@@ -9,8 +9,12 @@ var StatusesView = Backbone.View.extend({
   },
 
   render: function () {
+    var status_name = '';
+    if (this.model.get('status')) {
+      status_name = this.model.get('status').name;
+    }
     var data = {
-      status: this.model.get('status').name,
+      status: status_name,
       statuses: asapp.statuses.toJSON()
     };
     this.$el.html(this.template(data));

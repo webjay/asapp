@@ -3,9 +3,6 @@ var HelpView = Backbone.View.extend({
   el: '#help',
 
   events: {
-    // 'change input': 'modelSet',
-    // 'change select': 'modelSet',
-    // 'change textarea': 'modelSet',
     'click button': 'modelSet',
     'submit form': 'submit'
   },

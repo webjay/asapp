@@ -1,14 +1,11 @@
 var RequestView = Backbone.View.extend({
 
-  tagName: 'tr',
+  tagName: 'div',
+  className: 'col-sm-6 col-md-12',
   template: JST['_templates/request.hjs'],
 
   events: {
-    'click a.gotoChat': 'setSubject',
-  },
-
-  className: function () {
-    return (this.model.get('urgent') === true) ? 'danger' : '';
+    'click a[href="#chat"]': 'setSubject',
   },
 
   initialize: function () {
@@ -21,7 +18,7 @@ var RequestView = Backbone.View.extend({
       model: this.model
     });
     statusesView.render();
-    this.$('.statuses').html(statusesView.el);
+    this.$('.btn-toolbar').append(statusesView.el);
     return this;
   },
   
