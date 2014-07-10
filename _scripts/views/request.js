@@ -1,7 +1,7 @@
 var RequestView = Backbone.View.extend({
 
   tagName: 'div',
-  className: 'col-sm-6 col-md-12',
+  className: 'col-sm-5 col-md-12',
   template: JST['_templates/request.hjs'],
 
   events: {
