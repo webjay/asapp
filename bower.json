@@ -21,6 +21,7 @@
     "pusher": "2.1.x",
     "jquery": "1.x",
     "jQuery.serializeObject": "2.0.x",
-    "bootstrap": "3.x"
+    "bootstrap": "3.x",
+    "socket.io-client": "~1.0.6"
   }
 }

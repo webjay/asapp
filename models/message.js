@@ -1,17 +1,9 @@
 var mongoose = require('mongoose');
 var jsonBody = require('body/json');
-var Pusher = require('pusher');
 
-function push (data) {
-  pusher.trigger('messages', 'add', data);
+function push (io, data) {
+  io.emit('message add', data);
 }
-
-
-var pusher = new Pusher({
-  appId: '68298',
-  key: '89dd0fd43699d54bb1bf',
-  secret: 'e9bd4c33e1d52b195926'
-});
 
 var schema = new mongoose.Schema({
   text: String,
@@ -27,15 +19,15 @@ var schema = new mongoose.Schema({
 
 var Message = mongoose.model('messages', schema);
 
+var popuptions = [
+  {
+    path: 'user',
+    select: 'username'
+  }
+];
+
 module.exports.all = function (req, res) {
-  var popuptions = [
-    {
-      path: 'user',
-      select: 'username'
-    }
-  ];
-  var select = '-__v';
-  Message.find().select(select).sort('-created').populate(popuptions).exec(function (err, messages) {
+  Message.find().sort('-created').select('-__v').populate(popuptions).exec(function (err, messages) {
     if (err) throw err;
     res.json(messages);
   });
@@ -49,8 +41,11 @@ module.exports.create = function (req, res, next) {
     obj.created = new Date;
     Message.create(obj, function (err, doc) {
       if (err) return next(err);
-      res.json(201, doc);
-      push(doc);
+      Message.findOne(doc).select('-__v').populate(popuptions).exec(function (err, doc) {
+        if (err) return next(err);
+        res.json(201, doc);
+        push(req.io, doc);
+      });
     });
   });
 }
@@ -61,10 +56,10 @@ module.exports.update = function (req, res, next) {
     var obj = body;
     var id = obj._id;
     delete obj._id;
-    Message.findByIdAndUpdate(id, obj, function (err, doc) {
+    Message.findByIdAndUpdate(id, obj).select('-__v').populate(popuptions).exec(function (err, doc) {
       if (err) return next(err);
       res.json(doc);
-      push(doc);
+      push(req.io, doc);
     });
   });
 }

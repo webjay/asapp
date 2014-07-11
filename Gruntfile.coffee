@@ -30,7 +30,7 @@ module.exports = (grunt) ->
             'bower_components/lodash/dist/lodash.underscore.js'
             'bower_components/backbone/backbone.js'
             'bower_components/momentjs/moment.js'
-            'bower_components/pusher/dist/pusher.js'
+            'bower_components/socket.io-client/socket.io.js'
             '_tmp/bootstrap/js/bootstrap.js'
             '_tmp/templates.js'
             '_scripts/models/*.js'

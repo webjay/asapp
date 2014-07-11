@@ -62,16 +62,15 @@ jQuery(function ($) {
     pushState: false
   });
 
-  // Pusher
-  return;
-  var pusher = new Pusher('89dd0fd43699d54bb1bf');
-  var channel1 = pusher.subscribe('requests');
-  channel1.bind('add', function (data) {
-    asapp.requests.fetch();
+  // Socket.io
+  var socket = io();
+  socket.on('request add', function (obj) {
+    asapp.requests.add(obj);
+    // asapp.requests.fetch();
   });
-  var channel2 = pusher.subscribe('messages');
-  channel2.bind('add', function (data) {
-    asapp.messages.fetch();
+  socket.on('message add', function (obj) {
+    asapp.messages.add(obj);
+    // asapp.messages.fetch();
   });
 
 });

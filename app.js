@@ -24,6 +24,15 @@ mongoose.connection.on('error', function (err) {
 var app = express();
 module.exports = app;
 
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+io.on('connection', function (socket) {
+  console.log('socket.io user connected');
+  socket.on('disconnect', function(){
+    console.log('socket.io user disconnected');
+  });
+});
+  
 app.set('port', process.env.PORT || 3000);
 
 if (app.get('env') == 'development') {
@@ -41,8 +50,9 @@ app.use(expressSession({
 }));
 
 var router = express.Router();
-routes.define(router);
+routes.define(router, io);
 app.use(router);
 
-app.listen(app.get('port'));
+// app.listen(app.get('port'));
+server.listen(app.get('port'));
 console.log('Express listening on port %d', app.get('port'));

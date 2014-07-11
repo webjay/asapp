@@ -25,6 +25,12 @@ var ChatView = Backbone.View.extend({
     var view = new MessageView({
       model: model
     }).render();
+    if (model.isNew()) {
+      view.$el.addClass('warning');
+      view.listenToOnce(model, 'sync', function () {
+        // view.$el.removeClass('warning');
+      });
+    }
     this.$tbody.append(view.el);
   },
 
@@ -36,7 +42,9 @@ var ChatView = Backbone.View.extend({
     event.preventDefault();
     this.modelSet();
     if (this.model.isValid()) {
-      this.collection.create(this.model);
+      this.collection.create(this.model, {
+        wait: true
+      });
       this.$('#chatmsg').val('');
       this.model = new this.collection.model;
     }

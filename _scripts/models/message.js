@@ -2,7 +2,7 @@ var Message = Backbone.Model.extend({
 
   idAttribute: '_id',
   url: '/message',
-
+  
   defaults: {
     user: {
       username: null

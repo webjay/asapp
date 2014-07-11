@@ -5,7 +5,7 @@ var Type = require('../models/type');
 var Status = require('../models/status');
 var Message = require('../models/message');
 
-exports.define = function (router) {
+exports.define = function (router, io) {
 
   router.get('/logout', function (req, res) {
     req.session.destroy();
@@ -26,6 +26,10 @@ exports.define = function (router) {
 
   router.route('/request')
   .all(User.auth)
+  .all(function (req, res, next) {
+    req.io = io;
+    next();
+  })
   .post(Request.create)
   .put(Request.update)
   .patch(Request.update);
@@ -38,6 +42,10 @@ exports.define = function (router) {
 
   router.route('/message')
   .all(User.auth)
+  .all(function (req, res, next) {
+    req.io = io;
+    next();
+  })
   .post(Message.create)
   .put(Message.update)
   .patch(Message.update);
