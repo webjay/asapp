@@ -1,23 +1,21 @@
-<div class="thumbnail">
-  <div class="caption">
-    <small>
-      <strong><time datetime="<%- created %>"><%- asapp.date(created) %></time></strong>
-      in <strong><%- location.name %></strong>
-      by <strong><%- user.username %></strong>
-      about <strong><%- type.name %></strong>
-    </small>
-    <p>
-      <%- description %>
-    </p>
-    <% if (urgent) { %>
-      <div class="pull-right">
-        <span class="label label-danger">Urgent</span>
-      </div>
-    <% } %>
-    <div class="btn-toolbar">
-      <div class="btn-group btn-group-xs">
-        <a href="#chat" class="btn btn-info">Discuss</a>
-      </div>
+<div class="caption">
+  <small>
+    <strong><time datetime="<%- created %>"><%- asapp.date(created) %></time></strong>
+    in <strong><%- location.name %></strong>
+    by <strong><%- user.username %></strong>
+    about <strong><%- type.name %></strong>
+  </small>
+  <p>
+    <%- description %>
+  </p>
+  <% if (urgent) { %>
+    <div class="pull-right">
+      <span class="label label-danger">Urgent</span>
+    </div>
+  <% } %>
+  <div class="btn-toolbar">
+    <div class="btn-group btn-group-xs">
+      <a href="#chat" class="btn btn-info">Discuss</a>
     </div>
   </div>
 </div>

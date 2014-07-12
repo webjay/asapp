@@ -54,7 +54,7 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class="thumbnail">\n<div class="caption">\n<small>\n<strong><time datetime="' +
+__p += '<div class="caption">\n<small>\n<strong><time datetime="' +
 __e( created ) +
 '">' +
 __e( asapp.date(created) ) +
@@ -70,7 +70,7 @@ __e( description ) +
  if (urgent) { ;
 __p += '\n<div class="pull-right">\n<span class="label label-danger">Urgent</span>\n</div>\n';
  } ;
-__p += '\n<div class="btn-toolbar">\n<div class="btn-group btn-group-xs">\n<a href="#chat" class="btn btn-info">Discuss</a>\n</div>\n</div>\n</div>\n</div>';
+__p += '\n<div class="btn-toolbar">\n<div class="btn-group btn-group-xs">\n<a href="#chat" class="btn btn-info">Discuss</a>\n</div>\n</div>\n</div>';
 
 }
 return __p
