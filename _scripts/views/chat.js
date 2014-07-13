@@ -1,6 +1,8 @@
 var ChatView = Backbone.View.extend({
 
   el: '#chat',
+  
+  request_id: null,
 
   events: {
     'change #chatmsg': 'modelSet',
@@ -17,11 +19,22 @@ var ChatView = Backbone.View.extend({
 
   render: function () {
     this.$tbody.empty();
-    this.collection.each(this.append, this);
+    var messages = [];
+    if (this.request_id) {
+      messages = this.collection.where({
+        request: this.request_id
+      });
+    } else {
+      messages = this.collection.models;
+    }
+    _.each(messages, this.append, this);
     return this;
   },
 
   append: function (model) {
+    if (this.request_id && model.get('request') !== this.request_id) {
+      return;
+    }
     var view = new MessageView({
       model: model
     }).render();
@@ -36,6 +49,7 @@ var ChatView = Backbone.View.extend({
 
   modelSet: function () {
     this.model.set(this.$('form').serializeObject());
+    this.model.set('request', this.request_id);
   },
 
   submit: function (event) {
@@ -43,7 +57,7 @@ var ChatView = Backbone.View.extend({
     this.modelSet();
     if (this.model.isValid()) {
       this.collection.create(this.model, {
-        wait: true
+        wait: false
       });
       this.$('#chatmsg').val('');
       this.model = new this.collection.model;

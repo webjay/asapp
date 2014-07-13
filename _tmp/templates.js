@@ -70,7 +70,9 @@ __e( description ) +
  if (urgent) { ;
 __p += '\n<div class="pull-right">\n<span class="label label-danger">Urgent</span>\n</div>\n';
  } ;
-__p += '\n<div class="btn-toolbar">\n<div class="btn-group btn-group-xs">\n<a href="#chat" class="btn btn-info">Discuss</a>\n</div>\n</div>\n</div>';
+__p += '\n<div class="btn-toolbar">\n<div class="btn-group btn-group-xs">\n<a href="#chat/' +
+__e( _id ) +
+'" class="btn btn-info">Discuss</a>\n</div>\n</div>\n</div>';
 
 }
 return __p

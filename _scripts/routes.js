@@ -8,7 +8,8 @@ var Router = Backbone.Router.extend({
     'monitor': 'monitor',
     'settings-profile': 'settings_profile',
     'settings-location': 'settings_location',
-    'chat': 'chat'
+    'chat': 'chat',
+    'chat/:id': 'chat'
   },
 
   goto: 'help',
@@ -78,15 +79,18 @@ var Router = Backbone.Router.extend({
   settings_profile: function () {},
   settings_location: function () {},
 
-  chat: function () {
+  chat: function (id) {
     $('#chatmsg').focus();
     if (asapp.views.chat) {
+      asapp.views.chat.request_id = id;
+      asapp.views.chat.render();
       return;
     }
     asapp.views.chat = new ChatView({
       collection: asapp.messages,
       model: new asapp.messages.model
     });
+    asapp.views.chat.request_id = id;
     asapp.views.chat.render();
   }
 

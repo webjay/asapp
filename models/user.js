@@ -2,7 +2,12 @@ var mongoose = require('mongoose');
 var jsonBody = require('body/json');
 
 var schema = new mongoose.Schema({
-  username: String
+  username: {
+    type: String,
+    required: true,
+    lowercase: true,
+    trim: true
+  }
 });
 
 var User = mongoose.model('users', schema);
@@ -14,7 +19,7 @@ module.exports.login = function (req, res, next) {
       return next('Invalid username');
     }
     var cond = {
-      username: body.username.trim()
+      username: body.username.trim().toLowerCase()
     }
     User.findOne(cond, function (err, user) {
       if (err) return next(err);

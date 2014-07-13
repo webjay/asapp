@@ -64,6 +64,11 @@ jQuery(function ($) {
 
   // Socket.io
   var socket = io();
+  socket.on('connect', function(){
+    $(document).ajaxSend(function (event, request, settings) {
+      request.setRequestHeader('socket-id', socket.io.engine.id);
+    });
+  });
   socket.on('request add', function (obj) {
     asapp.requests.add(obj);
     // asapp.requests.fetch();

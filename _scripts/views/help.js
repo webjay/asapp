@@ -51,7 +51,7 @@ var HelpView = Backbone.View.extend({
     this.modelSet();
     if (this.model.isValid()) {
       this.collection.create(this.model, {
-        wait: true
+        wait: false
       });
       this.$('textarea').val('');
       this.model = new this.collection.model;

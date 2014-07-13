@@ -1,15 +1,23 @@
 var mongoose = require('mongoose');
 var jsonBody = require('body/json');
 
-function push (io, data) {
-  io.emit('message add', data);
+function push (socket, data) {
+  socket.broadcast.emit('message add', data);
 }
 
 var schema = new mongoose.Schema({
-  text: String,
+  text: {
+    type: String,
+    required: true,
+    trim: true
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
+  },
+  request: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'requests'
   },
   created: {
     type: Date,
@@ -44,7 +52,7 @@ module.exports.create = function (req, res, next) {
       Message.findOne(doc).select('-__v').populate(popuptions).exec(function (err, doc) {
         if (err) return next(err);
         res.json(201, doc);
-        push(req.io, doc);
+        push(req.socketio, doc);
       });
     });
   });

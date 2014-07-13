@@ -13,7 +13,11 @@ var RequestView = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(this.template(this.model.attributes));
+    var data = this.model.toJSON();
+    if (!data._id) {
+      data._id = 0;
+    }
+    this.$el.html(this.template(data));
     var statusesView = new StatusesView({
       model: this.model
     });

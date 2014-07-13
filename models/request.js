@@ -5,9 +5,10 @@ var jsonBody = require('body/json');
 require('../models/type');
 require('../models/location');
 var Status = require('../models/status');
+var Activity = require('../models/activity');
 
-function push (io, data) {
-  io.emit('request add', data);
+function push (socket, data) {
+  socket.broadcast.emit('request add', data);
 }
 
 var schema = new mongoose.Schema({
@@ -74,10 +75,15 @@ module.exports.create = function (req, res, next) {
       obj.status = doc._id;
       Request.create(obj, function (err, doc) {
         if (err) return next(err);
+        Activity.add({
+          action: 'created',
+          user: req.session.user._id,
+          request: doc._id
+        });
         Request.findOne(doc).select('-__v').populate(popuptions).exec(function (err, doc) {
           if (err) return next(err);
           res.json(201, doc);
-          push(req.io, doc);
+          push(req.socketio, doc);
         });
       });
     });
@@ -94,6 +100,14 @@ module.exports.update = function (req, res, next) {
       if (err) return next(err);
       res.json(doc);
     });
+    var changes = obj;
+    delete changes._id;
+    Activity.add({
+      action: 'updated',
+      user: req.session.user._id,
+      request: id,
+      changes: changes
+    });
   });
 }
 
@@ -102,6 +116,11 @@ module.exports.delete = function (req, res, next) {
     _id: req.params.id,
     user: req.session.user._id
   }
+  Activity.add({
+    action: 'deleted',
+    user: req.session.user._id,
+    request: req.params.id
+  });
   Request.findOneAndRemove(conditions, function (err) {
     if (err) return next(err);
     res.type('json');

@@ -5,6 +5,17 @@ var Type = require('../models/type');
 var Status = require('../models/status');
 var Message = require('../models/message');
 
+function socket (io, socket_id) {
+  var socket = null;
+  for (var i = io.sockets.sockets.length - 1; i >= 0; i--) {
+    if (io.sockets.sockets[i].id == socket_id) {
+      socket = io.sockets.sockets[i];
+      break;
+    }
+  }
+  return socket;
+}
+
 exports.define = function (router, io) {
 
   router.get('/logout', function (req, res) {
@@ -27,7 +38,7 @@ exports.define = function (router, io) {
   router.route('/request')
   .all(User.auth)
   .all(function (req, res, next) {
-    req.io = io;
+    req.socketio = socket(io, req.headers['socket-id']);
     next();
   })
   .post(Request.create)
@@ -43,7 +54,7 @@ exports.define = function (router, io) {
   router.route('/message')
   .all(User.auth)
   .all(function (req, res, next) {
-    req.io = io;
+    req.socketio = socket(io, req.headers['socket-id']);
     next();
   })
   .post(Message.create)

@@ -2,7 +2,7 @@ var Request = Backbone.Model.extend({
 
   idAttribute: '_id',
   url: '/request',
-
+  
   defaults: {
     user: {
       username: null
