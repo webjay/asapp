@@ -21,6 +21,11 @@ var ChatView = Backbone.View.extend({
     this.$tbody.empty();
     var messages = [];
     if (this.request_id) {
+      var request_model = asapp.requests.get(this.request_id);
+      var request_view = new RequestView({
+        model: request_model
+      }).render();
+      this.$('.request').html(request_view.el);
       messages = this.collection.where({
         request: this.request_id
       });
