@@ -16,20 +16,27 @@ var ChatView = Backbone.View.extend({
       this.listenTo(this.collection, 'add', this.append);
     });
   },
+  
+  render_request: function (request_id) {
+    var request_model = asapp.requests.get(request_id);
+    if (request_model) {
+      var request_view = new RequestView({
+        model: request_model
+      }).render();
+      this.$('.request').html(request_view.el);
+    }
+  },
 
   render: function () {
     this.$tbody.empty();
     var messages = [];
     if (this.request_id) {
-      var request_model = asapp.requests.get(this.request_id);
-      var request_view = new RequestView({
-        model: request_model
-      }).render();
-      this.$('.request').html(request_view.el);
+      this.render_request(this.request_id);
       messages = this.collection.where({
         request: this.request_id
       });
     } else {
+      this.$('.request').html('');
       messages = this.collection.models;
     }
     _.each(messages, this.append, this);
@@ -61,9 +68,7 @@ var ChatView = Backbone.View.extend({
     event.preventDefault();
     this.modelSet();
     if (this.model.isValid()) {
-      this.collection.create(this.model, {
-        wait: false
-      });
+      this.collection.create(this.model);
       this.$('#chatmsg').val('');
       this.model = new this.collection.model;
     }
