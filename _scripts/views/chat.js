@@ -53,7 +53,7 @@ var ChatView = Backbone.View.extend({
     if (model.isNew()) {
       view.$el.addClass('warning');
       view.listenToOnce(model, 'sync', function () {
-        // view.$el.removeClass('warning');
+        view.$el.removeClass('warning');
       });
     }
     this.$tbody.append(view.el);

@@ -3,7 +3,7 @@
     <strong><time datetime="<%- created %>"><%- asapp.date(created) %></time></strong>
     in <strong><%- location.name %></strong>
     by <strong><%- user.username %></strong>
-    about <strong><%- type.name %></strong>
+    about <strong><%- group.name %></strong>
   </small>
   <p>
     <%- description %>

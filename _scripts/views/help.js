@@ -8,7 +8,7 @@ var HelpView = Backbone.View.extend({
   },
 
   initialize: function () {
-    this.listenTo(asapp.types, 'sync', this.render);
+    this.listenTo(asapp.groups, 'sync', this.render);
     this.listenTo(asapp.locations, 'sync', this.render);
   },
 
@@ -18,11 +18,11 @@ var HelpView = Backbone.View.extend({
     this.$('textarea').val('');
 
     this.$('#request-types > div').empty();
-    asapp.types.each(function (model) {
-      var view = new TypeView({
+    asapp.groups.each(function (model) {
+      var view = new GroupView({
         model: model
       }).render();
-      self.$('#request-types > div').append(view.el);
+      self.$('#request-groups > div').append(view.el);
     });
 
     this.$('#request-locations > div').empty();

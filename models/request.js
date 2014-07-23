@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var jsonBody = require('body/json');
 
 // define models hack
-require('../models/type');
+require('../models/group');
 require('../models/location');
 var Status = require('../models/status');
 var Activity = require('../models/activity');
@@ -17,9 +17,9 @@ var schema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
   },
-  type: {
+  group: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'types'
+    ref: 'groups'
   },
   location: {
     type: mongoose.Schema.Types.ObjectId,

@@ -19,7 +19,7 @@ var asapp = {
   },
 
   preload: function () {
-    asapp.types.fetch();
+    asapp.groups.fetch();
     asapp.locations.fetch();
     asapp.statuses.fetch();
     asapp.requests.fetch();
@@ -47,7 +47,7 @@ jQuery(function ($) {
   Backbone.$ = $;
 
   asapp.user = new User();
-  asapp.types = new Types();
+  asapp.groups = new Groups();
   asapp.locations = new Locations();
   asapp.statuses = new Statuses();
   asapp.requests = new Requests();

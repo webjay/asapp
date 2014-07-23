@@ -1,4 +1,4 @@
-var TypeView = Backbone.View.extend({
+var GroupView = Backbone.View.extend({
 
   tagName: 'label',
   className: 'radio-inline',
@@ -6,7 +6,7 @@ var TypeView = Backbone.View.extend({
 
   render: function () {
     var data = this.model.attributes;
-    data.fieldName = 'type';
+    data.fieldName = 'group';
     this.$el.html(this.template(data));
     return this;
   },

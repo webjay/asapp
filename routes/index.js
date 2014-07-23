@@ -1,7 +1,7 @@
 var User = require('../models/user');
 var Request = require('../models/request');
 var Location = require('../models/location');
-var Type = require('../models/type');
+var Group = require('../models/group');
 var Status = require('../models/status');
 var Message = require('../models/message');
 
@@ -65,7 +65,7 @@ exports.define = function (router, io) {
   .all(User.auth)
   .delete(Message.delete);
 
-  router.route('/types').all(User.auth).get(Type.all);
+  router.route('/groups').all(User.auth).get(Group.all);
   router.route('/locations').all(User.auth).get(Location.all);
   router.route('/statuses').all(User.auth).get(Status.all);
 

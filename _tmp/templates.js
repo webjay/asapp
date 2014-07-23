@@ -63,7 +63,7 @@ __e( location.name ) +
 '</strong>\nby <strong>' +
 __e( user.username ) +
 '</strong>\nabout <strong>' +
-__e( type.name ) +
+__e( group.name ) +
 '</strong>\n</small>\n<p>\n' +
 __e( description ) +
 '\n</p>\n';
