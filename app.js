@@ -7,7 +7,7 @@ var compress = require('compression');
 var favicon = require('static-favicon');
 
 var dbconf = {
-  url: 'mongodb://asapp:loveBoat@troup.mongohq.com:10041/asapp',
+  url: process.env.MONGOURL || 'localhost',
   secret: 'go with the waves'
 };
 
@@ -32,7 +32,7 @@ io.on('connection', function (socket) {
     console.log('socket.io user disconnected');
   });
 });
-  
+
 app.set('port', process.env.PORT || 3000);
 
 if (app.get('env') == 'development') {
