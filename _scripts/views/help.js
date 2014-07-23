@@ -17,7 +17,7 @@ var HelpView = Backbone.View.extend({
     
     this.$('textarea').val('');
 
-    this.$('#request-types > div').empty();
+    this.$('#request-groups > div').empty();
     asapp.groups.each(function (model) {
       var view = new GroupView({
         model: model
