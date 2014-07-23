@@ -20,6 +20,8 @@ module.exports = (grunt) ->
           # compress: true
           compress: false
           mangle: false
+          sourceMap: true
+          sourceMapIncludeSources: true
           # mangle: {
           #   except: ['jQuery', '$']
           # }
