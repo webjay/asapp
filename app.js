@@ -4,10 +4,10 @@ var mongoose = require('mongoose');
 var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var compress = require('compression');
-var favicon = require('static-favicon');
+var favicon = require('serve-favicon');
 
 var dbconf = {
-  url: process.env.MONGOURL || 'localhost',
+  url: process.env.MONGOURL || 'mongodb://mongo:bongo@kahana.mongohq.com:10064/asapp_dev',
   secret: 'go with the waves'
 };
 
@@ -34,11 +34,6 @@ io.on('connection', function (socket) {
 });
 
 app.set('port', process.env.PORT || 3000);
-
-if (app.get('env') == 'development') {
-  var logger = require('morgan');
-  app.use(logger());
-}
 
 app.use(compress());
 app.use(favicon(__dirname + '/public/favicon.ico'));
