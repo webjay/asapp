@@ -38,6 +38,7 @@
     "express": "4.6.x",
     "express-session": "1.7.x",
     "mongoose": "3.8.x",
+    "opbeat": "0.x",
     "serve-favicon": "2.x",
     "socket.io": "1.x"
   }
