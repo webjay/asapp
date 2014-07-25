@@ -43,11 +43,11 @@ module.exports = {
     });
   },
 
-  set_user: function (id, user_id) {
-    this.remove_user(user_id, function (err) {
+  set_user: function (socket_id, user_id) {
+    this.remove_user(user_id, socket_id, function (err) {
       if (err) throw err;
       var conditions = {
-        socketid: id
+        socketid: socket_id
       };
       var update = {
         user: user_id
@@ -85,9 +85,12 @@ module.exports = {
     });
   },
 
-  remove_user: function (id, callback) {
+  remove_user: function (user_id, socket_id, callback) {
     var conditions = {
-      user: id
+      user: user_id,
+      socketid: {
+        $ne: socket_id
+      }
     };
     Socket.findOneAndRemove(conditions, callback);
   }
