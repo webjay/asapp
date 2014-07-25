@@ -1,9 +1,6 @@
 var mongoose = require('mongoose');
 var jsonBody = require('body/json');
-
-function push (socket, data) {
-  socket.broadcast.emit('message add', data);
-}
+var socketeer = require('../lib/socketeer');
 
 var schema = new mongoose.Schema({
   text: {
@@ -52,7 +49,7 @@ module.exports.create = function (req, res, next) {
       Message.findOne(doc).select('-__v').populate(popuptions).exec(function (err, doc) {
         if (err) return next(err);
         res.json(201, doc);
-        push(req.socketio, doc);
+        socketeer.broadcast(req.socketio, 'message add', doc);
       });
     });
   });
@@ -67,7 +64,7 @@ module.exports.update = function (req, res, next) {
     Message.findByIdAndUpdate(id, obj).select('-__v').populate(popuptions).exec(function (err, doc) {
       if (err) return next(err);
       res.json(doc);
-      push(req.io, doc);
+      socketeer.broadcast(req.socketio, 'message add', doc);
     });
   });
 }

@@ -4,21 +4,37 @@ var Location = require('../models/location');
 var Group = require('../models/group');
 var Status = require('../models/status');
 var Message = require('../models/message');
-
-function socket (io, socket_id) {
-  var socket = null;
-  for (var i = io.sockets.sockets.length - 1; i >= 0; i--) {
-    if (io.sockets.sockets[i].id == socket_id) {
-      socket = io.sockets.sockets[i];
-      break;
-    }
-  }
-  return socket;
-}
+var Socket = require('../models/socket');
+var socketeer = require('../lib/socketeer');
 
 exports.define = function (router, io) {
 
+  io.on('connection', function (socket) {
+    console.log('socket.io user connected');
+    Socket.set_connected(socket.id, true);
+    socket.on('disconnect', function(){
+      Socket.set_connected(socket.id, false);
+      console.log('socket.io user disconnected');
+    });
+  });
+  
+  router.use(function (req, res, next) {
+    if (req.xhr) {
+      req.socketio = socketeer.get_socket(io, req.headers['socket-id']);
+      if (req.socketio.socket) {
+        req.session.socketid = req.socketio.socket.id;
+        if (req.session.user) {
+          Socket.set_user(req.session.socketid, req.session.user._id);
+        }
+      }
+    }
+    next();
+  });
+
   router.get('/logout', function (req, res) {
+    if (req.session.socketid) {
+      Socket.remove_socket(req.session.socketid);
+    }
     req.session.destroy();
     res.redirect('/');
   });
@@ -31,16 +47,19 @@ exports.define = function (router, io) {
   .post(function (req, res) {
     req.session.user = req.user;
     res.json(req.session.user);
+    if (req.session.socketid) {
+      socket_clear(req.session.socketid);
+    }
   });
+
+  router.route('/user/:id')
+  .all(User.auth)
+  .patch(User.update);
 
   router.route('/requests').all(User.auth).get(Request.all);
 
   router.route('/request')
   .all(User.auth)
-  .all(function (req, res, next) {
-    req.socketio = socket(io, req.headers['socket-id']);
-    next();
-  })
   .post(Request.create)
   .put(Request.update)
   .patch(Request.update);
@@ -53,10 +72,6 @@ exports.define = function (router, io) {
 
   router.route('/message')
   .all(User.auth)
-  .all(function (req, res, next) {
-    req.socketio = socket(io, req.headers['socket-id']);
-    next();
-  })
   .post(Message.create)
   .put(Message.update)
   .patch(Message.update);

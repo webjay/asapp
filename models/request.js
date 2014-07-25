@@ -1,15 +1,12 @@
 var mongoose = require('mongoose');
 var jsonBody = require('body/json');
+var socketeer = require('../lib/socketeer');
 
 // define models hack
 require('../models/group');
 require('../models/location');
 var Status = require('../models/status');
 var Activity = require('../models/activity');
-
-function push (socket, data) {
-  socket.broadcast.emit('request add', data);
-}
 
 var schema = new mongoose.Schema({
   description: String,
@@ -83,7 +80,7 @@ module.exports.create = function (req, res, next) {
         Request.findOne(doc).select('-__v').populate(popuptions).exec(function (err, doc) {
           if (err) return next(err);
           res.json(201, doc);
-          push(req.socketio, doc);
+          socketeer.broadcast(req.socketio, 'request add', doc);
         });
       });
     });

@@ -7,6 +7,9 @@ var schema = new mongoose.Schema({
     required: true,
     lowercase: true,
     trim: true
+  },
+  mobile: {
+    type: Number
   }
 });
 
@@ -43,4 +46,25 @@ module.exports.auth = function (req, res, next) {
   } else {
     res.send(401, 'Please login');
   }
+}
+
+module.exports.update = function (req, res, next) {
+  jsonBody(req, res, function (err, body) {
+    if (err) throw err;
+    var obj = body;
+    var id = req.params.id;
+    delete obj._id;
+    User.findByIdAndUpdate(id, obj).exec(function (err, doc) {
+      if (err) return next(err);
+      res.json(doc);
+    });
+    // var changes = obj;
+    // delete changes._id;
+    // Activity.add({
+    //   action: 'updated',
+    //   user: req.session.user._id,
+    //   request: id,
+    //   changes: changes
+    // });
+  });
 }

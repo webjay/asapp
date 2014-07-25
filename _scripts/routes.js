@@ -76,8 +76,14 @@ var Router = Backbone.Router.extend({
     asapp.views.monitor.render();
   },
 
-  settings_profile: function () {},
-  settings_location: function () {},
+  settings_profile: function () {
+    if (asapp.views.settings_profile) {
+      return;
+    }
+    asapp.views.settings_profile = new SettingsProfileView();
+    asapp.views.settings_profile.render();
+  },
+  settings_location: null,
 
   chat: function (id) {
     $('#chatmsg').focus();

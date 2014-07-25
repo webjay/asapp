@@ -33,12 +33,6 @@ module.exports = app;
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-io.on('connection', function (socket) {
-  console.log('socket.io user connected');
-  socket.on('disconnect', function(){
-    console.log('socket.io user disconnected');
-  });
-});
 
 app.set('port', process.env.PORT || 3000);
 

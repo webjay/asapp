@@ -19,9 +19,9 @@ module.exports = (grunt) ->
         options:
           # compress: true
           compress: false
-          mangle: false
           sourceMap: true
           sourceMapIncludeSources: true
+          mangle: false
           # mangle: {
           #   except: ['jQuery', '$']
           # }
@@ -91,10 +91,10 @@ module.exports = (grunt) ->
         atBegin: true
       scripts:
         files: ['_scripts/**/*.js']
-        tasks: ['uglify']
+        tasks: ['uglify:components']
       jst:
         files: ['_templates/*.hjs']
-        tasks: ['jst', 'uglify']
+        tasks: ['jst', 'uglify:components']
       style:
         files: ['_styles/*.less']
         tasks: ['less', 'cssmin']
