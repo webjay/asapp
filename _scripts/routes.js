@@ -81,8 +81,9 @@ var Router = Backbone.Router.extend({
     if (asapp.views.settings_profile) {
       return;
     }
-    asapp.views.settings_profile = new SettingsProfileView();
-    asapp.views.settings_profile.render();
+    asapp.views.settings_profile = new SettingsProfileView({
+      model: asapp.user
+    }).render();
   },
   settings_location: null,
 
