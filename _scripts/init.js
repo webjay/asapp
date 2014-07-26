@@ -73,6 +73,12 @@ jQuery(function ($) {
       request.setRequestHeader('socket-id', socket.io.engine.id);
     });
   });
+  socket.on('disconnect', function(){
+    var message = 'We seem to have lost connection to the server, would you like to try a reconnect?';
+    if (window.confirm(message)) {
+      window.location = '/';
+    }
+  });
   socket.on('request add', function (obj) {
     asapp.requests.add(obj);
     // asapp.requests.fetch();
