@@ -12,20 +12,24 @@ var schema = new mongoose.Schema({
   description: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'users',
+    required: true
   },
   group: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'groups'
+    ref: 'groups',
+    required: true
   },
   location: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'locations'
+    ref: 'locations',
+    required: true
   },
   urgent: Boolean,
   status: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'status'
+    ref: 'status',
+    required: true
   },
   created: {
     type: Date,
@@ -74,7 +78,6 @@ module.exports.create = function (req, res, next) {
     if (err) return next(err);
     var obj = body;
     obj.user = req.session.user._id;
-    obj.created = new Date;
     Status.getDefault(function (err, doc) {
       if (err) return next(err);
       obj.status = doc._id;

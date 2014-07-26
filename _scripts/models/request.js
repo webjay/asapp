@@ -6,16 +6,7 @@ var Request = Backbone.Model.extend({
   defaults: {
     user: {
       username: null
-    },
-    created: new Date,
-    description: null,
-    type: {
-      name: null
-    },
-    location: {
-      name: null
-    },
-    urgent: false
+    }
   },
 
   initialize: function () {
@@ -25,8 +16,8 @@ var Request = Backbone.Model.extend({
   },
 
   validate: function (attrs, options) {
-    if (!attrs.type) {
-      return 'Type must be set';
+    if (!attrs.group) {
+      return 'Group must be set';
     }
     if (!attrs.location) {
       return 'Location must be set';
