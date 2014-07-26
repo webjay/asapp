@@ -10,6 +10,10 @@ if (!String.prototype.trim) {
 var asapp = {
   
   redirect: function (route) {
+    // if (route == 'login') {
+    //   window.location = '/#' + route;
+    //   return;
+    // }
     if (!route) {
       route = asapp.router.goto;
     }
@@ -34,15 +38,15 @@ var asapp = {
 
 // when DOM has finished loading
 jQuery(function ($) {
-
-  $(document).on({
-    ajaxStart: function(){
-      // $.mobile.loading('show');
-    },
-    ajaxComplete: function(){
-      // $.mobile.loading('hide');
-    }
-  });
+  
+  // $(document).on({
+  //   ajaxStart: function(){
+  //     // $.mobile.loading('show');
+  //   },
+  //   ajaxComplete: function(){
+  //     // $.mobile.loading('hide');
+  //   }
+  // });
 
   Backbone.$ = $;
 

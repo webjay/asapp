@@ -38,7 +38,7 @@ exports.define = function (router, io) {
     req.session.destroy();
     res.redirect('/');
   });
-
+  
   router.route('/user')
   .get(function (req, res) {
     res.json(req.session.user);
@@ -83,5 +83,12 @@ exports.define = function (router, io) {
   router.route('/groups').all(User.auth).get(Group.all);
   router.route('/locations').all(User.auth).get(Location.all);
   router.route('/statuses').all(User.auth).get(Status.all);
+
+
+  router.use('/admin/*', User.admin.auth);
+
+  router.route('/admin/users')
+  .get(User.admin.all)
+  .post(User.admin.update);
 
 };

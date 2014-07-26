@@ -18,12 +18,6 @@ var User = Backbone.Model.extend({
     if (attrs.username && attrs.username.trim().length < 3) {
       return 'invalid username';
     }
-//     if (attrs.mobile) {
-//       var mobile = attrs.mobile.replace('+', '00');
-//       this.set('mobile', mobile, {
-// +        silent: true
-//       });
-//     }
   },
 
   isFetched: function () {

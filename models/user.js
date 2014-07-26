@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var jsonBody = require('body/json');
+var formBody = require('body/form');
 
 var schema = new mongoose.Schema({
   username: {
@@ -8,9 +9,17 @@ var schema = new mongoose.Schema({
     lowercase: true,
     trim: true
   },
+  password: {
+    type: String,
+    required: true
+  },
   mobile: {
     type: Number
-  }
+  },
+  groups: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'groups'
+  }]
 });
 
 var User = mongoose.model('users', schema);
@@ -68,3 +77,60 @@ module.exports.update = function (req, res, next) {
     // });
   });
 }
+
+
+module.exports.admin = {
+
+  auth: function (req, res, next) {
+    if (typeof req.session.user === 'object' && req.session.user !== null && req.session.user.admin === true) {
+      next();
+    } else {
+      res.send(401, 'Please login as admin');
+    }
+  },
+
+  all: function (req, res) {
+    User.find().exec(function (err, users) {
+      if (err) throw err;
+      res.json(users);
+    });
+  },
+  
+  update: function (req, res, next) {
+    formBody(req, res, function (err, body) {
+      if (err) throw err;
+      
+      if (body.username.length && body.password.length) {
+        var cond = {
+          username: body.username,
+          password: body.password
+        }
+        User.create(cond);
+      }
+      
+      if (body.users.length && body.groups.length) {
+        if (!body.users.isArray) {
+          body.users = [ body.users ]
+        }
+        var cond = {
+          '_id': {
+            $in: body.users
+          }
+        };
+        var update = {
+          $set: {
+            groups: body.groups
+          }
+        };
+        var options = {
+          multi: true
+        };
+        User.update(cond, update, options).exec();
+      }
+      
+      return res.end('ok');
+    });
+  }
+  
+  
+};

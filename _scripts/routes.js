@@ -9,7 +9,8 @@ var Router = Backbone.Router.extend({
     'settings-profile': 'settings_profile',
     'settings-location': 'settings_location',
     'chat': 'chat',
-    'chat/:id': 'chat'
+    'chat/:id': 'chat',
+    'admin': 'admin'
   },
 
   goto: 'help',
@@ -98,6 +99,12 @@ var Router = Backbone.Router.extend({
     });
     asapp.views.chat.request_id = id;
     asapp.views.chat.render();
+  },
+
+  admin: function () {
+    new AdminView({
+      collection: new Users()
+    });
   }
 
 });
