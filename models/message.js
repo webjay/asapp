@@ -32,6 +32,9 @@ var popuptions = [
 ];
 
 module.exports.all = function (req, res) {
+  if (!req.session.user.admin) {
+    return res.json();
+  }
   Message.find().sort('-created').select('-__v').populate(popuptions).exec(function (err, messages) {
     if (err) throw err;
     res.json(messages);

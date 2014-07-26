@@ -55,7 +55,15 @@ var popuptions = [
 var Request = mongoose.model('requests', schema);
 
 module.exports.all = function (req, res) {
-  Request.find().sort('-created').select('-__v').populate(popuptions).exec(function (err, requests) {
+  var cond = null;
+  if (req.session.user.admin !== true) {
+    cond = {
+      group: {
+        $in: req.session.user.groups
+      }
+    };
+  }
+  Request.find(cond).sort('-created').select('-__v').populate(popuptions).exec(function (err, requests) {
     if (err) throw err;
     res.json(requests);
   });
