@@ -50,8 +50,11 @@ routes.define(router, io);
 app.use(router);
 
 app.use(function (err, req, res, next) {
-  res.json(500, { error: err });
+  // res.json(500, { error: err });
   console.error(err);
+  if (!(err instanceof Error)) {
+    err = new Error(err);
+  }
   opbeat_client.captureError(err, function (opbeatErr, url) {
     if (opbeatErr) return console.error(opbeatErr);
     console.log('The error can be found on:', url);

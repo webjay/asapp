@@ -48,7 +48,7 @@ exports.define = function (router, io) {
     req.session.user = req.user;
     res.json(req.session.user);
     if (req.session.socketid) {
-      socket_clear(req.session.socketid);
+      Socket.set_user(req.session.socketid, req.session.user._id);
     }
   });
 
