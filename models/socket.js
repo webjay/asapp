@@ -8,8 +8,7 @@ var schema = new mongoose.Schema({
   },
   connected: {
     type: Boolean,
-    default: true,
-    select: false
+    default: true
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -25,10 +24,17 @@ var schema = new mongoose.Schema({
 var Socket = mongoose.model('sockets', schema);
 
 module.exports = {
+  
+  post_update: function (doc) {
+    if (!doc.get('connected') && !doc.get('user')) {
+      doc.remove();
+    }
+  },
 
-  set_connected: function (id, connected) {
+  set_connected: function (socket_id, connected) {
+    var self = this;
     var conditions = {
-      socketid: id
+      socketid: socket_id
     };
     var update = {
       connected: connected
@@ -36,10 +42,9 @@ module.exports = {
     var options = {
       upsert: true
     };
-    Socket.findOneAndUpdate(conditions, update, options, function (err) {
-      if (err) {
-        console.error(err);
-      }
+    Socket.findOneAndUpdate(conditions, update, options, function (err, doc) {
+      if (err) throw err;
+      self.post_update(doc);
     });
   },
 
@@ -52,9 +57,7 @@ module.exports = {
       var update = {
         user: user_id
       };
-      Socket.findOneAndUpdate(conditions, update, function (err) {
-        if (err) throw err;
-      });
+      Socket.findOneAndUpdate(conditions, update).exec();
     });
   },
 
@@ -74,15 +77,11 @@ module.exports = {
     Socket.find(conditions).populate(popuptions).exec(callback);
   },
 
-  remove_socket: function (id) {
+  remove_socket: function (socket_id) {
     var conditions = {
-      socketid: id
+      socketid: socket_id
     };
-    Socket.findOneAndRemove(conditions, function (err) {
-      if (err) {
-        console.error(err);
-      }
-    });
+    Socket.findOneAndRemove(conditions).exec();
   },
 
   remove_user: function (user_id, socket_id, callback) {

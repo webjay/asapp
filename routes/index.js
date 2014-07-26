@@ -13,13 +13,13 @@ exports.define = function (router, io) {
     console.log('socket.io user connected');
     Socket.set_connected(socket.id, true);
     socket.on('disconnect', function(){
-      Socket.set_connected(socket.id, false);
       console.log('socket.io user disconnected');
+      Socket.set_connected(socket.id, false);
     });
   });
   
   router.use(function (req, res, next) {
-    if (req.xhr) {
+    if (req.xhr && req.headers['socket-id']) {
       req.socketio = socketeer.get_socket(io, req.headers['socket-id']);
       if (req.socketio.socket) {
         req.session.socketid = req.socketio.socket.id;
@@ -84,6 +84,7 @@ exports.define = function (router, io) {
   router.route('/locations').all(User.auth).get(Location.all);
   router.route('/statuses').all(User.auth).get(Status.all);
 
+  // Admin
 
   router.use('/admin/*', User.admin.auth);
 
