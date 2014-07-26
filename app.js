@@ -6,6 +6,10 @@ var cookieParser = require('cookie-parser');
 var compress = require('compression');
 var favicon = require('serve-favicon');
 
+if (!process.env.MONGOURL) {
+  process.env.MONGOURL = 'mongodb://mongo:bongo@kahana.mongohq.com:10064/asapp_dev';
+}
+
 var opbeat = require('opbeat'); 
 var opbeat_client = opbeat.createClient({ 
   organization_id: '49efe7c522234909a3dce43d20dc76ff',
@@ -14,13 +18,23 @@ var opbeat_client = opbeat.createClient({
 });
 
 var dbconf = {
-  url: process.env.MONGOURL || 'mongodb://mongo:bongo@kahana.mongohq.com:10064/asapp_dev',
-  secret: 'go with the waves'
+  url: process.env.MONGOURL,
+  secret: 'go with the waves',
+  options: {
+    server: {
+      socketOptions: { 
+        keepAlive: 1
+      }
+    },
+    replset: {
+      socketOptions: { 
+        keepAlive: 1
+      }
+    }
+  }
 };
 
-mongoose.connect(dbconf.url, {
-  auto_reconnect: true
-});
+mongoose.connect(dbconf.url, dbconf.options);
 mongoose.connection.on('connected', function () {
   console.log('MongoDB connected');
 });
@@ -50,7 +64,6 @@ routes.define(router, io);
 app.use(router);
 
 app.use(function (err, req, res, next) {
-  // res.json(500, { error: err });
   console.error(err);
   if (!(err instanceof Error)) {
     err = new Error(err);
