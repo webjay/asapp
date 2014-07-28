@@ -38,7 +38,11 @@ var schema = new mongoose.Schema({
   wilco: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
-  }]
+  }],
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users'
+  }
 });
 
 var popuptions = [
@@ -60,6 +64,10 @@ var popuptions = [
   },
   {
     path: 'wilco',
+    select: 'username'
+  },
+  {
+    path: 'owner',
     select: 'username'
   },
 ];

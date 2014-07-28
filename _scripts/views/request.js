@@ -5,7 +5,8 @@ var RequestView = Backbone.View.extend({
   template: JST['_templates/request.hjs'],
   
   events: {
-    'click button.wilco': 'wilco'
+    'click button.wilco': 'wilco',
+    'click button.star': 'star'
   },
 
   initialize: function () {
@@ -33,6 +34,15 @@ var RequestView = Backbone.View.extend({
   wilco: function () {
     this.model.save({
       wilco_set: this.model.user_wilco()
+    }, {
+      patch: true,
+      wait: true
+    });
+  },
+
+  star: function () {
+    this.model.save({
+      owner: asapp.user.id
     }, {
       patch: true,
       wait: true

@@ -66,13 +66,23 @@ __e( user.username ) +
 __e( group.name ) +
 '</strong>\n</small>\n<p>\n' +
 __e( description ) +
-'\n</p>\n';
+'\n</p>\n<div class="pull-right">\n';
  if (urgent) { ;
-__p += '\n<div class="pull-right">\n<span class="label label-danger">Urgent</span>\n</div>\n';
+__p += '\n<span class="label label-danger">Urgent</span>\n';
  } ;
-__p += '\n<div class="btn-toolbar">\n<div class="btn-group btn-group-xs">\n<a href="#chat/' +
+__p += '\n';
+ if (owner) { ;
+__p += '\n<span class="label label-warning">Owner: ' +
+__e( owner.username ) +
+'</span>\n';
+ } ;
+__p += '\n</div>\n<div class="btn-toolbar">\n<div class="btn-group btn-group-xs">\n<a href="#chat/' +
 __e( _id ) +
-'" class="btn btn-info btn-chat">Discuss</a>\n<button type="button" class="btn btn-default wilco" title="Acknowledge" ';
+'" class="btn btn-info btn-chat">Discuss</a>\n</div>\n<div class="btn-group btn-group-xs">\n<button type="button" class="btn btn-default star" title="Owner" ';
+ if (!urgent || owner) { ;
+__p += 'disabled';
+ } ;
+__p += '>\n<span class="glyphicon glyphicon-star"></span>\n</button>\n<button type="button" class="btn btn-default wilco" title="Acknowledge" ';
  if (urgent) { ;
 __p += 'disabled';
  } ;
