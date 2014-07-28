@@ -115,8 +115,6 @@ module.exports.update = function (req, res, next) {
     delete obj._id;
     delete obj.user;
     delete obj.created;
-    if (obj.status) obj.status = obj.status._id;
-    if (obj.location) obj.location = obj.location._id;    
     delete obj.wilco;
     if (obj.wilco_set === false) {
       obj.$addToSet = {

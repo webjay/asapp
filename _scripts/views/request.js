@@ -3,7 +3,7 @@ var RequestView = Backbone.View.extend({
   tagName: 'div',
   className: 'thumbnail',
   template: JST['_templates/request.hjs'],
-
+  
   events: {
     'click button.wilco': 'wilco'
   },

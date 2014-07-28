@@ -23,6 +23,7 @@ var ChatView = Backbone.View.extend({
       var view = new RequestView({
         model: model
       }).render();
+      // view.$('.btn-chat').attr('disabled', 'disabled');
       this.$('.request').html(view.el);
     }
   },

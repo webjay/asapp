@@ -72,7 +72,7 @@ __p += '\n<div class="pull-right">\n<span class="label label-danger">Urgent</spa
  } ;
 __p += '\n<div class="btn-toolbar">\n<div class="btn-group btn-group-xs">\n<a href="#chat/' +
 __e( _id ) +
-'" class="btn btn-info">Discuss</a>\n<button type="button" class="btn btn-default wilco" title="Acknowledge" ';
+'" class="btn btn-info btn-chat">Discuss</a>\n<button type="button" class="btn btn-default wilco" title="Acknowledge" ';
  if (urgent) { ;
 __p += 'disabled';
  } ;
