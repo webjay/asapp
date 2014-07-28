@@ -81,11 +81,14 @@ jQuery(function ($) {
   });
   socket.on('request add', function (obj) {
     asapp.requests.add(obj);
-    // asapp.requests.fetch();
+  });
+  socket.on('request update', function (obj) {
+    asapp.requests.add(obj, {
+      merge: true
+    });
   });
   socket.on('message add', function (obj) {
     asapp.messages.add(obj);
-    // asapp.messages.fetch();
   });
 
 });

@@ -34,7 +34,12 @@ var schema = new mongoose.Schema({
   created: {
     type: Date,
     default: Date.now
-  }
+  },
+  wilco: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users'
+  }],
+  
 });
 
 var popuptions = [
@@ -53,7 +58,11 @@ var popuptions = [
   {
     path: 'status',
     select: 'name'
-  }
+  },
+  {
+    path: 'wilco',
+    select: 'username'
+  },
 ];
 
 var Request = mongoose.model('requests', schema);
@@ -90,7 +99,7 @@ module.exports.create = function (req, res, next) {
         });
         Request.findOne(doc).select('-__v').populate(popuptions).exec(function (err, doc) {
           if (err) return next(err);
-          res.json(201, doc);
+          res.json(doc);
           socketeer.broadcast(req.socketio, 'request add', doc);
         });
       });
@@ -100,13 +109,29 @@ module.exports.create = function (req, res, next) {
 
 module.exports.update = function (req, res, next) {
   jsonBody(req, res, function (err, body) {
-    if (err) throw err;
+    if (err) return next(err);
     var obj = body;
-    var id = obj._id;
+    var id = req.params.id
     delete obj._id;
-    Request.findByIdAndUpdate(id, obj).select('-__v').populate(popuptions).exec(function (err, doc) {
+    delete obj.user;
+    delete obj.created;
+    if (obj.status) obj.status = obj.status._id;
+    if (obj.location) obj.location = obj.location._id;    
+    delete obj.wilco;
+    if (obj.wilco_set === false) {
+      obj.$addToSet = {
+        'wilco': req.session.user._id
+      }
+    } else if (obj.wilco_set === true) {
+      obj.$pull = {
+        'wilco': req.session.user._id
+      }
+    }
+    delete obj.wilco_set;
+    Request.findByIdAndUpdate(id, obj).populate(popuptions).exec(function (err, doc) {
       if (err) return next(err);
       res.json(doc);
+      socketeer.broadcast(req.socketio, 'request update', doc);
     });
     var changes = obj;
     delete changes._id;

@@ -72,7 +72,11 @@ __p += '\n<div class="pull-right">\n<span class="label label-danger">Urgent</spa
  } ;
 __p += '\n<div class="btn-toolbar">\n<div class="btn-group btn-group-xs">\n<a href="#chat/' +
 __e( _id ) +
-'" class="btn btn-info">Discuss</a>\n</div>\n</div>\n</div>';
+'" class="btn btn-info">Discuss</a>\n<button type="button" class="btn btn-default wilco" title="Acknowledge" ';
+ if (urgent) { ;
+__p += 'disabled';
+ } ;
+__p += '>\n<span class="glyphicon glyphicon-ok"></span>\n</button>\n</div>\n</div>\n</div>';
 
 }
 return __p
@@ -94,6 +98,20 @@ __e( status.name ) +
 '</a></li>\n';
  }); ;
 __p += '\n</ul>';
+
+}
+return __p
+};
+
+this["JST"]["_templates/wilcos.hjs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<!-- <div class="col-sm-1">\n<div class="thumbnail">\n<div class="caption">\n<small>\n' +
+__e( username ) +
+'\n</small>\n</div>\n</div>\n</div> -->\n<span class="label label-success">' +
+__e( username ) +
+'</span>';
 
 }
 return __p

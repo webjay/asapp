@@ -18,12 +18,22 @@ var ChatView = Backbone.View.extend({
   },
   
   render_request: function (request_id) {
-    var request_model = asapp.requests.get(request_id);
-    if (request_model) {
-      var request_view = new RequestView({
-        model: request_model
+    var model = asapp.requests.get(request_id);
+    if (model) {
+      var view = new RequestView({
+        model: model
       }).render();
-      this.$('.request').html(request_view.el);
+      this.$('.request').html(view.el);
+    }
+  },
+
+  render_wilcos: function (request_id) {
+    var model = asapp.requests.get(request_id);
+    if (model) {
+      var view = new WilcosView({
+        model: model
+      }).render();
+      this.$('.wilcos').html(view.el);
     }
   },
 
@@ -32,6 +42,7 @@ var ChatView = Backbone.View.extend({
     var messages = [];
     if (this.request_id) {
       this.render_request(this.request_id);
+      this.render_wilcos(this.request_id);
       messages = this.collection.where({
         request: this.request_id
       });

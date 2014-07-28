@@ -1,0 +1,10 @@
+<!-- <div class="col-sm-1">
+  <div class="thumbnail">
+    <div class="caption">
+      <small>
+        <%- username %>
+      </small>
+    </div>
+  </div>
+</div> -->
+<span class="label label-success"><%- username %></span>

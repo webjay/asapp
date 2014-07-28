@@ -1,12 +1,12 @@
 var Request = Backbone.Model.extend({
 
   idAttribute: '_id',
-  url: '/request',
   
   defaults: {
     user: {
       username: null
-    }
+    },
+    wilco: []
   },
 
   initialize: function () {
@@ -22,6 +22,19 @@ var Request = Backbone.Model.extend({
     if (!attrs.location) {
       return 'Location must be set';
     }
+  },
+  
+  user_wilco: function () {
+    var wilcos = this.get('wilco');
+    if (!wilcos) {
+      return false;
+    }
+    for (var i = wilcos.length - 1; i >= 0; i--) {
+      if (wilcos[i]._id === asapp.user.id) {
+        return true;
+      }
+    }
+    return false;
   }
 
 });

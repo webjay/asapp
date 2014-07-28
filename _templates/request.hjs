@@ -16,6 +16,9 @@
   <div class="btn-toolbar">
     <div class="btn-group btn-group-xs">
       <a href="#chat/<%- _id %>" class="btn btn-info">Discuss</a>
+      <button type="button" class="btn btn-default wilco" title="Acknowledge" <% if (urgent) { %>disabled<% } %>>
+        <span class="glyphicon glyphicon-ok"></span>        
+      </button>
     </div>
   </div>
 </div>

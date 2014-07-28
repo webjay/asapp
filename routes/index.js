@@ -58,15 +58,20 @@ exports.define = function (router, io) {
 
   router.route('/requests').all(User.auth).get(Request.all);
 
-  router.route('/request')
+  // router.route('/request')
+  // .all(User.auth)
+  // .post(Request.create)
+  // .put(Request.update);
+  // .patch(Request.update);
+
+  router.route('/requests')
   .all(User.auth)
   .post(Request.create)
-  .put(Request.update)
-  .patch(Request.update);
 
-  router.route('/request/:id')
+  router.route('/requests/:id')
   .all(User.auth)
-  .delete(Request.delete);
+  .patch(Request.update)
+  // .delete(Request.delete);
 
   router.route('/messages').all(User.auth).get(Message.all);
 
