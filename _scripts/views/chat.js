@@ -34,6 +34,10 @@ var ChatView = Backbone.View.extend({
   render_wilcos: function (request_id) {
     var model = asapp.requests.get(request_id);
     if (model) {
+      if (model.get('urgent')) {
+        this.$('.panel.wilco').removeClass('panel-success');
+        this.$('.panel.wilco').addClass('panel-default');
+      }
       var view = new WilcosView({
         model: model
       }).render();

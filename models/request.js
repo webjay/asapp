@@ -38,8 +38,7 @@ var schema = new mongoose.Schema({
   wilco: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
-  }],
-  
+  }]
 });
 
 var popuptions = [
