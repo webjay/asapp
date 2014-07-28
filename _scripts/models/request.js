@@ -6,6 +6,7 @@ var Request = Backbone.Model.extend({
     user: {
       username: null
     },
+    owner: null,
     wilco: []
   },
 
