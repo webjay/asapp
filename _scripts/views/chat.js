@@ -14,7 +14,7 @@ var ChatView = Backbone.View.extend({
     this.listenToOnce(this.collection, 'sync', function () {
       this.render();
       this.listenTo(this.collection, 'add', this.append);
-    });
+    });    
   },
   
   render_request: function (request_id) {
@@ -23,8 +23,11 @@ var ChatView = Backbone.View.extend({
       var view = new RequestView({
         model: model
       }).render();
-      // view.$('.btn-chat').attr('disabled', 'disabled');
       this.$('.request').html(view.el);
+    } else {
+      this.listenToOnce(asapp.requests, 'sync', function () {
+        this.render_request(request_id);
+      });
     }
   },
 
@@ -35,6 +38,10 @@ var ChatView = Backbone.View.extend({
         model: model
       }).render();
       this.$('.wilcos').html(view.el);
+    } else {
+      this.listenToOnce(asapp.requests, 'sync', function () {
+        this.render_wilcos(request_id);
+      });
     }
   },
 
@@ -48,7 +55,7 @@ var ChatView = Backbone.View.extend({
         request: this.request_id
       });
     } else {
-      this.$('.request').html('');
+      this.$('.request').empty();
       messages = this.collection.models;
     }
     _.each(messages, this.append, this);
