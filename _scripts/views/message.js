@@ -1,6 +1,7 @@
 var MessageView = Backbone.View.extend({
 
-  tagName: 'tr',
+  tagName: 'div',
+  className: 'list-group-item msg',
   template: JST['_templates/message.hjs'],
 
   initialize: function () {

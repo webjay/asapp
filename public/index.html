@@ -93,25 +93,19 @@
     </div>
   </div>  
 
-  <div class="table-responsive">
-  	<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>Time</th>
-          <th>User</th>
-					<th>Message</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
+  <div class="list-group messages">
+    <div class="list-group-item list-group-item-info">
+      <div class="list-group-item-heading">Chat</div>
+    </div>
+    <div class="list-group-item">
+    	<form role="form">
+    		<fieldset class="form-group">
+          <label for="chatmsg" class="sr-only">Message</label>
+          <input type="text" name="text" id="chatmsg" placeholder="Say say say" autofocus class="form-control">
+    		</fieldset>
+    	</form>
+    </div>
   </div>
-
-	<form role="form">
-		<fieldset class="form-group">
-      <label for="chatmsg" class="sr-only">Message</label>
-      <input type="text" name="text" id="chatmsg" placeholder="Say say say" autofocus class="form-control">
-		</fieldset>
-	</form>
 
 </div>
 

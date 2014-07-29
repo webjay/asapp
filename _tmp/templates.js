@@ -20,15 +20,15 @@ this["JST"]["_templates/message.hjs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<td>\n<time datetime="' +
+__p += '<div class="list-group-item-text">\n' +
+__e( text ) +
+'\n<div class="small text-muted">\n<time datetime="' +
 __e( created ) +
 '">' +
 __e( asapp.date(created) ) +
-'</time>\n</td>\n<td>' +
+'</time>\nby ' +
 __e( user.username ) +
-'</td>\n<td>' +
-__e( text ) +
-'</td>';
+'\n</div>\n</div>';
 
 }
 return __p

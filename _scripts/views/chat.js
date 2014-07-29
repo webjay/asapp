@@ -10,7 +10,7 @@ var ChatView = Backbone.View.extend({
   },
 
   initialize: function () {
-    this.$tbody = this.$('tbody');
+    this.$content = this.$('.messages');
     this.listenToOnce(this.collection, 'sync', function () {
       this.render();
       this.listenTo(this.collection, 'add', this.append);
@@ -50,7 +50,7 @@ var ChatView = Backbone.View.extend({
   },
 
   render: function () {
-    this.$tbody.empty();
+    this.$content.remove('.msg');
     var messages = [];
     if (this.request_id) {
       this.render_request(this.request_id);
@@ -79,7 +79,7 @@ var ChatView = Backbone.View.extend({
         view.$el.removeClass('warning');
       });
     }
-    this.$tbody.append(view.el);
+    this.$content.find('.list-group-item:last-child').before(view.el);
   },
 
   modelSet: function () {

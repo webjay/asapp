@@ -1,5 +1,7 @@
-<td>
-  <time datetime="<%- created %>"><%- asapp.date(created) %></time>
-</td>
-<td><%- user.username %></td>
-<td><%- text %></td>
+<div class="list-group-item-text">
+  <%- text %>
+  <div class="small text-muted">
+    <time datetime="<%- created %>"><%- asapp.date(created) %></time>
+    by <%- user.username %>
+  </div>
+</div>
