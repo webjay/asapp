@@ -45,7 +45,6 @@ exports.define = function (router, io) {
   })
   .post(User.login)
   .post(function (req, res) {
-    req.session.user = req.user;
     res.json(req.session.user);
     if (req.session.socketid) {
       Socket.set_user(req.session.socketid, req.session.user._id);

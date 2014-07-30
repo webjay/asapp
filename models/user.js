@@ -7,19 +7,47 @@ var schema = new mongoose.Schema({
     type: String,
     required: true,
     lowercase: true,
-    trim: true
+    trim: true,
+    match: /[\w]{3,}/
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    select: false,
+    match: /[\w]{6,}/
+  },
+  admin: {
+    type: Boolean,
+    default: false
   },
   mobile: {
-    type: Number
+    type: Number,
+    trim: true
   },
   groups: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'groups'
-  }]
+  }],
+  follow: {
+    groups: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'groups',
+    }],
+    locations: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'locations',
+    }]
+  },
+  notifications: {
+    sms: {
+      type: Boolean,
+      default: true,
+    },
+    groups: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'groups',
+    }]
+  }
 });
 
 var User = mongoose.model('users', schema);
@@ -27,21 +55,18 @@ var User = mongoose.model('users', schema);
 module.exports.login = function (req, res, next) {
   jsonBody(req, res, function (err, body) {
     if (err) return next(err);
-    if (body.username.trim().length < 3) {
-      return next('Invalid username');
-    }
     var cond = {
       username: body.username.trim().toLowerCase()
     }
-    User.findOne(cond, function (err, user) {
+    User.findOne(cond).exec(function (err, user) {
       if (err) return next(err);
       if (user) {
-        req.user = user;
+        req.session.user = user;
         next();
       } else {
         User.create(cond, function (err, user) {
           if (err) return next(err);
-          req.user = user;
+          req.session.user = user;
           next();
         });
       }
@@ -63,9 +88,10 @@ module.exports.update = function (req, res, next) {
     var obj = body;
     var id = req.params.id;
     delete obj._id;
-    User.findByIdAndUpdate(id, obj).exec(function (err, doc) {
+    User.findByIdAndUpdate(id, obj).exec(function (err, user) {
       if (err) return next(err);
-      res.json(doc);
+      req.session.user = user;
+      res.json(user);
     });
     // var changes = obj;
     // delete changes._id;

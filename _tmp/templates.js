@@ -16,6 +16,21 @@ __e( name ) +
 return __p
 };
 
+this["JST"]["_templates/checkbox.hjs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<input type="checkbox" name="' +
+__e( fieldName ) +
+'" value="' +
+__e( _id ) +
+'">\n' +
+__e( name );
+
+}
+return __p
+};
+
 this["JST"]["_templates/message.hjs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
