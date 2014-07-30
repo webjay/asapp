@@ -79,7 +79,7 @@ __e( owner.username ) +
 __p += '\n</div>\n<div class="btn-toolbar">\n<div class="btn-group btn-group-xs">\n<a href="#chat/' +
 __e( _id ) +
 '" class="btn btn-info btn-chat">Discuss</a>\n</div>\n<div class="btn-group btn-group-xs">\n<button type="button" class="btn btn-default star" title="Owner" ';
- if (!urgent || owner) { ;
+ if (!urgent) { ;
 __p += 'disabled';
  } ;
 __p += '>\n<span class="glyphicon glyphicon-star"></span>\n</button>\n<button type="button" class="btn btn-default wilco" title="Acknowledge" ';

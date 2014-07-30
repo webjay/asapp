@@ -5,9 +5,13 @@ var expressSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var compress = require('compression');
 var favicon = require('serve-favicon');
+var RedisStore = require('connect-redis')(expressSession);
 
 if (!process.env.MONGOURL) {
   process.env.MONGOURL = 'mongodb://mongo:bongo@kahana.mongohq.com:10064/asapp_dev';
+}
+if (!process.env.REDISURL) {
+  process.env.REDISURL = 'redis://redistogo:4ed22edd83010041cc2d4dddf93c659f@hoki.redistogo.com:9267/';
 }
 
 var opbeat = require('opbeat'); 
@@ -56,7 +60,10 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(cookieParser());
 app.use(expressSession({
-  secret: dbconf.secret
+  secret: dbconf.secret,
+  store: new RedisStore({
+    url: process.env.REDISURL
+  })
 }));
 
 var router = express.Router();
