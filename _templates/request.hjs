@@ -21,7 +21,7 @@
       <a href="#chat/<%- _id %>" class="btn btn-info btn-chat">Discuss</a>
     </div>
     <div class="btn-group btn-group-xs">
-      <button type="button" class="btn btn-default star" title="Owner" <% if (!urgent || owner) { %>disabled<% } %>>
+      <button type="button" class="btn btn-default star" title="Owner" <% if (!urgent) { %>disabled<% } %>>
         <span class="glyphicon glyphicon-star"></span>
       </button>
       <button type="button" class="btn btn-default wilco" title="Acknowledge" <% if (urgent) { %>disabled<% } %>>
