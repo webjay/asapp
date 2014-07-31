@@ -76,10 +76,15 @@ var Request = mongoose.model('requests', schema);
 
 module.exports.all = function (req, res) {
   var cond = null;
+  var groups = req.session.user.groups;
+  groups = groups.concat(req.session.user.follow.groups);
   if (req.session.user.admin !== true) {
     cond = {
       group: {
-        $in: req.session.user.groups
+        $in: groups
+      },
+      location: {
+        $in: req.session.user.follow.locations
       }
     };
   }

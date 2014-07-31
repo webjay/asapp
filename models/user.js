@@ -84,7 +84,7 @@ module.exports.auth = function (req, res, next) {
 
 module.exports.update = function (req, res, next) {
   jsonBody(req, res, function (err, body) {
-    if (err) throw err;
+    if (err) return next(err);
     var obj = body;
     var id = req.params.id;
     delete obj._id;

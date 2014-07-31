@@ -57,6 +57,9 @@ var SettingsProfileView = Backbone.View.extend({
         groups.push($(this).val());
       }
     });
+    this.listenToOnce(asapp.user, 'change', function () {
+      asapp.requests.fetch();
+    });
     asapp.user.save({
       mobile: this.$('[name="mobile"]').val(),
       notifications: {
@@ -67,7 +70,8 @@ var SettingsProfileView = Backbone.View.extend({
         groups: groups
       }
     }, {
-      patch: true
+      patch: true,
+      wait: true
     });
   }
 
