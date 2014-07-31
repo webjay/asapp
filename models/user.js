@@ -42,11 +42,11 @@ var schema = new mongoose.Schema({
     sms: {
       type: Boolean,
       default: true,
-    },
-    groups: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'groups',
-    }]
+    }// ,
+//     groups: [{
+//       type: mongoose.Schema.Types.ObjectId,
+//       ref: 'groups',
+//     }]
   }
 });
 

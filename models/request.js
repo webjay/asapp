@@ -51,7 +51,7 @@ var popuptions = [
     select: 'username'
   },
   {
-    path: 'type',
+    path: 'group',
     select: 'name'
   },
   {
