@@ -18,7 +18,7 @@ var SettingsProfileView = Backbone.View.extend({
     if (notifications && notifications.sms) {
       this.$('[name="sms"]').prop('checked', true);
     }
-    this.$('.groups').remove('label');
+    this.$('.groups label').remove();
     asapp.groups.each(function (model) {
       var view = new GroupView({
         model: model,
@@ -29,7 +29,7 @@ var SettingsProfileView = Backbone.View.extend({
       }
       this.$('.groups').append(view.el);
     }, this);
-    this.$('.locations').remove('label');
+    this.$('.locations label').remove();
     asapp.locations.each(function (model) {
       var view = new LocationView({
         model: model,
