@@ -61,7 +61,9 @@ jQuery(function ($) {
   socket.on('connect', function(){
     if (asapp.socketHasDisconnected) {
       asapp.socketHasDisconnected = false;
-      asapp.user.fetch();
+      asapp.user.fetch({
+        reset: true
+      });
     }
     $(document).ajaxSend(function (event, request, settings) {
       request.setRequestHeader('socket-id', socket.io.engine.id);
