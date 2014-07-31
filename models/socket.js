@@ -71,7 +71,7 @@ module.exports = {
     var popuptions = [
       {
         path: 'user',
-        select: 'username mobile'
+        select: 'username mobile notifications.sms'
       }
     ];
     Socket.find(conditions).populate(popuptions).exec(callback);
