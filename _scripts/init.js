@@ -3,10 +3,6 @@
 var asapp = {
   
   redirect: function (route) {
-    // if (route == 'login') {
-    //   window.location = '/#' + route;
-    //   return;
-    // }
     if (!route) {
       route = asapp.router.goto;
     }
@@ -43,6 +39,7 @@ jQuery(function ($) {
 
   Backbone.$ = $;
 
+  asapp.socketHasDisconnected = false;
   asapp.user = new User();
   asapp.groups = new Groups();
   asapp.locations = new Locations();
@@ -62,11 +59,16 @@ jQuery(function ($) {
   // Socket.io
   var socket = io();
   socket.on('connect', function(){
+    if (asapp.socketHasDisconnected) {
+      asapp.socketHasDisconnected = false;
+      asapp.user.fetch();
+    }
     $(document).ajaxSend(function (event, request, settings) {
       request.setRequestHeader('socket-id', socket.io.engine.id);
     });
   });
   socket.on('disconnect', function(){
+    asapp.socketHasDisconnected = true;
     var message = 'We seem to have lost connection to the server, would you like to try a reconnect?';
     if (window.confirm(message)) {
       window.location = '/';
