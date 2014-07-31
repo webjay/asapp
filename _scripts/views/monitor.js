@@ -3,10 +3,8 @@ var MonitorView = Backbone.View.extend({
   el: '#monitor',
 
   initialize: function () {
-    this.listenTo(this.collection, 'sync', this.render);
-    this.listenToOnce(this.collection, 'sync', function () {
-      this.listenTo(this.collection, 'add', this.prepend);
-    });
+    this.listenTo(this.collection, 'reset', this.render);
+    this.listenTo(this.collection, 'add', this.prepend);
   },
 
   render: function () {

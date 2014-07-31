@@ -50,9 +50,7 @@ var HelpView = Backbone.View.extend({
     event.preventDefault();
     this.modelSet();
     if (this.model.isValid()) {
-      this.collection.create(this.model, {
-        wait: false
-      });
+      this.collection.create(this.model);
       this.$('textarea').val('');
       this.model = new this.collection.model;
       asapp.redirect('monitor');

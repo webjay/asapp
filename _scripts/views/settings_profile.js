@@ -58,7 +58,9 @@ var SettingsProfileView = Backbone.View.extend({
       }
     });
     this.listenToOnce(asapp.user, 'change', function () {
-      asapp.requests.fetch();
+      asapp.requests.fetch({
+        reset: true
+      });
     });
     asapp.user.save({
       mobile: this.$('[name="mobile"]').val(),
