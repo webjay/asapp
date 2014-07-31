@@ -38,6 +38,7 @@ module.exports = (grunt) ->
             '_scripts/models/*.js'
             '_scripts/collections/*.js'
             '_scripts/views/*.js'
+            '_scripts/lib/*.js'
             '_scripts/*.js'
           ]
 

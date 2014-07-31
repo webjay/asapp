@@ -1,11 +1,4 @@
 
-if (!String.prototype.trim) {
-  String.prototype.trim = function () {
-    return this.replace(/^\s+|\s+$/g, '');
-  }
-}
-
-
 // global
 var asapp = {
   
@@ -22,12 +15,12 @@ var asapp = {
     });
   },
 
-  preload: function () {
-    asapp.groups.fetch();
-    asapp.locations.fetch();
-    asapp.statuses.fetch();
-    asapp.requests.fetch();
-    asapp.messages.fetch();
+  preload: function (callback) {
+    var collections = [asapp.groups, asapp.locations, asapp.statuses, asapp.requests, asapp.messages];
+    whenAll(collections, 'sync', callback);
+    for (var i = collections.length - 1; i >= 0; i--) {
+      collections[i].fetch();
+    }
   },
 
   date: function (d) {
@@ -59,12 +52,12 @@ jQuery(function ($) {
   asapp.router = new Router();
   asapp.views = {};
 
-  asapp.user.on('sync', asapp.preload);
-  asapp.user.fetch();
-
-  Backbone.history.start({
-    pushState: false
+  asapp.user.on('sync', function () {
+    asapp.preload(function () {
+      Backbone.history.start();
+    });
   });
+  asapp.user.fetch();
 
   // Socket.io
   var socket = io();
