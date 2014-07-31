@@ -3,6 +3,13 @@
   height: 10px;
   margin: 0 5px;
 }
+#ajaxloader {
+  line-height: 14px;
+}
+#ajaxloader img {
+  width: 14px;
+  height: 14px;
+}
 
 body {
   padding-top: 70px;

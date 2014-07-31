@@ -28,14 +28,14 @@ var asapp = {
 // when DOM has finished loading
 jQuery(function ($) {
   
-  // $(document).on({
-  //   ajaxStart: function(){
-  //     // $.mobile.loading('show');
-  //   },
-  //   ajaxComplete: function(){
-  //     // $.mobile.loading('hide');
-  //   }
-  // });
+  $(document).on({
+    ajaxStart: function(){
+      $('#ajaxloader').show();
+    },
+    ajaxComplete: function(){
+      $('#ajaxloader').hide();
+    }
+  });
 
   Backbone.$ = $;
 
