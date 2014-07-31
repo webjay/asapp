@@ -48,6 +48,11 @@ jQuery(function ($) {
   asapp.messages = new Messages();
   asapp.router = new Router();
   asapp.views = {};
+  
+  asapp.user.on('error', function () {
+    // this happens if the user isnt logged in
+    Backbone.history.start();
+  });
 
   asapp.user.on('sync', function () {
     asapp.preload(function () {
