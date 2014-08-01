@@ -82,6 +82,22 @@ module.exports.auth = function (req, res, next) {
   }
 }
 
+module.exports.get = function (req, res, next) {
+  var id = req.params.id;
+  User.findById(id).exec(function (err, user) {
+    if (err) return next(err);
+    res.json(user);
+  });
+}
+
+module.exports.put = function (req, res, next) {
+  var id = req.params.id;
+  User.findById(id).exec(function (err, user) {
+    if (err) return next(err);
+    res.json(user);
+  });
+}
+
 module.exports.update = function (req, res, next) {
   jsonBody(req, res, function (err, body) {
     if (err) return next(err);

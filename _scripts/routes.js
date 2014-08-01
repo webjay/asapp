@@ -21,31 +21,40 @@ var Router = Backbone.Router.extend({
     if (window.location.hash) {
       this.goto = window.location.hash;
     }
-    this.on('route', function (route) {
-      // check login
-      if (route !== 'login' && !asapp.user.has('username')) {
-        asapp.redirect('login');
-        return;
-      }
-      if (this.route_ignore.indexOf(route) === -1) {
-        // set title
-        document.title = 'ASAPP - ' + $('#' + route).data('title');
-        // set active menu item
-        $('nav ul li').removeClass('active');
-        $('.nav-' + route).addClass('active');
-        // toggle view
-        $('#' + this.view_current).addClass('hidden');
-        this.view_current = route;
-        $('#' + route).removeClass('hidden');
-      }
-    });
+    this.on('route', this.route_handler);
+  },
+  
+  route_handler: function (route) {
+    // check login
+    if (route !== 'login' && !asapp.user.has('username')) {
+      asapp.redirect('login');
+      return;
+    }
+    if (route === 'login' && asapp.user.has('username')) {
+      asapp.redirect();
+      return;
+    }
+    if (this.route_ignore.indexOf(route) === -1) {
+      // set title
+      document.title = 'ASAPP - ' + $('#' + route).data('title');
+      // set active menu item
+      $('nav ul li').removeClass('active');
+      $('.nav-' + route).addClass('active');
+      // toggle view
+      $('#' + this.view_current).addClass('hidden');
+      this.view_current = route;
+      $('#' + route).removeClass('hidden');
+    }
   },
 
   goto_default: function () {
     asapp.redirect();
   },
 
-  login: function(){
+  login: function () {
+    if (asapp.user.id) {
+      this.goto_default();
+    }
     if (asapp.views.login) {
       asapp.views.login.stopListening();
     }
@@ -57,7 +66,6 @@ var Router = Backbone.Router.extend({
 
   help: function () {
     if (asapp.views.help) {
-      // asapp.views.help.stopListening();
       return;
     }
     asapp.views.help = new HelpView({

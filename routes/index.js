@@ -53,6 +53,8 @@ exports.define = function (router, io) {
 
   router.route('/user/:id')
   .all(User.auth)
+  .get(User.get)
+  .put(User.put)
   .patch(User.update);
 
   router.route('/requests').all(User.auth).get(Request.all);

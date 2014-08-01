@@ -49,37 +49,39 @@ jQuery(function ($) {
   asapp.router = new Router();
   asapp.views = {};
   
-  asapp.user.on('error', function () {
-    // this happens if the user isnt logged in
-    Backbone.history.start();
+  // this happens if the user isnt logged in
+  asapp.user.on('error', function () { 
+    if (Backbone.History.started === false) {
+      Backbone.history.start();
+    }
   });
 
   asapp.user.on('sync', function () {
     asapp.preload(function () {
-      Backbone.history.start();
+      if (Backbone.History.started === false) {
+        Backbone.history.start();
+      } else {
+        asapp.redirect(window.location.hash);
+      }
     });
   });
   asapp.user.fetch();
 
   // Socket.io
   var socket = io();
-  socket.on('connect', function(){
+  socket.on('connect', function () {
+    $('#connerr').hide();
     if (asapp.socketHasDisconnected) {
       asapp.socketHasDisconnected = false;
-      asapp.user.fetch({
-        reset: true
-      });
+      asapp.user.fetch();
     }
     $(document).ajaxSend(function (event, request, settings) {
       request.setRequestHeader('socket-id', socket.io.engine.id);
     });
   });
-  socket.on('disconnect', function(){
+  socket.on('disconnect', function () {
     asapp.socketHasDisconnected = true;
-    var message = 'We seem to have lost connection to the server, would you like to try a reconnect?';
-    if (window.confirm(message)) {
-      window.location = '/';
-    }
+    $('#connerr').show();
   });
   socket.on('request add', function (obj) {
     asapp.requests.add(obj);
