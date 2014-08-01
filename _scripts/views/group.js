@@ -1,7 +1,7 @@
 var GroupView = Backbone.View.extend({
 
   tagName: 'label',
-  className: 'radio-inline',
+  className: 'btn btn-default',
   template: JST['_templates/radio-item.hjs'],
   
   initialize: function () {

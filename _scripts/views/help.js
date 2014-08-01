@@ -61,7 +61,7 @@ var HelpView = Backbone.View.extend({
   showAllButton: function (callback) {
     var view = new Backbone.View({
       tagName: 'button',
-      className: 'btn btn-default btn-xs showall',
+      className: 'btn btn-default showall',
       attributes: {
         type: 'button'
       },
