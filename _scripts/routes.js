@@ -41,9 +41,9 @@ var Router = Backbone.Router.extend({
       $('nav ul li').removeClass('active');
       $('.nav-' + route).addClass('active');
       // toggle view
-      $('#' + this.view_current).addClass('hidden');
+      $('#' + this.view_current).hide();
       this.view_current = route;
-      $('#' + route).removeClass('hidden');
+      $('#' + route).show();
     }
   },
 

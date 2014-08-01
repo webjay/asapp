@@ -36,6 +36,8 @@ jQuery(function ($) {
       $('#ajaxloader').hide();
     }
   });
+  
+  $('.hidden').hide().removeClass('hidden');
 
   Backbone.$ = $;
 
