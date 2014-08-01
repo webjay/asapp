@@ -70,7 +70,7 @@ var Router = Backbone.Router.extend({
     }
     asapp.views.help = new HelpView({
       collection: asapp.requests,
-      model: new asapp.requests.model
+      model: new Request()
     });
     asapp.views.help.render();
   },

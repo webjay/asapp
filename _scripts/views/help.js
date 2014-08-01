@@ -78,6 +78,8 @@ var HelpView = Backbone.View.extend({
       var $el = $(event.currentTarget);
       if ($el.attr('name') == 'urgent') {
         this.model.set('urgent', $el.attr('value'));
+      } else {
+        this.model.set('urgent', false);
       }
     }
     this.model.set(this.$('form').serializeObject());
@@ -87,9 +89,10 @@ var HelpView = Backbone.View.extend({
     event.preventDefault();
     this.modelSet();
     if (this.model.isValid()) {
-      this.collection.create(this.model);
+      this.collection.create(this.model.toJSON(), {
+        wait: true
+      });
       this.$('textarea').val('');
-      this.model = new this.collection.model;
       asapp.redirect('monitor');
     }
   }

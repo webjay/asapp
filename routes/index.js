@@ -59,12 +59,6 @@ exports.define = function (router, io) {
 
   router.route('/requests').all(User.auth).get(Request.all);
 
-  // router.route('/request')
-  // .all(User.auth)
-  // .post(Request.create)
-  // .put(Request.update);
-  // .patch(Request.update);
-
   router.route('/requests')
   .all(User.auth)
   .post(Request.create)
