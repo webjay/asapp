@@ -10,6 +10,9 @@ var HelpView = Backbone.View.extend({
   initialize: function () {
     this.listenTo(asapp.groups, 'sync', this.render);
     this.listenTo(asapp.locations, 'sync', this.render);
+    this.listenTo(this.model, 'invalid', function () {
+      this.$(this.model.validationError.select + ' .help-block span').html(this.model.validationError.msg);
+    });
   },
 
   render: function () {

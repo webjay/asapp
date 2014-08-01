@@ -10,18 +10,18 @@ var Request = Backbone.Model.extend({
     wilco: []
   },
 
-  initialize: function () {
-    this.on('invalid', function () {
-      console.error(this.validationError);
-    });
-  },
-
   validate: function (attrs, options) {
     if (!attrs.group) {
-      return 'Group must be set';
+      return {
+        select: '#request-groups',
+        msg: 'Group must be set'
+      };
     }
     if (!attrs.location) {
-      return 'Location must be set';
+      return {
+        select: '#request-locations',
+        msg: 'Location must be set'
+      };
     }
   },
   
