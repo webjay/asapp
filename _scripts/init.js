@@ -27,12 +27,12 @@ var asapp = {
 
 // when DOM has finished loading
 jQuery(function ($) {
-  
+
   $(document).on({
-    ajaxStart: function(){
+    ajaxStart: function () {
       $('#ajaxloader').show();
     },
-    ajaxComplete: function(){
+    ajaxComplete: function () {
       $('#ajaxloader').hide();
     }
   });

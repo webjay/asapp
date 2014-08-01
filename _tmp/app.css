@@ -10,6 +10,9 @@
   width: 14px;
   height: 14px;
 }
+button.showall {
+  margin-left: 15px;
+}
 
 body {
   padding-top: 70px;

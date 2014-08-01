@@ -11,7 +11,7 @@ var GroupView = Backbone.View.extend({
   },
 
   render: function () {
-    var data = this.model.attributes;
+    var data = this.model.toJSON();
     data.fieldName = 'group';
     this.$el.html(this.template(data));
     return this;
