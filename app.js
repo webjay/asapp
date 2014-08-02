@@ -24,6 +24,7 @@ var opbeat_client = opbeat.createClient({
 var dbconf = {
   url: process.env.MONGOURL,
   secret: 'go with the waves',
+  ttl: 10 * 60 * 60,
   options: {
     server: {
       socketOptions: { 
@@ -61,8 +62,13 @@ app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
 app.use(expressSession({
   secret: dbconf.secret,
+  cookie: {
+    maxAge: dbconf.ttl * 1000
+  },
+  rolling: true,
   store: new RedisStore({
-    url: process.env.REDISURL
+    url: process.env.REDISURL,
+    ttl: dbconf.ttl
   })
 }));
 
