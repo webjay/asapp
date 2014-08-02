@@ -20,13 +20,17 @@ var RequestView = Backbone.View.extend({
       data.created = new Date;
     }
     this.$el.html(this.template(data));
-    var statusesView = new StatusesView({
-      model: this.model
-    });
-    statusesView.render();
-    this.$('.btn-toolbar').append(statusesView.el);
+    // var statusesView = new StatusesView({
+    //   model: this.model
+    // });
+    // statusesView.render();
+    // this.$('.btn-toolbar').append(statusesView.el);
     if (this.model.user_wilco()) {
       this.$('.wilco').addClass('active');
+    }
+    var owner = this.model.get('owner');
+    if (owner && owner._id === asapp.user.id) {
+      this.$('.star').addClass('active');
     }
     return this;
   },

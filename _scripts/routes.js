@@ -96,7 +96,9 @@ var Router = Backbone.Router.extend({
   settings_location: null,
 
   chat: function (id) {
-    $('#chatmsg').focus();
+    setTimeout(function () {
+      $('#chatmsg').focus();
+    }, 0);
     if (asapp.views.chat) {
       asapp.views.chat.request_id = id;
       asapp.views.chat.render();

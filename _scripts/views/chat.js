@@ -6,47 +6,39 @@ var ChatView = Backbone.View.extend({
 
   events: {
     'change #chatmsg': 'modelSet',
-    'submit form': 'submit'
+    'submit form': 'submit',
+    'click .btn-chat': 'chat_focus'
   },
 
   initialize: function () {
     this.$content = this.$('.messages');
-    this.listenToOnce(this.collection, 'sync', function () {
-      this.render();
-      this.listenTo(this.collection, 'add', this.append);
-    });    
+    this.listenTo(this.collection, 'add', this.append);
+    this.listenTo(this.model, 'invalid', function () {
+      $('#chatmsg').closest('.form-group').addClass('has-error');
+      $('#chatmsg').one('keydown', function () {
+        $('#chatmsg').closest('.form-group').removeClass('has-error');
+      });
+    });
   },
   
   render_request: function (request_id) {
     var model = asapp.requests.get(request_id);
-    if (model) {
-      var view = new RequestView({
-        model: model
-      }).render();
-      this.$('.request').html(view.el);
-    } else {
-      this.listenToOnce(asapp.requests, 'sync', function () {
-        this.render_request(request_id);
-      });
-    }
+    var view = new RequestView({
+      model: model
+    }).render();
+    this.$('.request').html(view.el);
   },
 
   render_wilcos: function (request_id) {
     var model = asapp.requests.get(request_id);
-    if (model) {
-      if (model.get('urgent')) {
-        this.$('.panel.wilco').removeClass('panel-success');
-        this.$('.panel.wilco').addClass('panel-default');
-      }
-      var view = new WilcosView({
-        model: model
-      }).render();
-      this.$('.wilcos').html(view.el);
-    } else {
-      this.listenToOnce(asapp.requests, 'sync', function () {
-        this.render_wilcos(request_id);
-      });
+    if (model.get('urgent')) {
+      this.$('.panel.wilco').removeClass('panel-success');
+      this.$('.panel.wilco').addClass('panel-default');
     }
+    var view = new WilcosView({
+      model: model
+    }).render();
+    this.$('.wilcos').html(view.el);
   },
 
   render: function () {
@@ -74,16 +66,20 @@ var ChatView = Backbone.View.extend({
       model: model
     }).render();
     if (model.isNew()) {
-      view.$el.addClass('warning');
+      view.$el.addClass('list-group-item-warning');
       view.listenToOnce(model, 'sync', function () {
-        view.$el.removeClass('warning');
+        view.$el.removeClass('list-group-item-warning');
       });
     }
     this.$content.find('.list-group-item:last-child').before(view.el);
   },
+  
+  chat_focus: function () {
+    $('#chatmsg').focus();
+  },
 
   modelSet: function () {
-    this.model.set(this.$('form').serializeObject());
+    this.model.set('text', this.$('#chatmsg').val());
     this.model.set('request', this.request_id);
   },
 
@@ -91,9 +87,8 @@ var ChatView = Backbone.View.extend({
     event.preventDefault();
     this.modelSet();
     if (this.model.isValid()) {
-      this.collection.create(this.model);
+      this.collection.create(this.model.toJSON());
       this.$('#chatmsg').val('');
-      this.model = new this.collection.model;
     }
   }
 

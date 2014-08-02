@@ -1,7 +1,7 @@
 <div class="list-group-item-text">
-  <%- text %>
-  <div class="small text-muted">
+  <p class="small text-muted">
     <time datetime="<%- created %>"><%- asapp.date(created) %></time>
     by <%- user.username %>
-  </div>
+  </p>
+  <%- text %>
 </div>

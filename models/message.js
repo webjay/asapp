@@ -51,7 +51,7 @@ module.exports.create = function (req, res, next) {
       if (err) return next(err);
       Message.findOne(doc).select('-__v').populate(popuptions).exec(function (err, doc) {
         if (err) return next(err);
-        res.json(201, doc);
+        res.json(doc);
         socketeer.broadcast(req.socketio, 'message add', doc);
       });
     });

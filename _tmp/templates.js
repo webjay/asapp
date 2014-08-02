@@ -35,15 +35,15 @@ this["JST"]["_templates/message.hjs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="list-group-item-text">\n' +
-__e( text ) +
-'\n<div class="small text-muted">\n<time datetime="' +
+__p += '<div class="list-group-item-text">\n<p class="small text-muted">\n<time datetime="' +
 __e( created ) +
 '">' +
 __e( asapp.date(created) ) +
 '</time>\nby ' +
 __e( user.username ) +
-'\n</div>\n</div>';
+'\n</p>\n' +
+__e( text ) +
+'\n</div>';
 
 }
 return __p
@@ -69,39 +69,41 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class="caption">\n<small>\n<strong><time datetime="' +
+__p += '<div class="caption">\n<div class="pull-right">\n';
+ if (urgent) { ;
+__p += '\n<span class="label label-danger">Urgent</span>\n';
+ } else { ;
+__p += '\n<span class="label label-info">FYI</span>\n';
+ } ;
+__p += '\n</div>\n<small>\n<strong><time datetime="' +
 __e( created ) +
 '">' +
 __e( asapp.date(created) ) +
-'</time></strong>\nin <strong>' +
-__e( location.name ) +
-'</strong>\nby <strong>' +
+'</time></strong>\nby <strong>' +
 __e( user.username ) +
+'</strong>\nin <strong>' +
+__e( location.name ) +
 '</strong>\nabout <strong>' +
 __e( group.name ) +
 '</strong>\n</small>\n<p>\n' +
 __e( description ) +
-'\n</p>\n<div class="pull-right">\n';
- if (urgent) { ;
-__p += '\n<span class="label label-danger">Urgent</span>\n';
- } ;
-__p += '\n';
+'\n</p>\n<p>\n';
  if (owner) { ;
-__p += '\n<span class="label label-warning">Owner: ' +
+__p += '\n<span class="label label-info">\nOwner: <strong>' +
 __e( owner.username ) +
-'</span>\n';
+'</strong>\n</span>\n';
  } ;
-__p += '\n</div>\n<div class="btn-toolbar">\n<div class="btn-group btn-group-xs">\n<a href="#chat/' +
-__e( _id ) +
-'" class="btn btn-info btn-chat">Discuss</a>\n</div>\n<div class="btn-group btn-group-xs">\n<button type="button" class="btn btn-default star" title="Owner" ';
+__p += '\n</p>\n<div class="btn-toolbar">\n<div class="btn-group btn-group-lg">\n<button type="button" class="btn btn-default star" title="Owner" ';
  if (!urgent) { ;
 __p += 'disabled';
  } ;
-__p += '>\n<span class="glyphicon glyphicon-star"></span>\n</button>\n<button type="button" class="btn btn-default wilco" title="Acknowledge" ';
+__p += '>\n<span class="glyphicon glyphicon-star"></span>\nI\'m on it\n</button>\n<button type="button" class="btn btn-default wilco" title="Acknowledge" ';
  if (urgent) { ;
 __p += 'disabled';
  } ;
-__p += '>\n<span class="glyphicon glyphicon-ok"></span>\n</button>\n</div>\n</div>\n</div>';
+__p += '>\n<span class="glyphicon glyphicon-ok"></span>\n10-4\n</button>\n</div>\n<div class="btn-group btn-group-lg">\n<a href="#chat/' +
+__e( _id ) +
+'" class="btn btn-default btn-chat">Chat</a>\n</div>\n</div>\n</div>';
 
 }
 return __p

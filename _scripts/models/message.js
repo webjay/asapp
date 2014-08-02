@@ -11,14 +11,8 @@ var Message = Backbone.Model.extend({
     text: null
   },
 
-  initialize: function () {
-    this.on('invalid', function () {
-      console.error(this.validationError);
-    });
-  },
-
   validate: function (attrs, options) {
-    if (_.isEmpty(attrs.text)) {
+    if (_.isEmpty(attrs.text.trim())) {
       return 'Message must be set';
     }
   }
