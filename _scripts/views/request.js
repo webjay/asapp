@@ -5,8 +5,9 @@ var RequestView = Backbone.View.extend({
   template: JST['_templates/request.hjs'],
   
   events: {
-    'click button.wilco': 'wilco',
-    'click button.star': 'star'
+    // 'click button.wilco': 'wilco',
+    // 'click button.star': 'star',
+    // 'click .statuses': 'set_status'
   },
 
   initialize: function () {
@@ -20,11 +21,11 @@ var RequestView = Backbone.View.extend({
       data.created = new Date;
     }
     this.$el.html(this.template(data));
-    // var statusesView = new StatusesView({
-    //   model: this.model
-    // });
-    // statusesView.render();
-    // this.$('.btn-toolbar').append(statusesView.el);
+    var statusesView = new StatusesView({
+      model: this.model
+    });
+    this.$('.statuses').html(statusesView.render().el);
+    this.$('.selectpicker').selectpicker();
     if (this.model.user_wilco()) {
       this.$('.wilco').addClass('active');
     }
@@ -35,22 +36,29 @@ var RequestView = Backbone.View.extend({
     return this;
   },
   
-  wilco: function () {
-    this.model.save({
-      wilco_set: this.model.user_wilco()
-    }, {
-      patch: true,
-      wait: true
-    });
-  },
-
-  star: function () {
-    this.model.save({
-      owner: asapp.user.id
-    }, {
-      patch: true,
-      wait: true
-    });
-  }
+  // set_status: function (event) {
+  //   event.preventDefault();
+  //   var $el = $(event.currentTarget);
+  //   var action = $el.data('action');
+  //   console.log(action);
+  // },
+  //
+  // wilco: function () {
+  //   this.model.save({
+  //     wilco_set: this.model.user_wilco()
+  //   }, {
+  //     patch: true,
+  //     wait: true
+  //   });
+  // },
+  //
+  // star: function () {
+  //   this.model.save({
+  //     owner: asapp.user.id
+  //   }, {
+  //     patch: true,
+  //     wait: true
+  //   });
+  // }
 
 });

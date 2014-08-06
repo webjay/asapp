@@ -93,17 +93,9 @@ __p += '\n<span class="label label-info">\nOwner: <strong>' +
 __e( owner.username ) +
 '</strong>\n</span>\n';
  } ;
-__p += '\n</p>\n<div class="btn-toolbar">\n<div class="btn-group btn-group-lg">\n<button type="button" class="btn btn-default star" title="Owner" ';
- if (!urgent) { ;
-__p += 'disabled';
- } ;
-__p += '>\n<span class="glyphicon glyphicon-star"></span>\nI\'m on it\n</button>\n<button type="button" class="btn btn-default wilco" title="Acknowledge" ';
- if (urgent) { ;
-__p += 'disabled';
- } ;
-__p += '>\n<span class="glyphicon glyphicon-ok"></span>\n10-4\n</button>\n</div>\n<div class="btn-group btn-group-lg">\n<a href="#chat/' +
+__p += '\n</p>\n<div class="btn-toolbar">\n<div class="btn-group">\n<a href="#chat/' +
 __e( _id ) +
-'" class="btn btn-default btn-chat">Chat</a>\n</div>\n</div>\n</div>';
+'" class="btn btn-default btn-chat">Chat</a>\n</div>\n<div class="statuses"></div>\n</div>\n</div>';
 
 }
 return __p
@@ -114,17 +106,13 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">\n' +
-__e( status ) +
-'\n<span class="caret"></span>\n</button>\n<ul class="dropdown-menu" role="menu">\n';
- _.each(statuses, function (status) { ;
-__p += '\n<li><a href="#" data-id="' +
-__e( status._id ) +
-'">' +
-__e( status.name ) +
-'</a></li>\n';
- }); ;
-__p += '\n</ul>';
+__p += '<select class="selectpicker" data-width="auto">\n';
+ if (urgent) { ;
+__p += '\n<option>I\'m on it</option>\n<option>Closed</option>\n';
+ } else { ;
+__p += '\n<option>10-4</option>\n<option>Closed</option>\n';
+ } ;
+__p += '\n</select>';
 
 }
 return __p

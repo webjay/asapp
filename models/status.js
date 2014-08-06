@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-  name: String
+  name: String,
+  fyi: Boolean,
+  urgent: Boolean,
+  action: String
 });
 
 var Status = mongoose.model('status', schema);

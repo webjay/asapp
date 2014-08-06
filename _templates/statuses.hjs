@@ -1,9 +1,9 @@
-<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-  <%- status %>
-  <span class="caret"></span>
-</button>
-<ul class="dropdown-menu" role="menu">
-  <% _.each(statuses, function (status) { %>
-    <li><a href="#" data-id="<%- status._id %>"><%- status.name %></a></li>
-  <% }); %>
-</ul>
+<select class="selectpicker" data-width="auto">
+  <% if (urgent) { %>
+    <option>I'm on it</option>
+    <option>Closed</option>
+  <% } else { %>
+    <option>10-4</option>
+    <option>Closed</option>
+  <% } %>
+</select>

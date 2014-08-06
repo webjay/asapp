@@ -23,18 +23,9 @@
     <% } %>
   </p>
   <div class="btn-toolbar">
-    <div class="btn-group btn-group-lg">
-      <button type="button" class="btn btn-default star" title="Owner" <% if (!urgent) { %>disabled<% } %>>
-        <span class="glyphicon glyphicon-star"></span>
-        I'm on it
-      </button>
-      <button type="button" class="btn btn-default wilco" title="Acknowledge" <% if (urgent) { %>disabled<% } %>>
-        <span class="glyphicon glyphicon-ok"></span>
-        10-4
-      </button>
-    </div>
-    <div class="btn-group btn-group-lg">
+    <div class="btn-group">
       <a href="#chat/<%- _id %>" class="btn btn-default btn-chat">Chat</a>
     </div>
+    <div class="statuses"></div>
   </div>
 </div>

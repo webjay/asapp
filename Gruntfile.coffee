@@ -5,13 +5,13 @@ module.exports = (grunt) ->
     uglify:
       bootstrap:
         options:
-          mangle: false
           compress: false
+          mangle: false
         files:
-          '_tmp/bootstrap/js/bootstrap.js': [
+          '_tmp/bootstrap.js': [
             # 'bower_components/bootstrap/js/tab.js'
             # 'bower_components/bootstrap/js/alert.js'
-            # 'bower_components/bootstrap/js/modal.js'
+            'bower_components/bootstrap/js/modal.js'
             # 'bower_components/bootstrap/js/collapse.js'
             # 'bower_components/bootstrap/js/transition.js'
             'bower_components/bootstrap/js/button.js'
@@ -19,23 +19,32 @@ module.exports = (grunt) ->
           ]
       components:
         options:
-          # compress: true
           compress: false
-          sourceMap: true
-          sourceMapIncludeSources: true
           mangle: false
           # mangle: {
-          #   except: ['jQuery', '$']
+          #   except: ['jQuery', '$', 'Backbone', '_', 'io']
           # }
         files:
-          'public/js/app.js': [
+          '_tmp/components.js': [
             'bower_components/jquery/dist/jquery.js'
             'bower_components/jQuery.serializeObject/dist/jquery.serializeObject.min.js'
             'bower_components/lodash/dist/lodash.underscore.js'
             'bower_components/backbone/backbone.js'
             'bower_components/momentjs/moment.js'
             'bower_components/socket.io-client/socket.io.js'
-            '_tmp/bootstrap/js/bootstrap.js'
+            'bower_components/bootstrap-select/bootstrap-select.js'
+          ]
+      app:
+        options:
+          # compress: true
+          compress: false
+          sourceMap: true
+          sourceMapIncludeSources: true
+          mangle: false
+        files:
+          'public/js/app.js': [
+            '_tmp/components.js'
+            '_tmp/bootstrap.js'
             '_tmp/templates.js'
             '_scripts/models/*.js'
             '_scripts/collections/*.js'
@@ -60,6 +69,7 @@ module.exports = (grunt) ->
         files:
           'public/css/app.css': [
             '_tmp/app.css'
+            'bower_components/bootstrap-select/bootstrap-select.css'
           ]
 
     copy:
@@ -94,10 +104,10 @@ module.exports = (grunt) ->
         atBegin: true
       scripts:
         files: ['_scripts/**/*.js']
-        tasks: ['uglify:components']
+        tasks: ['uglify:app']
       jst:
         files: ['_templates/*.hjs']
-        tasks: ['jst', 'uglify:components']
+        tasks: ['jst', 'uglify:app']
       style:
         files: ['_styles/*.less']
         tasks: ['less', 'cssmin']
