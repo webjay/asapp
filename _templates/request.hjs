@@ -15,16 +15,9 @@
   <p>
     <%- description %>
   </p>
-  <p>
-    <% if (owner) { %>
-      <span class="label label-info">
-        Owner: <strong><%- owner.username %></strong>
-      </span>
-    <% } %>
-  </p>
   <div class="btn-toolbar">
     <div class="btn-group">
-      <a href="#chat/<%- _id %>" class="btn btn-default btn-chat">Chat</a>
+      <a href="#chat/<%- _id %>" class="btn btn-default btn-chat">Discuss</a>
     </div>
     <div class="statuses"></div>
   </div>

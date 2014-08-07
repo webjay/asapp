@@ -28,7 +28,12 @@ var StatusesView = Backbone.View.extend({
           value: status.id
         }
       }).render();
-      view.$el.html(status.get('name'));
+      var name = status.get('name');
+      var owner = this.model.get('owner');
+      if (status.get('action') === 'owner' && owner) {
+        name = owner.username + ' is owner';
+      }
+      view.$el.html(name);
       this.$el.append(view.el);
     }, this);
     var selected = this.model.get('status')._id;

@@ -87,15 +87,9 @@ __e( location.name ) +
 __e( group.name ) +
 '</strong>\n</small>\n<p>\n' +
 __e( description ) +
-'\n</p>\n<p>\n';
- if (owner) { ;
-__p += '\n<span class="label label-info">\nOwner: <strong>' +
-__e( owner.username ) +
-'</strong>\n</span>\n';
- } ;
-__p += '\n</p>\n<div class="btn-toolbar">\n<div class="btn-group">\n<a href="#chat/' +
+'\n</p>\n<div class="btn-toolbar">\n<div class="btn-group">\n<a href="#chat/' +
 __e( _id ) +
-'" class="btn btn-default btn-chat">Chat</a>\n</div>\n<div class="statuses"></div>\n</div>\n</div>';
+'" class="btn btn-default btn-chat">Discuss</a>\n</div>\n<div class="statuses"></div>\n</div>\n</div>';
 
 }
 return __p

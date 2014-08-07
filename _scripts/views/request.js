@@ -4,12 +4,6 @@ var RequestView = Backbone.View.extend({
   className: 'thumbnail',
   template: JST['_templates/request.hjs'],
   
-  events: {
-    // 'click button.wilco': 'wilco',
-    // 'click button.star': 'star',
-    // 'click .statuses': 'set_status'
-  },
-
   initialize: function () {
     this.listenTo(this.model, 'change', this.render);
   },
@@ -29,36 +23,10 @@ var RequestView = Backbone.View.extend({
     if (this.model.user_wilco()) {
       this.$('.wilco').addClass('active');
     }
-    var owner = this.model.get('owner');
-    if (owner && owner._id === asapp.user.id) {
+    if (this.model.user_is_owner()) {
       this.$('.star').addClass('active');
     }
     return this;
-  },
-  
-  // set_status: function (event) {
-  //   event.preventDefault();
-  //   var $el = $(event.currentTarget);
-  //   var action = $el.data('action');
-  //   console.log(action);
-  // },
-  //
-  // wilco: function () {
-  //   this.model.save({
-  //     wilco_set: this.model.user_wilco()
-  //   }, {
-  //     patch: true,
-  //     wait: true
-  //   });
-  // },
-  //
-  // star: function () {
-  //   this.model.save({
-  //     owner: asapp.user.id
-  //   }, {
-  //     patch: true,
-  //     wait: true
-  //   });
-  // }
+  }
 
 });
