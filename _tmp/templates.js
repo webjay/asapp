@@ -91,7 +91,7 @@ __e( description ) +
 ((__t = ( wilcos )) == null ? '' : __t) +
 '</p>\n';
  if (owner) { ;
-__p += '\n<p class="text-warning">\n<span class="text-muted">\n<em>Owner</em>:\n</span>\n<strong>' +
+__p += '\n<p class="small text-warning">\n<span class="text-muted">\n<em>Owner</em>:\n</span>\n<strong>' +
 __e( owner.username ) +
 '</strong>\n</p>\n';
  } ;
@@ -114,7 +114,7 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class="small">\n<span class="text-muted">\n<em>Acknowledgements</em>\n<span class="badge">' +
+__p += '<div class="small text-success">\n<span class="text-muted">\n<em>Acknowledgements</em>\n<span class="badge">' +
 ((__t = ( usernames.length )) == null ? '' : __t) +
 '</span>\n</span>\n';
  for (var i = usernames.length - 1; i >= 0; i--) { ;

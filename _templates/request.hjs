@@ -15,7 +15,7 @@
   <p><%- description %></p>
   <p><%= wilcos %></p>
   <% if (owner) { %>
-    <p class="text-warning">
+    <p class="small text-warning">
       <span class="text-muted">
         <em>Owner</em>:
       </span>

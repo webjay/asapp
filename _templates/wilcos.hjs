@@ -1,4 +1,4 @@
-<div class="small">
+<div class="small text-success">
   <span class="text-muted">
     <em>Acknowledgements</em>
     <span class="badge"><%= usernames.length %></span>
