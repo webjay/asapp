@@ -77,7 +77,11 @@ var Request = mongoose.model('requests', schema);
 module.exports.all = function (req, res) {
   var cond = null;
   var groups = req.session.user.groups;
-  groups = groups.concat(req.session.user.follow.groups);
+  if (req.session.user.follow.groups.length) {
+    groups = groups.filter(function (n) {
+        return req.session.user.follow.groups.indexOf(n) !== -1
+    });
+  }
   if (req.session.user.admin !== true) {
     cond = {
       group: {
