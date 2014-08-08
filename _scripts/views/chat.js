@@ -30,17 +30,11 @@ var ChatView = Backbone.View.extend({
   },
 
   render: function () {
-    this.$content.remove('.msg');
-    var messages = [];
-    if (this.request_id) {
-      this.render_request(this.request_id);
-      messages = this.collection.where({
-        request: this.request_id
-      });
-    } else {
-      this.$('.request').empty();
-      messages = this.collection.models;
-    }
+    this.$('.msg').remove();
+    this.render_request(this.request_id);
+    var messages = this.collection.where({
+      request: this.request_id
+    });
     _.each(messages, this.append, this);
     return this;
   },

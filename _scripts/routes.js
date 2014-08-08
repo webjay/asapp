@@ -8,7 +8,6 @@ var Router = Backbone.Router.extend({
     'monitor': 'monitor',
     'settings-profile': 'settings_profile',
     'settings-location': 'settings_location',
-    'chat': 'chat',
     'chat/:id': 'chat',
     'admin': 'admin'
   },
