@@ -89,11 +89,21 @@ __e( group.name ) +
 __e( description ) +
 '</p>\n<p>' +
 ((__t = ( wilcos )) == null ? '' : __t) +
-'</p>\n<div class="btn-toolbar">\n<div class="btn-group">\n<a href="#chat/' +
+'</p>\n';
+ if (owner) { ;
+__p += '\n<p class="text-warning">\n<span class="text-muted">\n<em>Owner</em>:\n</span>\n<strong>' +
+__e( owner.username ) +
+'</strong>\n</p>\n';
+ } ;
+__p += '\n<div class="btn-toolbar">\n<div class="btn-group">\n<a href="#chat/' +
 __e( _id ) +
-'" class="btn btn-default btn-chat">Discuss</a>\n</div>\n' +
-((__t = ( statuses )) == null ? '' : __t) +
-'\n</div>\n</div>';
+'" class="btn btn-default btn-chat">Discuss</a>\n</div>\n<div class="btn-group">\n';
+ if (urgent) { ;
+__p += '\n<button class="btn btn-default star">I\'m on it</button>\n';
+ } else { ;
+__p += '\n<button class="btn btn-default wilco">10-4</button>\n';
+ } ;
+__p += '\n</div>\n</div>\n</div>';
 
 }
 return __p
@@ -104,7 +114,7 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class="small">\n<span class="text-muted">\nAcknowledgements\n<span class="badge">' +
+__p += '<div class="small">\n<span class="text-muted">\n<em>Acknowledgements</em>\n<span class="badge">' +
 ((__t = ( usernames.length )) == null ? '' : __t) +
 '</span>\n</span>\n';
  for (var i = usernames.length - 1; i >= 0; i--) { ;

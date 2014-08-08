@@ -3,6 +3,11 @@ var RequestView = Backbone.View.extend({
   className: 'thumbnail',
   template: JST['_templates/request.hjs'],
   
+  events: {
+    'click .wilco': 'wilco',
+    'click .star': 'star'
+  },
+  
   initialize: function () {
     this.listenTo(this.model, 'change', this.render);
   },
@@ -18,9 +23,7 @@ var RequestView = Backbone.View.extend({
     } else {
       data.wilcos = null;
     }
-    data.statuses = this.render_statuses().el.outerHTML;
     this.$el.html(this.template(data));
-    this.$('.selectpicker').selectpicker();
     return this;
   },
 
@@ -30,10 +33,22 @@ var RequestView = Backbone.View.extend({
     }).render();
   },
   
-  render_statuses: function () {
-    return new StatusesView({
-      model: this.model
-    }).render();
+  wilco: function () {
+    this.model.save({
+      wilco_set: this.model.user_wilco()
+    }, {
+      patch: true,
+      wait: true
+    });
+  },
+
+  star: function () {
+    this.model.save({
+      owner: asapp.user.id
+    }, {
+      patch: true,
+      wait: true
+    });
   }
 
 });

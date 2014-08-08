@@ -32,7 +32,6 @@ module.exports = (grunt) ->
             'bower_components/backbone/backbone.js'
             'bower_components/momentjs/moment.js'
             'bower_components/socket.io-client/socket.io.js'
-            'bower_components/bootstrap-select/bootstrap-select.js'
           ]
       app:
         options:

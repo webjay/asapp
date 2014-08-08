@@ -1,6 +1,6 @@
 <div class="small">
   <span class="text-muted">
-    Acknowledgements
+    <em>Acknowledgements</em>
     <span class="badge"><%= usernames.length %></span>
   </span>
   <% for (var i = usernames.length - 1; i >= 0; i--) { %>

@@ -45,7 +45,7 @@ jQuery(function ($) {
   asapp.user = new User();
   asapp.groups = new Groups();
   asapp.locations = new Locations();
-  asapp.statuses = new Statuses();
+  // asapp.statuses = new Statuses();
   asapp.requests = new Requests();
   asapp.messages = new Messages();
   asapp.router = new Router();
