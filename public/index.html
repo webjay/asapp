@@ -93,21 +93,27 @@
   <div id="monitor" data-title="Monitor" class="hidden"></div>
 
 
-  <div id="chat" data-title="Chat" class="hidden">
+  <div id="chat" data-title="Chat" class="modal fade hidden">
 
-  <div class="request"></div>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
 
-  <div class="list-group messages">
-    <div class="list-group-item list-group-item-info">
-      <div class="list-group-item-heading">Chat</div>
-    </div>
-    <div class="list-group-item">
-    	<form role="form">
-    		<fieldset class="form-group">
-          <label for="chatmsg" class="sr-only">Message</label>
-          <input type="text" name="text" id="chatmsg" placeholder="Say say say" autofocus required class="form-control">
-    		</fieldset>
-    	</form>
+      <div class="request"></div>
+
+      <div class="list-group messages">
+        <div class="list-group-item list-group-item-info">
+          <div class="list-group-item-heading">Discuss</div>
+        </div>
+        <div class="list-group-item">
+        	<form role="form">
+        		<fieldset class="form-group">
+              <label for="chatmsg" class="sr-only">Message</label>
+              <input type="text" name="text" id="chatmsg" placeholder="Say say say" autofocus required class="form-control">
+        		</fieldset>
+        	</form>
+        </div>
+      </div>
+    
     </div>
   </div>
 

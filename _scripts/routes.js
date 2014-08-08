@@ -96,6 +96,10 @@ var Router = Backbone.Router.extend({
   settings_location: null,
 
   chat: function (id) {
+    $('#chat').modal();
+    $('#chat').one('hide.bs.modal', function (event) {
+      asapp.redirect('monitor');
+    })
     setTimeout(function () {
       $('#chatmsg').focus();
     }, 0);
