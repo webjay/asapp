@@ -29,24 +29,11 @@ var ChatView = Backbone.View.extend({
     this.$('.request').html(view.el);
   },
 
-  render_wilcos: function (request_id) {
-    var model = asapp.requests.get(request_id);
-    if (model.get('urgent')) {
-      this.$('.panel.wilco').removeClass('panel-success');
-      this.$('.panel.wilco').addClass('panel-default');
-    }
-    var view = new WilcosView({
-      model: model
-    }).render();
-    this.$('.wilcos').html(view.el);
-  },
-
   render: function () {
     this.$content.remove('.msg');
     var messages = [];
     if (this.request_id) {
       this.render_request(this.request_id);
-      this.render_wilcos(this.request_id);
       messages = this.collection.where({
         request: this.request_id
       });

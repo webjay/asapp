@@ -1,6 +1,5 @@
 var RequestView = Backbone.View.extend({
 
-  tagName: 'div',
   className: 'thumbnail',
   template: JST['_templates/request.hjs'],
   
@@ -14,19 +13,27 @@ var RequestView = Backbone.View.extend({
       data._id = 0;
       data.created = new Date;
     }
+    if (this.model.get('urgent') === false) {
+      data.wilcos = this.render_wilcos().$el.html();
+    } else {
+      data.wilcos = null;
+    }
+    data.statuses = this.render_statuses().el.outerHTML;
     this.$el.html(this.template(data));
-    var statusesView = new StatusesView({
-      model: this.model
-    });
-    this.$('.statuses').html(statusesView.render().el);
     this.$('.selectpicker').selectpicker();
-    if (this.model.user_wilco()) {
-      this.$('.wilco').addClass('active');
-    }
-    if (this.model.user_is_owner()) {
-      this.$('.star').addClass('active');
-    }
     return this;
+  },
+
+  render_wilcos: function () {
+    return new WilcosView({
+      model: this.model
+    }).render();
+  },
+  
+  render_statuses: function () {
+    return new StatusesView({
+      model: this.model
+    }).render();
   }
 
 });

@@ -85,28 +85,15 @@ __e( user.username ) +
 __e( location.name ) +
 '</strong>\nabout <strong>' +
 __e( group.name ) +
-'</strong>\n</small>\n<p>\n' +
+'</strong>\n</small>\n<p>' +
 __e( description ) +
-'\n</p>\n<div class="btn-toolbar">\n<div class="btn-group">\n<a href="#chat/' +
+'</p>\n<p>' +
+((__t = ( wilcos )) == null ? '' : __t) +
+'</p>\n<div class="btn-toolbar">\n<div class="btn-group">\n<a href="#chat/' +
 __e( _id ) +
-'" class="btn btn-default btn-chat">Discuss</a>\n</div>\n<div class="statuses"></div>\n</div>\n</div>';
-
-}
-return __p
-};
-
-this["JST"]["_templates/statuses.hjs"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
-function print() { __p += __j.call(arguments, '') }
-with (obj) {
-__p += '<select class="selectpicker" data-width="auto">\n';
- if (urgent) { ;
-__p += '\n<option>I\'m on it</option>\n<option>Closed</option>\n';
- } else { ;
-__p += '\n<option>10-4</option>\n<option>Closed</option>\n';
- } ;
-__p += '\n</select>';
+'" class="btn btn-default btn-chat">Discuss</a>\n</div>\n' +
+((__t = ( statuses )) == null ? '' : __t) +
+'\n</div>\n</div>';
 
 }
 return __p
@@ -114,13 +101,22 @@ return __p
 
 this["JST"]["_templates/wilcos.hjs"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<!-- <div class="col-sm-1">\n<div class="thumbnail">\n<div class="caption">\n<small>\n' +
-__e( username ) +
-'\n</small>\n</div>\n</div>\n</div> -->\n<span class="label label-success">' +
-__e( username ) +
-'</span>';
+__p += '<div class="small">\n<span class="text-muted">\nAcknowledgements\n<span class="badge">' +
+((__t = ( usernames.length )) == null ? '' : __t) +
+'</span>\n</span>\n';
+ for (var i = usernames.length - 1; i >= 0; i--) { ;
+__p += '\n<strong>' +
+__e( usernames[i] ) +
+'</strong>';
+ if (i > 0) { ;
+__p += ', ';
+ } ;
+__p += '\n';
+ } ;
+__p += '\n</div>';
 
 }
 return __p

@@ -12,13 +12,12 @@
     in <strong><%- location.name %></strong>
     about <strong><%- group.name %></strong>
   </small>
-  <p>
-    <%- description %>
-  </p>
+  <p><%- description %></p>
+  <p><%= wilcos %></p>
   <div class="btn-toolbar">
     <div class="btn-group">
       <a href="#chat/<%- _id %>" class="btn btn-default btn-chat">Discuss</a>
     </div>
-    <div class="statuses"></div>
+    <%= statuses %>
   </div>
 </div>

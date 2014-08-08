@@ -1,9 +1,0 @@
-<select class="selectpicker" data-width="auto">
-  <% if (urgent) { %>
-    <option>I'm on it</option>
-    <option>Closed</option>
-  <% } else { %>
-    <option>10-4</option>
-    <option>Closed</option>
-  <% } %>
-</select>

@@ -12,6 +12,13 @@ var StatusesView = Backbone.View.extend({
   },
 
   render: function () {
+    var view = new Backbone.View({
+      tagName: 'option',
+      attributes: {
+        'data-content': '<span class="glyphicon glyphicon-cog"></span>'
+      }
+    }).render();
+    this.$el.append(view.el);
     if (this.model.get('urgent')) {
       var statuses = asapp.statuses.where({
         urgent: true
@@ -21,6 +28,7 @@ var StatusesView = Backbone.View.extend({
         fyi: true
       });
     }
+    var owner = this.model.get('owner');
     _.each(statuses, function (status) {
       var view = new Backbone.View({
         tagName: 'option',
@@ -29,15 +37,16 @@ var StatusesView = Backbone.View.extend({
         }
       }).render();
       var name = status.get('name');
-      var owner = this.model.get('owner');
-      if (status.get('action') === 'owner' && owner) {
+      if (owner && status.get('action') === 'owner') {
         name = owner.username + ' is owner';
       }
       view.$el.html(name);
       this.$el.append(view.el);
     }, this);
-    var selected = this.model.get('status')._id;
-    this.$('option[value=' + selected + ']').attr('selected', 'selected');
+    if (owner) {
+      var selected = this.model.get('status')._id;
+      this.$('option[value=' + selected + ']').attr('selected', 'selected');
+    }
     // $('.selectpicker').selectpicker();
     return this;
   },

@@ -8,10 +8,15 @@ var WilcosView = Backbone.View.extend({
 
   render: function () {
     var wilcos = this.model.get('wilco');
-    this.$el.empty();
-    for (var i = wilcos.length - 1; i >= 0; i--) {
-      this.$el.append(this.template(wilcos[i]));
+    if (!wilcos) {
+      return this;
     }
+    var usernames = wilcos.map(function (wilco) {
+      return wilco.username;
+    });
+    this.$el.html(this.template({
+      usernames: usernames
+    }));
     return this;
   }
 
