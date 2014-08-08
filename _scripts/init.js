@@ -12,7 +12,7 @@ var asapp = {
   },
 
   preload: function (callback) {
-    var collections = [asapp.groups, asapp.locations, asapp.statuses, asapp.requests, asapp.messages];
+    var collections = [asapp.groups, asapp.locations, asapp.requests, asapp.messages];
     whenAll(collections, 'sync', callback);
     for (var i = collections.length - 1; i >= 0; i--) {
       collections[i].fetch();
