@@ -25,6 +25,8 @@ var RequestView = Backbone.View.extend({
     } else {
       data.wilcos = null;
     }
+    data.user_is_owner = this.model.user_is_owner();
+    data.user_wilco = this.model.user_wilco();
     this.$el.html(this.template(data));
     if (this.model.get('open') === false) {
       this.$('.btn').not('[data-action="open"],.btn-chat').prop('disabled', true).addClass('disabled');

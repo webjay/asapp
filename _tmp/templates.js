@@ -105,9 +105,17 @@ __p += '\n</div>\n<div class="btn-group">\n<a href="#chat/' +
 __e( _id ) +
 '" class="btn btn-default btn-chat">Discuss</a>\n</div>\n<div class="btn-group">\n';
  if (urgent) { ;
-__p += '\n<button class="btn btn-default star">I\'m on it</button>\n';
+__p += '\n<button class="btn btn-default star ';
+ if (user_is_owner) { ;
+__p += 'active';
+ } ;
+__p += '">I\'m on it</button>\n';
  } else { ;
-__p += '\n<button class="btn btn-default wilco">10-4</button>\n';
+__p += '\n<button class="btn btn-default wilco ';
+ if (user_wilco) { ;
+__p += 'active';
+ } ;
+__p += '">10-4</button>\n';
  } ;
 __p += '\n</div>\n</div>\n</div>';
 
