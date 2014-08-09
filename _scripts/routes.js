@@ -17,7 +17,7 @@ var Router = Backbone.Router.extend({
   route_ignore: ['goto_default'],
 
   initialize: function () {
-    if (window.location.hash) {
+    if (window.location.hash && window.location.hash !== '#login') {
       this.goto = window.location.hash;
     }
     this.on('route', this.route_handler);

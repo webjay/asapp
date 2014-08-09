@@ -62,9 +62,8 @@ jQuery(function ($) {
     asapp.preload(function () {
       if (Backbone.History.started === false) {
         Backbone.history.start();
-      } else {
-        asapp.redirect(window.location.hash);
       }
+      asapp.redirect(window.location.hash);
     });
   });
   asapp.user.fetch();
