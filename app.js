@@ -16,9 +16,9 @@ if (!process.env.REDISURL) {
 
 var opbeat = require('opbeat'); 
 var opbeat_client = opbeat.createClient({ 
-  organization_id: '49efe7c522234909a3dce43d20dc76ff',
-  app_id: '3706f3bfea',
-  secret_token: '93233cf8840e10a2988cc4af51e9aa885bcc01ca'
+  organization_id: '3729dc33f31f4ecdb6a2c15024fa61dc',
+  app_id: 'b400f4cf4a',
+  secret_token: 'e391264234a6ede7dffc0b3669f1d425fb8642fa'
 });
 
 var dbconf = {
