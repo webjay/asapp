@@ -30,12 +30,20 @@ var ChatView = Backbone.View.extend({
   },
 
   render: function () {
+    this.request_model = asapp.requests.get(this.request_id);
+    this.listenTo(this.request_model, 'change:open', function () {
+      this.form_disabled(!this.request_model.get('open'));
+    });
     this.$('.msg').remove();
     this.render_request(this.request_id);
     var messages = this.collection.where({
       request: this.request_id
     });
     _.each(messages, this.append, this);
+    this.form_disabled(!this.request_model.get('open'));
+    if (this.request_model.get('open') !== false) {
+      this.chat_focus();
+    }
     return this;
   },
 
@@ -56,7 +64,13 @@ var ChatView = Backbone.View.extend({
   },
   
   chat_focus: function () {
-    $('#chatmsg').focus();
+    setTimeout(function () {
+      $('#chatmsg').focus();
+    }, 0);
+  },
+  
+  form_disabled: function (disabled) {
+    this.$('form').find('input,button').prop('disabled', disabled);
   },
 
   modelSet: function () {

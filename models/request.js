@@ -42,6 +42,10 @@ var schema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
+  },
+  open: {
+    type: Boolean,
+    default: true
   }
 });
 

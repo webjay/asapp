@@ -5,7 +5,9 @@ var RequestView = Backbone.View.extend({
   
   events: {
     'click .wilco': 'wilco',
-    'click .star': 'star'
+    'click .star': 'star',
+    'click [data-action="close"]': 'close',
+    'click [data-action="open"]': 'open'
   },
   
   initialize: function () {
@@ -24,6 +26,9 @@ var RequestView = Backbone.View.extend({
       data.wilcos = null;
     }
     this.$el.html(this.template(data));
+    if (this.model.get('open') === false) {
+      this.$('.btn').not('[data-action="open"],.btn-chat').prop('disabled', true).addClass('disabled');
+    }
     return this;
   },
 
@@ -45,6 +50,24 @@ var RequestView = Backbone.View.extend({
   star: function () {
     this.model.save({
       owner: asapp.user.id
+    }, {
+      patch: true,
+      wait: true
+    });
+  },
+  
+  open: function () {
+    this.model.save({
+      open: true
+    }, {
+      patch: true,
+      wait: true
+    });
+  },
+  
+  close: function () {
+    this.model.save({
+      open: false
     }, {
       patch: true,
       wait: true

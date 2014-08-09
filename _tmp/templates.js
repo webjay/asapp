@@ -95,7 +95,13 @@ __p += '\n<p class="small text-warning">\n<span class="text-muted">\n<em>Owner</
 __e( owner.username ) +
 '</strong>\n</p>\n';
  } ;
-__p += '\n<div class="btn-toolbar">\n<div class="btn-group">\n<a href="#chat/' +
+__p += '\n<div class="btn-toolbar" role="toolbar">\n<div class="btn-group pull-right">\n';
+ if (open) { ;
+__p += '\n<button class="btn btn-default" data-action="close">Close</button>\n';
+ } else { ;
+__p += '\n<button class="btn btn-default" data-action="open">Reopen</button>\n';
+ } ;
+__p += '\n</div>\n<div class="btn-group">\n<a href="#chat/' +
 __e( _id ) +
 '" class="btn btn-default btn-chat">Discuss</a>\n</div>\n<div class="btn-group">\n';
  if (urgent) { ;
