@@ -49,7 +49,7 @@ To install the needed components, and compile everything:
 
 ## Testing
 
-For testing we use [Mocha](http://visionmedia.github.io/mocha/).
+For testing we use [Mocha](http://mochajs.org/).
 
 To run tests, use this command:
 
